@@ -1,0 +1,271 @@
+/* ==========================================================================
+   Dragon Header – topbar + sticky main bar + mega menu + off-canvas
+   ========================================================================== */
+
+.dragon-header { position: relative; z-index: 999; font-family: var(--dragon-font); }
+
+/* Topbar */
+.dragon-topbar {
+  background: var(--dragon-primary-dark);
+  color: #e9ddca;
+  font-size: .85rem;
+}
+.dragon-topbar__inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: 40px; flex-wrap: wrap;
+}
+.dragon-topbar__inner--right { justify-content: flex-end; }
+.dragon-topbar__list { display: flex; align-items: center; gap: 1.4rem; list-style: none; margin: 0; padding: .4rem 0; }
+.dragon-topbar__list a { color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; }
+.dragon-topbar__list a:hover { color: var(--dragon-accent); }
+.dragon-topbar .dragon-ico { width: 16px; height: 16px; color: var(--dragon-accent); }
+.dragon-topbar__socials { display: flex; gap: .5rem; }
+
+/* Main bar */
+.dragon-bar { background: #fff; border-bottom: 1px solid var(--dragon-border); }
+.dragon-bar__inner {
+  display: flex; align-items: center; gap: 1.5rem;
+  min-height: 76px;
+}
+.dragon-logo { display: inline-flex; align-items: center; flex: none; }
+.dragon-logo img { display: block; height: 56px; width: auto; }
+
+/* Nav fills the space between logo and actions so the menu spans wider. */
+.dragon-nav { flex: 1 1 auto; display: flex; justify-content: center; margin-inline: clamp(1rem, 3vw, 2.5rem); }
+.dragon-menu { display: flex; align-items: center; justify-content: space-evenly; gap: clamp(.5rem, 2vw, 1.75rem); list-style: none; margin: 0; padding: 0; width: 100%; }
+.dragon-menu > li { position: relative; }
+.dragon-menu > li > a {
+  display: inline-flex; align-items: center; gap: .35rem; white-space: nowrap;
+  padding: 1.4rem .6rem; color: var(--dragon-primary); font-weight: 600; text-decoration: none;
+  font-size: .98rem; position: relative;
+}
+.dragon-menu > li > a::before {
+  content: ""; position: absolute; left: .6rem; right: .6rem; bottom: 1.05rem; height: 2px;
+  background: var(--dragon-accent); transform: scaleX(0); transform-origin: left; transition: transform .2s ease;
+}
+.dragon-menu > li > a:hover::before,
+.dragon-menu > li.is-open > a::before,
+.dragon-menu > li.current-menu-item > a::before,
+.dragon-menu > li[aria-current] > a::before { transform: scaleX(1); }
+.dragon-menu > li > a:hover { color: var(--dragon-gold-text); }
+.dragon-menu > li > a:focus-visible { outline: 3px solid var(--dragon-accent); outline-offset: -3px; border-radius: 4px; }
+.dragon-menu .dragon-menu__caret { width: 16px; height: 16px; transition: transform .2s ease; }
+/* Home menu item shown as a single large icon. */
+.dragon-menu__home > a { padding-inline: .7rem; }
+.dragon-menu__home > a .dragon-ico { width: 28px; height: 28px; }
+.dragon-menu__home > a::after { left: .7rem; right: .7rem; }
+.dragon-menu > li.is-open .dragon-menu__caret { transform: rotate(180deg); }
+
+.dragon-header__actions { display: flex; align-items: center; gap: .6rem; flex: none; }
+.dragon-header__call {
+  display: inline-flex; align-items: center; gap: .5rem; text-decoration: none;
+  color: var(--dragon-primary); font-weight: 700;
+}
+.dragon-header__call small { display: block; font-weight: 500; font-size: .7rem; color: var(--dragon-muted); }
+.dragon-header__call .dragon-ico-chip { width: 42px; height: 42px; }
+.dragon-header__call .dragon-ico-chip .dragon-ico { width: 22px; height: 22px; }
+
+/* Mega menu */
+.dragon-mega {
+  position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px);
+  width: min(760px, 92vw);
+  background: #fff; border: 1px solid var(--dragon-border);
+  border-radius: var(--dragon-radius-md); box-shadow: var(--dragon-shadow-lg);
+  padding: 1.1rem; opacity: 0; visibility: hidden; transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 50;
+}
+.dragon-menu > li.is-open .dragon-mega { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(6px); }
+.dragon-mega__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .35rem; }
+.dragon-mega__item {
+  display: flex; gap: .75rem; padding: .7rem .8rem; border-radius: 10px; text-decoration: none;
+  color: var(--dragon-text); transition: background-color .15s ease;
+}
+.dragon-mega__item:hover, .dragon-mega__item:focus-visible { background: var(--dragon-bg-light); outline: none; }
+.dragon-mega__item .dragon-ico-chip { width: 42px; height: 42px; }
+.dragon-mega__item .dragon-ico-chip .dragon-ico { width: 22px; height: 22px; }
+.dragon-mega__title { display: block; font-weight: 700; color: var(--dragon-primary); font-size: .95rem; }
+.dragon-mega__desc { display: block; font-size: .8rem; color: var(--dragon-muted); line-height: 1.4; }
+.dragon-mega__foot {
+  margin-top: .6rem; padding-top: .8rem; border-top: 1px solid var(--dragon-border);
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+.dragon-mega__foot a { color: var(--dragon-gold-text); font-weight: 700; text-decoration: none; font-size: .9rem; display: inline-flex; align-items: center; gap: .3rem; }
+
+/* Sticky */
+.dragon-bar.is-stuck {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  box-shadow: var(--dragon-shadow-md);
+  animation: dragonSlideDown .25s ease;
+}
+.dragon-bar.is-stuck .dragon-bar__inner { min-height: 64px; }
+.dragon-bar.is-stuck .dragon-logo img { height: 46px; }
+@keyframes dragonSlideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+.dragon-header__spacer { display: none; }
+.dragon-header__spacer.is-active { display: block; }
+
+/* Hamburger */
+.dragon-burger {
+  display: none; align-items: center; justify-content: center;
+  width: 48px; height: 48px; border: 1px solid var(--dragon-border); border-radius: 10px;
+  background: #fff; color: var(--dragon-primary); cursor: pointer;
+}
+.dragon-burger:focus-visible { outline: 3px solid var(--dragon-accent); outline-offset: 2px; }
+
+/* Off-canvas mobile */
+.dragon-offcanvas {
+  position: fixed; inset: 0 0 0 auto; width: min(340px, 88vw);
+  background: #fff; z-index: 2000; transform: translateX(100%);
+  transition: transform .28s ease; display: flex; flex-direction: column;
+  box-shadow: var(--dragon-shadow-lg); overflow-y: auto;
+}
+.dragon-offcanvas.is-open { transform: translateX(0); }
+.dragon-offcanvas__head { display: flex; align-items: center; justify-content: space-between; padding: 1rem; border-bottom: 1px solid var(--dragon-border); }
+.dragon-offcanvas__head img { height: 44px; width: auto; }
+.dragon-offcanvas__close {
+  width: 44px; height: 44px; border: 1px solid var(--dragon-border); border-radius: 10px; background: #fff; cursor: pointer; color: var(--dragon-primary);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.dragon-offcanvas__nav { list-style: none; margin: 0; padding: .5rem; }
+.dragon-offcanvas__nav li { border-bottom: 1px solid var(--dragon-bg-soft); }
+.dragon-offcanvas__nav a { display: block; padding: .85rem .75rem; color: var(--dragon-primary); font-weight: 600; text-decoration: none; }
+.dragon-offcanvas__toggle {
+  display: flex; align-items: center; justify-content: space-between; width: 100%;
+  padding: .85rem .75rem; background: none; border: 0; font: inherit; font-weight: 600; color: var(--dragon-primary);
+  cursor: pointer; text-align: left;
+}
+.dragon-offcanvas__toggle .dragon-ico { transition: transform .2s ease; }
+.dragon-offcanvas__toggle[aria-expanded="true"] .dragon-ico { transform: rotate(180deg); }
+.dragon-offcanvas__sub { list-style: none; margin: 0; padding: 0 0 .4rem .5rem; display: none; }
+.dragon-offcanvas__sub.is-open { display: block; }
+.dragon-offcanvas__sub a { padding: .6rem .75rem; font-weight: 500; color: var(--dragon-secondary); }
+.dragon-offcanvas__actions { margin-top: auto; padding: 1rem; display: grid; gap: .6rem; border-top: 1px solid var(--dragon-border); }
+
+.dragon-overlay {
+  position: fixed; inset: 0; background: rgba(30, 20, 10, .5); z-index: 1999;
+  opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s;
+}
+.dragon-overlay.is-open { opacity: 1; visibility: visible; }
+
+body.dragon-menu-open { overflow: hidden; }
+
+/* ==========================================================================
+   WordPress nav menu (wp_nav_menu) — desktop dropdowns + FontAwesome icons
+   ========================================================================== */
+.dragon-menu li { position: relative; }
+/* Top-level items: brand icon chip placed BEFORE the label (new design).
+   Targets any FontAwesome <i> in the label (the site's menu uses both
+   `menu-icon` and plain `fa-solid` icons). */
+.dragon-menu > li > a > i {
+  order: -1; flex: none; margin: 0;
+  width: 30px; height: 30px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 9px; background: var(--dragon-bg-soft);
+  color: var(--dragon-accent-hover); font-size: .92rem; line-height: 1;
+  transition: background-color .18s ease, color .18s ease;
+}
+.dragon-menu > li > a:hover > i,
+.dragon-menu > li:hover > a > i { background: var(--dragon-accent); color: #fff; }
+
+/* FontAwesome font is no longer loaded, so render a brand SVG glyph inside the
+   chip via CSS mask (based on the FA class still present in the menu label). */
+.dragon-menu > li > a > i::before,
+.dragon-offcanvas__nav > li > a > i::before {
+  content: "" !important;
+  display: block; width: 18px; height: 18px;
+  background-color: currentColor;
+  -webkit-mask: var(--vs-mico, var(--vs-mico-def)) center / contain no-repeat;
+  mask: var(--vs-mico, var(--vs-mico-def)) center / contain no-repeat;
+}
+.dragon-offcanvas__nav > li > a > i::before { width: 16px; height: 16px; }
+/* Default glyph + per-service mapping (matches Flatsome/FA classes in labels). */
+.dragon-menu > li > a > i, .dragon-offcanvas__nav > li > a > i {
+  --vs-mico-def: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v18M7 21h10M5 7h14M5 7 3 13a3 3 0 0 0 6 0L7 7m12 0-2 6a3 3 0 0 0 6 0l-2-6M12 4a1.5 1.5 0 1 0 0-.01'/%3E%3C/svg%3E"); }
+.dragon-menu i[class*="fa-building"], .dragon-offcanvas__nav i[class*="fa-building"] {
+  --vs-mico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 21V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v16M15 21V9h4a1 1 0 0 1 1 1v11M2 21h20M7 8h2M7 12h2M7 16h2'/%3E%3C/svg%3E"); }
+.dragon-menu i[class*="fa-layer-group"], .dragon-offcanvas__nav i[class*="fa-layer-group"] {
+  --vs-mico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3 3 8l9 5 9-5-9-5ZM3 13l9 5 9-5M3 17l9 5 9-5'/%3E%3C/svg%3E"); }
+.dragon-menu i[class*="fa-newspaper"], .dragon-offcanvas__nav i[class*="fa-newspaper"] {
+  --vs-mico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 5h13a1 1 0 0 1 1 1v12a2 2 0 0 0 2-2V8M4 5a1 1 0 0 0-1 1v11a2 2 0 0 0 2 2h13M7 9h7M7 13h7M7 17h4'/%3E%3C/svg%3E"); }
+.dragon-menu i[class*="fa-book"], .dragon-offcanvas__nav i[class*="fa-book"] {
+  --vs-mico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 4h11a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2ZM9 8h6M9 12h6M9 16h4'/%3E%3C/svg%3E"); }
+.dragon-menu i[class*="fa-flag"], .dragon-offcanvas__nav i[class*="fa-flag"],
+.dragon-menu i[class*="fa-home"], .dragon-offcanvas__nav i[class*="fa-home"] {
+  --vs-mico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 10.5 12 3l9 7.5M5 9v11h5v-6h4v6h5V9'/%3E%3C/svg%3E"); }
+
+/* Caret on top-level items that have a submenu. */
+.dragon-menu > .menu-item-has-children > a::after {
+  content: ""; display: inline-block; width: 7px; height: 7px; margin-left: .4rem;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg); opacity: .7;
+}
+/* Dropdown panels. */
+.dragon-menu .sub-menu {
+  list-style: none; margin: 0; padding: .4rem;
+  position: absolute; min-width: 275px;
+  background: #fff; border: 1px solid var(--dragon-border);
+  border-radius: var(--dragon-radius-md); box-shadow: var(--dragon-shadow-lg);
+  opacity: 0; visibility: hidden; transition: opacity .16s ease, visibility .16s;
+  z-index: 60;
+}
+.dragon-menu > li > .sub-menu { top: 100%; left: 0; }
+.dragon-menu .sub-menu .sub-menu { top: -.4rem; left: 100%; }
+.dragon-menu li:hover > .sub-menu,
+.dragon-menu li:focus-within > .sub-menu { opacity: 1; visibility: visible; }
+.dragon-menu .sub-menu li > a {
+  display: flex; align-items: center; gap: .5rem;
+  padding: .55rem .75rem; border-radius: 8px;
+  color: var(--dragon-primary); font-weight: 500; font-size: .92rem; text-decoration: none;
+  white-space: nowrap;   /* keep each item on one line; the box widens to fit the longest label */
+}
+.dragon-menu .sub-menu li > a:hover,
+.dragon-menu .sub-menu li > a:focus-visible { background: var(--dragon-bg-light); color: var(--dragon-gold-text); outline: none; }
+/* Leading gold icon on every submenu item (new design). */
+.dragon-menu .sub-menu li > a::before {
+  content: ""; flex: none; width: 15px; height: 15px;
+  background: var(--dragon-accent-hover);
+  -webkit-mask: var(--dragon-submenu-ico) center / contain no-repeat;
+  mask: var(--dragon-submenu-ico) center / contain no-repeat;
+  transition: background-color .18s ease;
+}
+.dragon-menu .sub-menu li > a:hover::before { background: var(--dragon-lotus); }
+.dragon-menu .sub-menu .menu-item-has-children > a::after { content: "›"; margin-left: auto; font-size: 1.1em; opacity: .6; }
+.dragon-menu .sub-menu i { display: none; }
+
+/* Off-canvas: nested WordPress submenus + JS collapse caret. */
+.dragon-offcanvas__nav .sub-menu { list-style: none; margin: 0; padding: 0 0 .3rem .85rem; display: none; }
+.dragon-offcanvas__nav .sub-menu.is-open { display: block; }
+.dragon-offcanvas__nav > li > a { display: flex; align-items: center; gap: .6rem; }
+.dragon-offcanvas__nav > li > a > i {
+  order: -1; flex: none; margin: 0; width: 28px; height: 28px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 8px; background: var(--dragon-bg-soft);
+  color: var(--dragon-accent-hover); font-size: .85rem; line-height: 1;
+}
+.dragon-offcanvas__nav .sub-menu a { display: flex; align-items: center; gap: .55rem; padding: .55rem .75rem; font-weight: 500; font-size: .92rem; color: var(--dragon-secondary); }
+.dragon-offcanvas__nav .sub-menu a::before {
+  content: ""; flex: none; width: 13px; height: 13px;
+  background: var(--dragon-accent-hover);
+  -webkit-mask: var(--dragon-submenu-ico) center / contain no-repeat;
+  mask: var(--dragon-submenu-ico) center / contain no-repeat;
+}
+.dragon-offcanvas__nav .sub-menu i { display: none; }
+.dragon-offcanvas__nav .menu-item-has-children { position: relative; }
+.dragon-oc-caret {
+  position: absolute; top: 4px; right: 4px; width: 40px; height: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: none; border: 0; cursor: pointer; color: var(--dragon-primary);
+}
+.dragon-oc-caret svg { width: 18px; height: 18px; transition: transform .2s ease; }
+.dragon-oc-caret[aria-expanded="true"] svg { transform: rotate(180deg); }
+.dragon-oc-caret:focus-visible { outline: 2px solid var(--dragon-accent); border-radius: 8px; }
+
+/* Responsive header switch */
+@media (max-width: 1024px) {
+  .dragon-nav, .dragon-header__call small { display: none; }
+  .dragon-burger { display: inline-flex; }
+}
+@media (max-width: 560px) {
+  .dragon-topbar { display: none; }
+  .dragon-header__cta-text { display: none; }
+  .dragon-logo img { height: 46px; }
+}

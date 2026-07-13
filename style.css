@@ -1,0 +1,17 @@
+/*
+Theme Name: VinaSite
+Theme URI: https://vinasite.com.vn/
+Description: Công ty TNHH VinaSite Việt Nam — chuyên thiết kế website, SEO, quản trị website, hosting/VPS và email doanh nghiệp chuyên nghiệp cho hơn 1.000 doanh nghiệp & shop. Phương châm: Tối ưu hoá lợi nhuận của bạn. Hotline 052 897 6666 — info@vinasite.com.vn.
+Author: VinaSite Việt Nam
+Author URI: https://vinasite.com.vn/
+Version: 1.0.1
+Requires at least: 6.0
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: vinasite
+Tags: business, custom-menu, featured-images, translation-ready
+*/
+
+/* Vinasite loads its styles via enqueued files under /assets/dragon/css/.
+   This stylesheet only carries the theme header required by WordPress. */

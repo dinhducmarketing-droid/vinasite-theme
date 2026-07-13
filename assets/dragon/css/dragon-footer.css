@@ -1,0 +1,185 @@
+/* ==========================================================================
+   Dragon Footer + floating CTAs + mobile action bar
+   ========================================================================== */
+
+.dragon-footer {
+  background: #241206;                       /* deeper than body sections */
+  color: #d8ccb8;
+  font-family: var(--dragon-font);
+  border-top: 5px solid var(--dragon-accent); /* bright gold seam = clear separation */
+  border-radius: 34px 34px 0 0;               /* distinct slab lifting from the body */
+  margin-top: 2.5rem;
+  position: relative;
+  box-shadow: 0 -10px 30px -14px rgba(53, 32, 15, .35);
+}
+.dragon-footer a { color: #d8ccb8; text-decoration: none; }
+.dragon-footer a:hover { color: var(--dragon-accent); }
+
+.dragon-footer__main { padding-block: clamp(2.5rem, 5vw, 4rem); }
+.dragon-footer__grid { display: grid; grid-template-columns: 1.5fr 1.3fr 1fr 1fr; gap: 2rem; }
+.dragon-footer h3 { color: #fff; font-size: 1.05rem; margin-bottom: 1.1rem; position: relative; padding-bottom: .6rem; }
+.dragon-footer h3::after { content: ""; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background: var(--dragon-accent); border-radius: 2px; }
+
+.dragon-footer__brand img { height: 60px; width: auto; margin-bottom: 1rem; background: #fff; padding: 6px 10px; border-radius: 8px; }
+.dragon-footer__slogan { font-style: italic; color: var(--dragon-accent); margin-bottom: 1rem; }
+.dragon-footer__meta { font-size: .9rem; line-height: 1.9; }
+.dragon-footer__meta strong { color: #fff; }
+
+.dragon-footer__contact li { display: flex; gap: .6rem; margin-bottom: .8rem; font-size: .92rem; line-height: 1.55; align-items: flex-start; }
+.dragon-footer__contact .dragon-ico { width: 18px; height: 18px; color: var(--dragon-accent); flex: none; margin-top: 3px; }
+.dragon-footer ul { list-style: none; margin: 0; padding: 0; }
+.dragon-footer__links li { margin-bottom: .6rem; font-size: .92rem; }
+.dragon-footer__links a { display: inline-flex; align-items: center; gap: .4rem; }
+
+.dragon-footer__bottom { border-top: 1px solid rgba(255, 255, 255, .1); padding-block: 1.2rem; }
+.dragon-footer__bottom-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: .85rem; }
+.dragon-footer__legal { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+.dragon-footer__socials { display: flex; gap: .6rem; }
+.dragon-footer__socials a { display: inline-flex; width: 38px; height: 38px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; }
+.dragon-footer__socials a:hover { background: var(--dragon-accent); color: var(--dragon-primary-dark); border-color: var(--dragon-accent); }
+
+/* Floating desktop CTAs (hotline + zalo).
+   Hidden by default: the site's ntgsite-call-button plugin already renders an
+   admin-managed vertical stack (phone/email/messenger/zalo) on desktop, so we
+   defer to it and avoid duplicate buttons. Our own floats remain in the markup
+   as a fallback and can be re-enabled by removing the display:none below if the
+   plugin is ever disabled. */
+.dragon-floats { display: none; position: fixed; right: 18px; bottom: 22px; z-index: 900; flex-direction: column; gap: .6rem; }
+.dragon-float {
+  display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px;
+  border-radius: 50%; color: #fff; box-shadow: var(--dragon-shadow-md); text-decoration: none;
+  position: relative;
+}
+.dragon-float .dragon-ico { width: 26px; height: 26px; }
+.dragon-float--phone { background: var(--dragon-primary); }
+.dragon-float--zalo { background: #0068ff; }
+.dragon-float::before {
+  content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid currentColor;
+  opacity: .5; animation: dragonPulse 2.4s ease-out infinite;
+}
+.dragon-float--phone::before { color: var(--dragon-primary); }
+.dragon-float--zalo::before { color: #0068ff; }
+@keyframes dragonPulse { 0% { transform: scale(1); opacity: .5; } 100% { transform: scale(1.5); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .dragon-float::before { animation: none; } }
+
+/* Mobile bottom action bar */
+.dragon-mobilebar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 950; display: none;
+  grid-template-columns: repeat(3, 1fr); background: #fff;
+  border-top: 1px solid var(--dragon-border); box-shadow: 0 -4px 18px rgba(53,32,15,.12);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.dragon-mobilebar a {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  padding: .55rem 0; min-height: 56px; text-decoration: none; color: var(--dragon-primary);
+  font-size: .72rem; font-weight: 600; border-right: 1px solid var(--dragon-bg-soft);
+}
+.dragon-mobilebar a:last-child { border-right: 0; }
+.dragon-mobilebar a .dragon-ico { width: 22px; height: 22px; }
+.dragon-mobilebar a.is-primary { background: var(--dragon-accent); color: var(--dragon-primary-dark); }
+.dragon-mobilebar .dragon-ico { color: var(--dragon-accent-hover); }
+.dragon-mobilebar a.is-primary .dragon-ico { color: var(--dragon-primary-dark); }
+
+@media (max-width: 768px) {
+  .dragon-footer__grid { grid-template-columns: 1fr 1fr; }
+  .dragon-floats { display: none; }
+  .dragon-mobilebar { display: grid; }
+  body { padding-bottom: 56px; }
+  /* On mobile our bottom action bar replaces the plugin's floating stack
+     (.box-support) to avoid the two colliding at the bottom-right. */
+  .box-support { display: none !important; }
+}
+@media (max-width: 480px) {
+  .dragon-footer__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .dragon-footer__bottom-inner { flex-direction: column; text-align: center; }
+}
+
+/* ==========================================================================
+   Floating contact buttons (.box-support plugin) — brand-synced + ring/shake.
+   The plugin's coloured SVG discs are hidden and redrawn with CSS so every
+   button matches the site palette (brown + gold). Icons use CSS masks so the
+   glyph colour is themeable.
+   ========================================================================== */
+.box-support { gap: 12px !important; }
+.box-support a {
+  position: relative !important;
+  width: 52px !important;
+  height: 52px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50% !important;
+  background: var(--dragon-primary) !important;   /* brown disc */
+  border: 2px solid rgba(217, 154, 28, .55) !important;
+  box-shadow: var(--dragon-shadow-md);
+  overflow: visible !important;
+  animation: dragonRing 2.6s ease-in-out infinite;
+  transform-origin: 50% 50%;
+}
+.box-support a:nth-of-type(2) { animation-delay: .25s; }
+.box-support a:nth-of-type(3) { animation-delay: .5s; }
+.box-support a:nth-of-type(4) { animation-delay: .75s; }
+.box-support a:hover { animation-play-state: paused; background: var(--dragon-secondary) !important; }
+
+/* Hide the plugin's original coloured icon images. */
+.box-support a img { display: none !important; }
+
+/* Glyph via mask (colour = background-color). */
+.box-support a::before {
+  content: "";
+  width: 26px; height: 26px;
+  background-color: #fff;
+  -webkit-mask: var(--dg) center / contain no-repeat;
+  mask: var(--dg) center / contain no-repeat;
+}
+/* Expanding ring pulse. */
+.box-support a::after {
+  content: "";
+  position: absolute; inset: -2px;
+  border-radius: 50%;
+  border: 2px solid var(--dragon-accent);
+  opacity: .6;
+  animation: dragonRingPulse 2.2s ease-out infinite;
+  pointer-events: none;
+}
+
+/* Per-service glyph + emphasis colour. Phone = gold disc (primary CTA). */
+.box-support a[href^="tel:"] {
+  background: var(--dragon-accent) !important;
+  border-color: rgba(53, 32, 15, .35) !important;
+  --dg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1 16 16 0 0 1-15-15 1 1 0 0 1 1-1Z'/%3E%3C/svg%3E");
+}
+.box-support a[href^="tel:"]::before { background-color: var(--dragon-primary-dark); }
+.box-support a[href^="tel:"]:hover { background: var(--dragon-accent-hover) !important; }
+.box-support a[href^="tel:"]::after { border-color: var(--dragon-primary); }
+
+.box-support a[href^="mailto:"] {
+  --dg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='m3 7 9 6 9-6'/%3E%3C/svg%3E");
+}
+.box-support a[href*="facebook"], .box-support a[href*="messenger"], .box-support a[href*="m.me"] {
+  --dg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z'/%3E%3C/svg%3E");
+}
+/* Zalo: show the word "Zalo" in white instead of a glyph. */
+.box-support a[href*="zalo"]::before {
+  content: "Zalo";
+  -webkit-mask: none; mask: none; background: none;
+  width: auto; height: auto;
+  color: #fff; font: 800 .74rem/1 var(--dragon-font); letter-spacing: .2px;
+}
+
+@keyframes dragonRing {
+  0%, 82%, 100% { transform: rotate(0); }
+  85% { transform: rotate(-13deg); }
+  88% { transform: rotate(11deg); }
+  91% { transform: rotate(-8deg); }
+  94% { transform: rotate(6deg); }
+  97% { transform: rotate(-3deg); }
+}
+@keyframes dragonRingPulse {
+  0% { transform: scale(1); opacity: .6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .box-support a { animation: none !important; }
+  .box-support a::after { animation: none !important; opacity: 0; }
+}

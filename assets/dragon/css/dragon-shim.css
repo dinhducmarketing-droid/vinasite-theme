@@ -1,0 +1,78 @@
+/* ==========================================================================
+   VinaSite – legacy shortcode shim layout (Flatsome UX Builder compatibility).
+   Renders [section][row][col][ux_*][accordion] pages as clean responsive HTML.
+   ========================================================================== */
+
+.vs-ux-section { padding-block: clamp(2rem, 5vw, 3.5rem); font-family: var(--dragon-font); color: var(--dragon-text); }
+.vs-ux-section.vs-ux-dark { background: var(--dragon-primary-dark); color: #f0e6d6; }
+.vs-ux-section.vs-ux-dark h1, .vs-ux-section.vs-ux-dark h2, .vs-ux-section.vs-ux-dark h3 { color: #fff; }
+
+/* 12-column responsive grid (Flatsome-like). */
+.vs-ux-row { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start; margin-bottom: 1rem; }
+.vs-ux-row--center { justify-content: center; }
+.vs-ux-col { flex: 1 1 calc((var(--vs-span, 12) / 12 * 100%) - 1.5rem); min-width: 0; }
+.vs-ux-col > *:first-child { margin-top: 0; }
+
+/* Content bits */
+.vs-ux-image-wrap { margin: 0 0 1rem; }
+.vs-ux-image, .vs-ux-image-wrap img { width: 100%; height: auto; display: block; border-radius: var(--dragon-radius-md); }
+.vs-ux-text { line-height: 1.75; }
+.vs-ux-text h1, .vs-ux-text h2, .vs-ux-text h3, .vs-ux-text h4 { color: var(--dragon-primary); line-height: 1.3; margin: 1.2rem 0 .6rem; }
+.vs-ux-text p { margin: 0 0 1rem; }
+.vs-ux-text a { color: var(--dragon-gold-text); }
+.vs-ux-title { color: var(--dragon-primary); line-height: 1.3; margin: 0 0 1rem; }
+.vs-ux-gap { width: 100%; }
+.vs-ux-divider { border: 0; border-top: 1px solid var(--dragon-border); margin: 1.5rem 0; }
+
+.vs-ux-stack { display: flex; gap: 1rem; }
+.vs-ux-stack--col { flex-direction: column; }
+.vs-ux-stack--row { flex-direction: row; flex-wrap: wrap; align-items: center; }
+
+/* Image box */
+.vs-ux-box { background: #fff; border: 1px solid var(--dragon-border); border-radius: var(--dragon-radius-md); padding: 1.2rem; box-shadow: var(--dragon-shadow-sm); height: 100%; }
+.vs-ux-box__img { max-width: 88px; height: auto; margin: 0 auto .8rem; display: block; }
+.vs-ux-box__link { text-decoration: none; color: inherit; display: block; }
+.vs-ux-box__text h3, .vs-ux-box__text h4 { color: var(--dragon-primary); margin: .3rem 0; font-size: 1.05rem; }
+.vs-ux-box__text p { color: var(--dragon-muted); font-size: .92rem; margin: .3rem 0 0; }
+
+/* Accordion (native details) */
+.vs-accordion { max-width: 900px; margin: 1rem 0; }
+.vs-accordion__item { border: 1px solid var(--dragon-border); border-radius: var(--dragon-radius-sm); margin-bottom: .7rem; background: #fff; overflow: hidden; }
+.vs-accordion__q { cursor: pointer; padding: 1rem 1.2rem; font-weight: 600; color: var(--dragon-primary); list-style: none; position: relative; padding-right: 2.5rem; }
+.vs-accordion__q::-webkit-details-marker { display: none; }
+.vs-accordion__q::after { content: ""; position: absolute; right: 1.2rem; top: 50%; width: 9px; height: 9px; border-right: 2px solid var(--dragon-accent-hover); border-bottom: 2px solid var(--dragon-accent-hover); transform: translateY(-70%) rotate(45deg); transition: transform .2s ease; }
+.vs-accordion__item[open] .vs-accordion__q::after { transform: translateY(-30%) rotate(-135deg); }
+.vs-accordion__q:focus-visible { outline: 3px solid var(--dragon-accent); outline-offset: -3px; }
+.vs-accordion__a { padding: 0 1.2rem 1.1rem; color: var(--dragon-muted); line-height: 1.7; }
+.vs-accordion__a > *:first-child { margin-top: 0; }
+
+/* Page-title banner (ntg_page_title) */
+.vs-page-title { background: var(--dragon-primary) center/cover no-repeat; color: #fff; padding-block: clamp(1.8rem, 4vw, 2.8rem); position: relative; }
+.vs-page-title::before { content: ""; position: absolute; inset: 0; background: rgba(43,25,12,.72); }
+.vs-page-title .dragon-container { position: relative; z-index: 1; }
+.vs-page-title__h { color: #fff; font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 0 0 .5rem; }
+.vs-page-title .vs-breadcrumb { color: #e6d9c5; margin: 0; }
+.vs-page-title .vs-breadcrumb a { color: var(--dragon-accent); }
+
+/* Responsive video embed */
+.vs-video { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: var(--dragon-radius-md); overflow: hidden; background: #000; margin: 0 0 1.2rem; }
+.vs-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* Pricing fallback CTA (Go Pricing data lost) */
+.vs-pricing-cta { padding: 1.6rem 1.8rem; text-align: center; max-width: 640px; margin: 1.5rem auto; border-top: 3px solid var(--dragon-accent); }
+.vs-pricing-cta h3 { color: var(--dragon-primary); margin: 0 0 .5rem; }
+.vs-pricing-cta p { color: var(--dragon-muted); margin: 0 0 1.2rem; }
+.vs-pricing-cta__actions { display: flex; gap: .7rem; justify-content: center; flex-wrap: wrap; }
+
+.vs-muted { color: var(--dragon-muted); font-size: .9rem; font-style: italic; }
+.vs-tabs .vs-accordion__item { background: #fff; }
+
+/* Visibility helpers */
+.vs-hide-small { display: block; }
+.vs-show-small { display: none; }
+@media (max-width: 849px) {
+  .vs-ux-col { flex: 1 1 100%; }
+  .vs-hide-small { display: none !important; }
+  .vs-show-small { display: block !important; }
+  .vs-ux-stack--row { flex-direction: column; align-items: stretch; }
+}

@@ -1,0 +1,14 @@
+# Rác hệ điều hành / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# File tạm / backup
+*.bak
+*.log
+*.tmp
+
+# Thư mục công cụ (nếu có)
+node_modules/
+.vscode/
+.idea/

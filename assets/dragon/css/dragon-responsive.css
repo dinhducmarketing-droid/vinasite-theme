@@ -1,0 +1,44 @@
+/* ==========================================================================
+   Dragon Home – responsive breakpoints
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .dragon-practice__grid,
+  .dragon-lawyers__grid,
+  .dragon-ach__grid { grid-template-columns: repeat(2, 1fr); }
+  .dragon-process__grid { grid-template-columns: repeat(2, 1fr); }
+  .dragon-process__step::after { display: none; }
+  .dragon-postgrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .dragon-about__grid,
+  .dragon-news__layout,
+  .dragon-consult__grid { grid-template-columns: 1fr; }
+  .dragon-about__media { order: -1; max-height: 360px; }
+  .dragon-trust__grid { grid-template-columns: repeat(2, 1fr); }
+  .dragon-problems__grid { grid-template-columns: repeat(2, 1fr); }
+  .dragon-testi__grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  :root { --dragon-section-y: clamp(2.4rem, 9vw, 3.2rem); }
+  .dragon-practice__grid,
+  .dragon-lawyers__grid,
+  .dragon-ach__grid,
+  .dragon-postgrid,
+  .dragon-problems__grid,
+  .dragon-trust__grid,
+  .dragon-process__grid { grid-template-columns: 1fr; }
+  .dragon-hero__inner { padding-block: 2.6rem; }
+  .dragon-hero__cta .dragon-btn { flex: 1 1 100%; }
+  .dragon-form__grid { grid-template-columns: 1fr; }
+  .dragon-ctastrip__inner { flex-direction: column; text-align: center; }
+  .dragon-ctastrip__actions { width: 100%; justify-content: center; }
+  .dragon-testi__grid { grid-template-columns: 1fr; }
+  .dragon-lawyers__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 400px) {
+  .dragon-lawyers__grid { grid-template-columns: 1fr; }
+}

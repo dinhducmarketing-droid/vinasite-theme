@@ -1,0 +1,178 @@
+/* ==========================================================================
+   Dragon Law Firm – Design System (base)
+   Colours sampled from the brand logo: golden dragon, magenta lotus, brown text.
+   Primary = deep brown (authority) · Accent = gold (premium CTA) · Lotus = sparing highlight.
+   ========================================================================== */
+
+:root {
+  --dragon-primary: #4a2c17;        /* deep brown – logo wordmark */
+  --dragon-primary-dark: #35200f;
+  --dragon-secondary: #7a4a24;      /* warm brown */
+  --dragon-accent: #d99a1c;         /* gold – dragon */
+  --dragon-accent-hover: #b97f12;   /* gold for button-hover bg + icon graphics (≥3:1) */
+  --dragon-gold-text: #96610c;      /* darker gold ONLY for text on light bg (5.2:1, WCAG AA) */
+  --dragon-lotus: #c10e6c;          /* magenta – lotus, used sparingly */
+  --dragon-lotus-soft: #fbeaf2;
+  --dragon-text: #201d1a;
+  --dragon-muted: #6b645c;
+  --dragon-bg-light: #faf7f2;       /* warm off-white */
+  --dragon-bg-soft: #f4eee4;
+  --dragon-border: #e7ded1;
+  --dragon-white: #ffffff;
+  --dragon-success: #1f7a4d;
+  --dragon-danger: #b3261e;
+  --dragon-shadow-sm: 0 1px 3px rgba(53, 32, 15, .08), 0 1px 2px rgba(53, 32, 15, .06);
+  --dragon-shadow-md: 0 6px 22px rgba(53, 32, 15, .10);
+  --dragon-shadow-lg: 0 18px 48px rgba(53, 32, 15, .14);
+  --dragon-radius-sm: 8px;
+  --dragon-radius-md: 14px;
+  --dragon-radius-lg: 20px;
+  --dragon-container: 1200px;
+  --dragon-submenu-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 3 21 12 12 21 3 12Z'/%3E%3C/svg%3E");
+  --dragon-gap: clamp(1rem, 2.5vw, 2rem);
+  --dragon-section-y: clamp(3rem, 6vw, 5.5rem);
+  --dragon-font: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Scope everything under .dragon-home / .dragon-scope so we never fight
+   Flatsome globals on inner pages. */
+.dragon-scope,
+.dragon-scope * { box-sizing: border-box; }
+
+.dragon-scope {
+  font-family: var(--dragon-font);
+  color: var(--dragon-text);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.dragon-container {
+  width: 100%;
+  max-width: var(--dragon-container);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+.dragon-section { padding-block: var(--dragon-section-y); }
+.dragon-section--soft { background: var(--dragon-bg-light); }
+.dragon-section--brand { background: var(--dragon-primary); color: #f4ece0; }
+
+/* Typography */
+.dragon-scope h1, .dragon-scope h2, .dragon-scope h3, .dragon-scope h4 {
+  font-family: var(--dragon-font);
+  color: var(--dragon-primary);
+  line-height: 1.25;
+  font-weight: 700;
+  margin: 0 0 .5em;
+}
+.dragon-section--brand h2, .dragon-section--brand h3 { color: #fff; }
+.dragon-scope h1 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); }
+.dragon-scope h2 { font-size: clamp(1.45rem, 2.8vw, 2.05rem); }
+.dragon-scope h3 { font-size: clamp(1.1rem, 1.8vw, 1.3rem); }
+.dragon-scope p { margin: 0 0 1rem; }
+
+.dragon-eyebrow {
+  display: inline-block;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--dragon-gold-text);
+  margin-bottom: .6rem;
+}
+
+.dragon-section-head { text-align: center; max-width: 720px; margin: 0 auto 2.5rem; }
+.dragon-section-head p { color: var(--dragon-muted); margin-bottom: 0; }
+.dragon-section-head--left { text-align: left; margin-inline: 0; }
+
+/* Buttons */
+.dragon-btn {
+  --_bg: var(--dragon-accent);
+  --_fg: var(--dragon-primary-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 48px;
+  padding: .75rem 1.5rem;
+  border-radius: var(--dragon-radius-sm);
+  background: var(--_bg);
+  color: var(--_fg);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background-color .2s ease, transform .12s ease, box-shadow .2s ease;
+}
+.dragon-btn:hover { background: var(--dragon-accent-hover); color: var(--dragon-primary-dark); transform: translateY(-1px); }
+.dragon-btn:focus-visible { outline: 3px solid var(--dragon-accent); outline-offset: 3px; }
+.dragon-btn .dragon-ico { width: 20px; height: 20px; }
+
+.dragon-btn--primary { --_bg: var(--dragon-primary); --_fg: #fff; }
+.dragon-btn--primary:hover { background: var(--dragon-primary-dark); color: #fff; }
+.dragon-btn--ghost {
+  --_bg: transparent; --_fg: #fff;
+  border-color: rgba(255, 255, 255, .6);
+}
+.dragon-btn--ghost:hover { background: rgba(255, 255, 255, .12); color: #fff; }
+.dragon-btn--outline {
+  --_bg: transparent; --_fg: var(--dragon-primary);
+  border-color: var(--dragon-border);
+}
+.dragon-btn--outline:hover { background: var(--dragon-bg-soft); color: var(--dragon-primary); }
+.dragon-btn--lotus { --_bg: var(--dragon-lotus); --_fg: #fff; }
+.dragon-btn--lotus:hover { background: #a00b5a; color: #fff; }
+.dragon-btn--block { width: 100%; }
+
+/* Cards */
+.dragon-card {
+  background: #fff;
+  border: 1px solid var(--dragon-border);
+  border-radius: var(--dragon-radius-md);
+  box-shadow: var(--dragon-shadow-sm);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.dragon-card:hover { transform: translateY(-4px); box-shadow: var(--dragon-shadow-md); border-color: #dcd0bd; }
+
+/* Icon chips */
+.dragon-ico-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  background: var(--dragon-bg-soft);
+  color: var(--dragon-accent-hover);
+  flex: none;
+}
+.dragon-ico-chip .dragon-ico { width: 28px; height: 28px; }
+
+/* Utilities */
+.dragon-grid { display: grid; gap: var(--dragon-gap); }
+.dragon-visually-hidden {
+  position: absolute !important; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Reveal on scroll (progressive – visible by default if JS/observer absent) */
+.dragon-reveal { opacity: 1; }
+.js .dragon-reveal { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+.js .dragon-reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dragon-scope *, .dragon-scope *::before, .dragon-scope *::after {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js .dragon-reveal { opacity: 1; transform: none; }
+}
+
+/* Skip link */
+.dragon-skip-link {
+  position: absolute; left: -999px; top: 0; z-index: 100000;
+  background: var(--dragon-primary); color: #fff; padding: .75rem 1.25rem; border-radius: 0 0 8px 0;
+}
+.dragon-skip-link:focus { left: 0; }
