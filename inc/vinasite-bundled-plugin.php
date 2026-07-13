@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
 /** Danh sách plugin đóng gói kèm theme (slug = tên thư mục = tên file zip). */
 function vinasite_bundled_plugins()
 {
-    return apply_filters('vinasite_bundled_plugins', array('vinasite-google-indexing'));
+    return apply_filters('vinasite_bundled_plugins', array('vinasite-google-indexing', 'vinasite-call-button'));
 }
 
 /** File chính của 1 plugin (dạng slug/slug.php) để activate. */
