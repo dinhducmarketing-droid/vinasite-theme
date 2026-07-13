@@ -48,6 +48,7 @@ function dragon_opt($key)
     // (Site cũ đã "chốt" giá trị riêng vào theme_mods nên không bị ảnh hưởng.)
     $defaults = array(
         'company_name' => get_bloginfo('name'),
+        'company_short' => '',
         'slogan'       => '',
         'phone'        => '',
         'hotline'      => '',
@@ -101,6 +102,18 @@ function dragon_opt($key)
 function dragon_tel($key = 'phone')
 {
     return preg_replace('/[^0-9+]/', '', dragon_opt($key));
+}
+
+/**
+ * Tên thương hiệu hiển thị TRONG NỘI DUNG (thân thiện): company_short → company_name → tên site.
+ * Dùng trong tiêu đề/đoạn văn các trang giới thiệu để tái dùng cho mọi site.
+ */
+function dragon_brand()
+{
+    $s = dragon_opt('company_short');
+    if ($s !== '') { return $s; }
+    $c = dragon_opt('company_name');
+    return $c !== '' ? $c : get_bloginfo('name');
 }
 
 /**

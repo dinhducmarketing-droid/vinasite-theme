@@ -58,7 +58,7 @@ $offices = array(
                 <span>Hồ sơ năng lực</span>
             </nav>
             <span class="dragon-eyebrow">Hồ sơ năng lực</span>
-            <h1 class="vs-single__title">Hồ sơ năng lực Công ty Luật Dragon</h1>
+            <h1 class="vs-single__title">Hồ sơ năng lực <?php echo esc_html(dragon_brand()); ?></h1>
             <p class="vs-about__lead">Dịch vụ luật sư uy tín tại Hà Nội với phương châm <strong>“Pháp lý từ tâm”</strong> — hơn 10 năm kinh nghiệm tư vấn và tranh tụng trên nhiều lĩnh vực.</p>
             <div class="vs-about__hero-cta">
                 <a class="dragon-btn dragon-btn--primary" href="#ho-so"><?php dragon_the_icon('folder'); ?>Xem hồ sơ năng lực</a>
@@ -94,7 +94,7 @@ $offices = array(
                 <?php endif; ?>
                 <div class="dragon-reveal">
                     <span class="dragon-eyebrow">Giới thiệu năng lực</span>
-                    <h2 id="vs-profile-title">Năng lực &amp; kinh nghiệm của Luật Dragon</h2>
+                    <h2 id="vs-profile-title">Năng lực &amp; kinh nghiệm của <?php echo esc_html(dragon_brand()); ?></h2>
                     <p>Hồ sơ năng lực thể hiện quá trình hình thành, lĩnh vực hoạt động và năng lực chuyên môn của Công ty Luật TNHH Dragon — đơn vị pháp lý uy tín tại Hà Nội và trên toàn quốc.</p>
                     <ul class="dragon-about__points">
                         <li><span class="dragon-ico-chip"><?php dragon_the_icon('award'); ?></span><div><h3>Hơn 10 năm hành nghề</h3><p>Kinh nghiệm tư vấn và tranh tụng đa lĩnh vực.</p></div></li>
@@ -167,7 +167,7 @@ $offices = array(
         <div class="dragon-container">
             <div class="dragon-section-head">
                 <span class="dragon-eyebrow">Năng lực nổi bật</span>
-                <h2 id="vs-profile-strength-title">Vì sao khách hàng tin chọn Luật Dragon</h2>
+                <h2 id="vs-profile-strength-title">Vì sao khách hàng tin chọn <?php echo esc_html(dragon_brand()); ?></h2>
             </div>
             <div class="dragon-ach__grid">
                 <?php foreach ($strengths as $st) : ?>
@@ -188,7 +188,7 @@ $offices = array(
                 <div class="dragon-reveal">
                     <span class="dragon-eyebrow">Truyền thông</span>
                     <h2 id="vs-profile-media-title">Hiện diện trên truyền thông pháp lý</h2>
-                    <p>Luật sư Công ty Luật Dragon tham gia các chương trình pháp luật trên truyền hình (ANTV), chia sẻ kiến thức và góp phần bảo vệ quyền, lợi ích hợp pháp của người dân và doanh nghiệp.</p>
+                    <p>Luật sư <?php echo esc_html(dragon_brand()); ?> tham gia các chương trình pháp luật trên truyền hình (ANTV), chia sẻ kiến thức và góp phần bảo vệ quyền, lợi ích hợp pháp của người dân và doanh nghiệp.</p>
                     <div class="dragon-about__actions">
                         <a class="dragon-btn dragon-btn--outline" href="<?php echo esc_url(home_url('/video-truyen-hinh/')); ?>">Xem Video / Truyền hình</a>
                     </div>

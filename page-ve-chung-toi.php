@@ -108,7 +108,7 @@ $offices = array(
                     <span class="dragon-eyebrow">Giới thiệu</span>
                     <h2 id="vs-about-intro-title">Hơn 10 năm đồng hành cùng khách hàng</h2>
                     <p>Công ty Luật TNHH Dragon hoạt động như một trong những đơn vị pháp lý uy tín hàng đầu tại Hà Nội và trên toàn quốc, với sứ mệnh hỗ trợ chuyên sâu trong các vấn đề pháp lý đa dạng.</p>
-                    <p>Trải qua hơn 10 năm hình thành và phát triển, với trụ sở chính tại Hà Nội và chi nhánh tại Hải Phòng, Luật Dragon đã tiếp nhận và xử lý thành công hàng trăm vụ việc, bảo vệ quyền và lợi ích hợp pháp cho khách hàng.</p>
+                    <p>Trải qua hơn 10 năm hình thành và phát triển, với trụ sở chính tại Hà Nội và chi nhánh tại Hải Phòng, <?php echo esc_html(dragon_brand()); ?> đã tiếp nhận và xử lý thành công hàng trăm vụ việc, bảo vệ quyền và lợi ích hợp pháp cho khách hàng.</p>
                     <ul class="dragon-about__points">
                         <li><span class="dragon-ico-chip"><?php dragon_the_icon('award'); ?></span><div><h3>Kinh nghiệm dày dặn</h3><p>Đội ngũ luật sư hành nghề lâu năm trên nhiều lĩnh vực.</p></div></li>
                         <li><span class="dragon-ico-chip"><?php dragon_the_icon('users'); ?></span><div><h3>Thành viên Đoàn Luật sư</h3><p>Hành nghề đúng chuẩn mực và quy định pháp luật.</p></div></li>
@@ -127,7 +127,7 @@ $offices = array(
         <div class="dragon-container">
             <div class="dragon-section-head">
                 <span class="dragon-eyebrow">Giá trị cốt lõi</span>
-                <h2 id="vs-about-values-title">Nền tảng làm nên Luật Dragon</h2>
+                <h2 id="vs-about-values-title">Nền tảng làm nên <?php echo esc_html(dragon_brand()); ?></h2>
                 <p>Ba giá trị định hướng mọi hoạt động và cam kết của chúng tôi với khách hàng.</p>
             </div>
             <div class="dragon-ach__grid vs-about__values">

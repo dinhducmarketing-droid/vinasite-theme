@@ -19,6 +19,7 @@ function dragon_customize_register($wp_customize)
     ));
 
     $fields = array(
+        'dragon_company_short' => array('Tên hiển thị ngắn (dùng trong tiêu đề/nội dung trang)', ''),
         'dragon_phone'        => array('Điện thoại chính (hiển thị)', ''),
         'dragon_hotline'      => array('Hotline / tổng đài', ''),
         'dragon_show_hotline' => array('Hiện hotline? (1 = có, 0 = ẩn)', '1'),

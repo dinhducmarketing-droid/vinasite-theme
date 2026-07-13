@@ -49,7 +49,7 @@ $play_svg = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><pa
             </nav>
             <span class="dragon-eyebrow">Video / Truyền hình</span>
             <h1 class="vs-single__title">Luật sư Dragon trên truyền hình</h1>
-            <p class="vs-about__lead">Luật sư Công ty Luật Dragon tham gia phỏng vấn, phân tích pháp luật trên <strong>ANTV, Truyền hình CAND</strong> và nhiều chương trình pháp lý — chia sẻ kiến thức, bảo vệ quyền lợi người dân và doanh nghiệp.</p>
+            <p class="vs-about__lead">Luật sư <?php echo esc_html(dragon_brand()); ?> tham gia phỏng vấn, phân tích pháp luật trên <strong>ANTV, Truyền hình CAND</strong> và nhiều chương trình pháp lý — chia sẻ kiến thức, bảo vệ quyền lợi người dân và doanh nghiệp.</p>
             <div class="vs-about__hero-cta">
                 <a class="dragon-btn dragon-btn--primary" href="#video"><?php dragon_the_icon('news'); ?>Xem video</a>
                 <a class="dragon-btn dragon-btn--ghost" href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?>Gọi <?php echo esc_html($phone); ?></a>

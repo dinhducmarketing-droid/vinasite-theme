@@ -60,7 +60,7 @@ $star_svg = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><pa
             <div class="dragon-section-head">
                 <span class="dragon-eyebrow">Đánh giá thực tế</span>
                 <h2 id="vs-rv-title">Cảm nhận của khách hàng</h2>
-                <p>Những chia sẻ chân thật từ khách hàng đã sử dụng dịch vụ pháp lý của Luật Dragon.</p>
+                <p>Những chia sẻ chân thật từ khách hàng đã sử dụng dịch vụ pháp lý của <?php echo esc_html(dragon_brand()); ?>.</p>
             </div>
             <div class="vs-reviews">
                 <?php foreach ($reviews as $r) : ?>
@@ -103,7 +103,7 @@ $star_svg = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><pa
             <div class="dragon-section-head">
                 <span class="dragon-eyebrow">Được ghi nhận &amp; tin tưởng</span>
                 <h2 id="vs-rv-proof-title">Uy tín được khẳng định</h2>
-                <p>Không chỉ qua lời nói — uy tín của Luật Dragon còn được thể hiện qua thành tích và sự hiện diện trên truyền thông.</p>
+                <p>Không chỉ qua lời nói — uy tín của <?php echo esc_html(dragon_brand()); ?> còn được thể hiện qua thành tích và sự hiện diện trên truyền thông.</p>
             </div>
             <div class="vs-proof">
                 <a class="dragon-card vs-proof__item dragon-reveal" href="<?php echo esc_url(home_url('/thanh-tich/')); ?>">
@@ -130,7 +130,7 @@ $star_svg = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><pa
     <section class="dragon-ctastrip" aria-label="Liên hệ tư vấn">
         <div class="dragon-container dragon-ctastrip__inner">
             <div>
-                <h2>Trở thành khách hàng tiếp theo hài lòng cùng Luật Dragon</h2>
+                <h2>Trở thành khách hàng tiếp theo hài lòng cùng <?php echo esc_html(dragon_brand()); ?></h2>
                 <p>Đặt lịch tư vấn hoặc gọi ngay để được luật sư hỗ trợ nhanh chóng, bảo mật.</p>
             </div>
             <div class="dragon-ctastrip__actions">

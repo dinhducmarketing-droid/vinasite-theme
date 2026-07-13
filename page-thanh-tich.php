@@ -53,7 +53,7 @@ $highlights = array(
             <div class="dragon-section-head">
                 <span class="dragon-eyebrow">Ghi nhận &amp; vinh danh</span>
                 <h2 id="vs-awards-hl-title">Uy tín được khẳng định</h2>
-                <p>Luật Dragon và các luật sư được nhiều cơ quan, tổ chức ghi nhận, khen thưởng.</p>
+                <p><?php echo esc_html(dragon_brand()); ?> và các luật sư được nhiều cơ quan, tổ chức ghi nhận, khen thưởng.</p>
             </div>
             <div class="dragon-ach__grid">
                 <?php foreach ($highlights as $h) : ?>
