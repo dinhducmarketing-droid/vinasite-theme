@@ -28,6 +28,7 @@ function dragon_customize_register($wp_customize)
         'dragon_work_hours'   => array('Thời gian tiếp nhận tư vấn', ''),
         'dragon_map_embed'    => array('Link nhúng Google Maps (embed)', ''),
         'dragon_form_email'   => array('Email nhận đơn tư vấn', ''),
+        'dragon_ga_ids'       => array('Mã Google Analytics (G-XXXX; nhiều mã cách nhau dấu phẩy)', ''),
         'dragon_facebook'     => array('Link Facebook (nếu có)', ''),
         'dragon_youtube'      => array('Link YouTube (nếu có)', ''),
         'dragon_hero_img'     => array('Ảnh nền banner hero (URL)', 'ảnh văn phòng'),

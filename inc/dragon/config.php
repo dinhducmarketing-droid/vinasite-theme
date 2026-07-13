@@ -59,6 +59,7 @@ function dragon_opt($key)
         'work_hours'   => 'Tiếp nhận tư vấn: 8h00 – 20h00 (T2 – CN)',
         'map_embed'    => 'https://www.google.com/maps?q=459C+B%E1%BA%A1ch+Mai,+H%C3%A0+N%E1%BB%99i&output=embed',
         'form_email'   => get_option('admin_email'),
+        'ga_ids'       => '',
         'facebook'     => '',
         'youtube'      => '',
         // Section imagery (firm-owned photos from the Media Library; admin-editable).

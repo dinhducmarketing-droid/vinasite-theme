@@ -17,15 +17,20 @@ if (!defined('ABSPATH')) {
     <link rel="profile" href="https://gmpg.org/xfn/11"/>
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>"/>
     <?php wp_head(); ?>
+    <?php
+    // Google Analytics — mã lấy từ Customizer (rỗng = không chèn). Nhiều mã cách nhau dấu phẩy.
+    $vinasite_ga = array_filter(array_map('trim', explode(',', (string) dragon_opt('ga_ids'))));
+    if (!empty($vinasite_ga)) : ?>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V39TXKGQLD"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr($vinasite_ga[0]); ?>"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-V39TXKGQLD');
-        gtag('config', 'G-1025WV8CDV');
+        <?php foreach ($vinasite_ga as $vinasite_gid) : ?>gtag('config', '<?php echo esc_js($vinasite_gid); ?>');
+        <?php endforeach; ?>
     </script>
+    <?php endif; ?>
 </head>
 
 <body <?php body_class('dragon-scope'); ?>>
