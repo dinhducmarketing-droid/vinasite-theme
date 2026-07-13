@@ -18,6 +18,7 @@ require_once $dragon_dir . 'ajax.php';
 require_once $dragon_dir . 'schema.php';
 require_once $dragon_dir . 'design-tokens.php';
 require_once get_stylesheet_directory() . '/inc/vinasite-license.php';
+require_once get_stylesheet_directory() . '/inc/vinasite-bundled-plugin.php';
 
 define('DRAGON_ASSET_VER', '1.4.8');
 
