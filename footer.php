@@ -56,15 +56,17 @@ $areas    = dragon_practice_areas();
 
                 <div>
                     <h3>Hỗ trợ</h3>
-                    <ul class="dragon-footer__links">
-                        <li><a href="https://vanphongluatsu.com.vn/ve-chung-toi/"><?php dragon_the_icon('chevron-right'); ?>Giới thiệu</a></li>
-                        <li><a href="https://vanphongluatsu.com.vn/doi-ngu-nhan-su/"><?php dragon_the_icon('chevron-right'); ?>Đội ngũ luật sư</a></li>
-                        <li><a href="https://vanphongluatsu.com.vn/tin-tuc-su-kien/"><?php dragon_the_icon('chevron-right'); ?>Tin tức</a></li>
-                        <li><a href="https://vanphongluatsu.com.vn/dich-vu-luat-su/"><?php dragon_the_icon('chevron-right'); ?>Bài viết pháp lý</a></li>
-                        <li><a href="#dragon-consultation"><?php dragon_the_icon('chevron-right'); ?>Liên hệ</a></li>
-                        <li><a href="https://vanphongluatsu.com.vn/chinh-sach-bao-mat/"><?php dragon_the_icon('chevron-right'); ?>Chính sách bảo mật</a></li>
-                        <li><a href="https://vanphongluatsu.com.vn/dieu-khoan-su-dung/"><?php dragon_the_icon('chevron-right'); ?>Điều khoản sử dụng</a></li>
-                    </ul>
+                    <?php
+                    // Menu chân trang do admin quản lý (Giao diện → Menu → vị trí "Footer Menu").
+                    wp_nav_menu(array(
+                        'theme_location' => 'footer',
+                        'container'      => false,
+                        'menu_class'     => 'dragon-footer__links',
+                        'depth'          => 1,
+                        'link_before'    => dragon_icon('chevron-right'),
+                        'fallback_cb'    => false,
+                    ));
+                    ?>
                 </div>
 
             </div>

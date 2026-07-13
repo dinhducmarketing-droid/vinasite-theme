@@ -83,9 +83,6 @@ $areas    = dragon_practice_areas();
                 } else {
                     echo '<ul class="dragon-menu" id="dragon-menu">'
                         . '<li><a href="' . esc_url(home_url('/')) . '">Trang chủ</a></li>'
-                        . '<li><a href="https://vanphongluatsu.com.vn/dich-vu-luat-su/">Dịch vụ luật sư</a></li>'
-                        . '<li><a href="https://vanphongluatsu.com.vn/doi-ngu-nhan-su/">Đội ngũ luật sư</a></li>'
-                        . '<li><a href="https://vanphongluatsu.com.vn/tin-tuc-su-kien/">Tin tức</a></li>'
                         . '</ul>';
                 }
                 ?>
