@@ -19,7 +19,7 @@ require_once $dragon_dir . 'schema.php';
 require_once $dragon_dir . 'design-tokens.php';
 require_once get_stylesheet_directory() . '/inc/vinasite-license.php';
 
-define('DRAGON_ASSET_VER', '1.4.7');
+define('DRAGON_ASSET_VER', '1.4.8');
 
 add_action('wp_enqueue_scripts', 'dragon_enqueue_assets', 20);
 function dragon_enqueue_assets()

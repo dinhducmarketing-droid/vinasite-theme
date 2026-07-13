@@ -7,8 +7,8 @@
 if (!defined('ABSPATH')) {
     exit;
 }
-$logo_id  = get_theme_mod('custom_logo');
-$logo_url = $logo_id ? wp_get_attachment_image_url($logo_id, 'full') : 'https://vanphongluatsu.com.vn/wp-content/uploads/2025/03/logo-e1741850256338.jpg';
+$logo_url = dragon_logo_url();
+$logo_txt = dragon_opt('company_name') ? dragon_opt('company_name') : get_bloginfo('name');
 $phone    = dragon_opt('phone');
 $hotline  = dragon_opt('hotline');
 $show_hl  = dragon_opt('show_hotline') === '1' && $hotline !== '';
@@ -22,7 +22,7 @@ $areas    = dragon_practice_areas();
             <div class="dragon-footer__grid">
 
                 <div class="dragon-footer__brand">
-                    <img src="<?php echo esc_url($logo_url); ?>" width="150" height="60" alt="<?php echo esc_attr(dragon_opt('company_name')); ?>" loading="lazy"/>
+                    <?php if ($logo_url) : ?><img src="<?php echo esc_url($logo_url); ?>" width="150" height="60" alt="<?php echo esc_attr($logo_txt); ?>" loading="lazy"/><?php else : ?><span class="dragon-logo__text"><?php echo esc_html($logo_txt); ?></span><?php endif; ?>
                     <p class="dragon-footer__slogan">“<?php echo esc_html(dragon_opt('slogan')); ?>”</p>
                     <div class="dragon-footer__meta">
                         <strong><?php echo esc_html(dragon_opt('company_name')); ?></strong><br>

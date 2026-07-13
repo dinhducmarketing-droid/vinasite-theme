@@ -29,6 +29,8 @@
 }
 .dragon-logo { display: inline-flex; align-items: center; flex: none; }
 .dragon-logo img { display: block; height: 56px; width: auto; }
+.dragon-logo__text { font-weight: 800; font-size: 1.2rem; line-height: 1.1; letter-spacing: -.01em; color: var(--dragon-primary); }
+.dragon-footer .dragon-logo__text { color: #fff; }
 
 /* Nav fills the space between logo and actions so the menu spans wider. */
 .dragon-nav { flex: 1 1 auto; display: flex; justify-content: center; margin-inline: clamp(1rem, 3vw, 2.5rem); }

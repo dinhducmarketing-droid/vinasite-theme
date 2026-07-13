@@ -59,6 +59,7 @@ function dragon_opt($key)
         'work_hours'   => 'Tiếp nhận tư vấn: 8h00 – 20h00 (T2 – CN)',
         'map_embed'    => 'https://www.google.com/maps?q=459C+B%E1%BA%A1ch+Mai,+H%C3%A0+N%E1%BB%99i&output=embed',
         'form_email'   => get_option('admin_email'),
+        'logo'         => '',
         'ga_ids'       => '',
         'facebook'     => '',
         'youtube'      => '',
@@ -98,6 +99,20 @@ function dragon_opt($key)
 function dragon_tel($key = 'phone')
 {
     return preg_replace('/[^0-9+]/', '', dragon_opt($key));
+}
+
+/**
+ * URL logo của site: ưu tiên Logo site (custom_logo) → tùy chọn 'logo' (URL) → rỗng.
+ * Rỗng thì header/footer hiển thị tên site bằng chữ.
+ */
+function dragon_logo_url()
+{
+    $id = get_theme_mod('custom_logo');
+    if ($id) {
+        $url = wp_get_attachment_image_url($id, 'full');
+        if ($url) { return $url; }
+    }
+    return dragon_opt('logo');
 }
 
 /**

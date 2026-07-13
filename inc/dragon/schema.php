@@ -18,7 +18,7 @@ function dragon_output_schema()
         return;
     }
 
-    $logo = 'https://vanphongluatsu.com.vn/wp-content/uploads/2025/03/logo-e1741850256338.jpg';
+    $logo = dragon_logo_url();
 
     $legal = array(
         '@context'    => 'https://schema.org',
@@ -26,8 +26,6 @@ function dragon_output_schema()
         '@id'         => home_url('/#legalservice'),
         'name'        => wp_strip_all_tags(dragon_opt('company_name')),
         'url'         => home_url('/'),
-        'logo'        => $logo,
-        'image'       => $logo,
         'telephone'   => dragon_opt('phone'),
         'email'       => dragon_opt('email'),
         'priceRange'  => 'Theo thỏa thuận',
@@ -42,6 +40,7 @@ function dragon_output_schema()
         'slogan'      => wp_strip_all_tags(dragon_opt('slogan')),
         'openingHours' => 'Mo-Su 08:00-20:00',
     );
+    if ($logo) { $legal['logo'] = $logo; $legal['image'] = $logo; }
 
     $same = array();
     foreach (array('facebook', 'youtube') as $s) {

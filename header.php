@@ -42,8 +42,8 @@ if (!defined('ABSPATH')) {
 <div id="wrapper">
 
 <?php
-$logo_id  = get_theme_mod('custom_logo');
-$logo_url = $logo_id ? wp_get_attachment_image_url($logo_id, 'full') : 'https://vanphongluatsu.com.vn/wp-content/uploads/2025/03/logo-e1741850256338.jpg';
+$logo_url = dragon_logo_url();
+$logo_txt = dragon_opt('company_name') ? dragon_opt('company_name') : get_bloginfo('name');
 $phone    = dragon_opt('phone');
 $areas    = dragon_practice_areas();
 ?>
@@ -63,7 +63,7 @@ $areas    = dragon_practice_areas();
     <div class="dragon-bar" id="dragon-bar">
         <div class="dragon-container dragon-bar__inner">
             <a class="dragon-logo" href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-                <img src="<?php echo esc_url($logo_url); ?>" width="180" height="56" alt="<?php echo esc_attr(dragon_opt('company_name')); ?>" fetchpriority="high" decoding="async"/>
+                <?php if ($logo_url) : ?><img src="<?php echo esc_url($logo_url); ?>" width="180" height="56" alt="<?php echo esc_attr($logo_txt); ?>" fetchpriority="high" decoding="async"/><?php else : ?><span class="dragon-logo__text"><?php echo esc_html($logo_txt); ?></span><?php endif; ?>
             </a>
 
             <nav class="dragon-nav" aria-label="Menu chính">
@@ -108,7 +108,7 @@ $areas    = dragon_practice_areas();
 <div class="dragon-overlay" id="dragon-overlay" hidden></div>
 <aside class="dragon-offcanvas" id="dragon-offcanvas" aria-hidden="true" aria-label="Menu di động">
     <div class="dragon-offcanvas__head">
-        <img src="<?php echo esc_url($logo_url); ?>" width="140" height="44" alt="<?php echo esc_attr(dragon_opt('company_name')); ?>"/>
+        <?php if ($logo_url) : ?><img src="<?php echo esc_url($logo_url); ?>" width="140" height="44" alt="<?php echo esc_attr($logo_txt); ?>"/><?php else : ?><span class="dragon-logo__text"><?php echo esc_html($logo_txt); ?></span><?php endif; ?>
         <button class="dragon-offcanvas__close" type="button" aria-label="Đóng menu" id="dragon-offcanvas-close"><?php dragon_the_icon('close'); ?></button>
     </div>
     <?php
