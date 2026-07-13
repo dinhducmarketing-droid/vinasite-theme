@@ -3,6 +3,9 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.1.1] — 2026-07 (bản test cơ chế tự-update)
+- Chỉ tăng version để kiểm thử luồng cập nhật + xác nhận update KHÔNG làm mất cấu hình (theme_mods/menu/option giữ nguyên). Không đổi giao diện.
+
 ## [Đang phát triển — Bước 1: nền tảng đa-site]
 - **Theme tự cập nhật từ GitHub** (Bước 3): nhúng thư viện Plugin Update Checker (`inc/plugin-update-checker/`) + `inc/vinasite-theme-updater.php` — KHÔNG cần plugin ngoài (bỏ Git Updater). Repo Public nên không cần token. Đọc version từ nhánh `main`. Bump theme lên 1.1.0.
 - **Đóng gói sẵn plugin trong theme** (`inc/vinasite-bundled-plugin.php` + `inc/bundled/vinasite-google-indexing.zip`): kích hoạt theme → tự giải nén + kích hoạt plugin "Vinasite Google Indexing"; có nút "Cài & Kích hoạt" trong admin nếu chưa bật. Mảng `vinasite_bundled_plugins()` mở rộng được để bundle thêm plugin.
