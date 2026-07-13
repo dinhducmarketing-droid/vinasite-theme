@@ -44,30 +44,32 @@ function dragon_acf_contact($key)
  */
 function dragon_opt($key)
 {
+    // Mặc định TRUNG TÍNH cho theme tái dùng — mỗi site tự nhập ở Customizer.
+    // (Site cũ đã "chốt" giá trị riêng vào theme_mods nên không bị ảnh hưởng.)
     $defaults = array(
-        'company_name' => 'CÔNG TY LUẬT TNHH DRAGON',
-        'slogan'       => 'Niềm tin của khách hàng là uy tín của chúng tôi',
-        'phone'        => '0983 019 109',
-        'hotline'      => '1900 599 979',
+        'company_name' => get_bloginfo('name'),
+        'slogan'       => '',
+        'phone'        => '',
+        'hotline'      => '',
         'show_hotline' => '1',
-        'email'        => 'dragonlawfirm@gmail.com',
-        'zalo'         => '0983019109',
-        'address'      => 'Phòng 08 tầng 09 toà nhà VINACONEX DIAMOND TOWER, số 459C Bạch Mai, phường Bạch Mai, thành phố Hà Nội.',
-        'so_dkkd'      => '0104313092',
-        'mst'          => '0104313092',
-        'noi_cap'      => 'Chi cục Thuế Cầu Giấy',
-        'work_hours'   => 'Tiếp nhận tư vấn: 8h00 – 20h00 (T2 – CN)',
-        'map_embed'    => 'https://www.google.com/maps?q=459C+B%E1%BA%A1ch+Mai,+H%C3%A0+N%E1%BB%99i&output=embed',
+        'email'        => '',
+        'zalo'         => '',
+        'address'      => '',
+        'so_dkkd'      => '',
+        'mst'          => '',
+        'noi_cap'      => '',
+        'work_hours'   => '',
+        'map_embed'    => '',
         'form_email'   => get_option('admin_email'),
         'logo'         => '',
         'ga_ids'       => '',
         'facebook'     => '',
         'youtube'      => '',
-        // Section imagery (firm-owned photos from the Media Library; admin-editable).
-        'hero_img'     => 'https://vanphongluatsu.com.vn/wp-content/uploads/2026/03/97db0e89-c7ef-4519-b790-a2c9f1b02bf3.jpg',
-        'about_img'    => 'https://vanphongluatsu.com.vn/wp-content/uploads/2025/07/luat-su-bao-chua-gioi-tai-ha-noi-3.jpg',
-        'featured_img' => 'https://vanphongluatsu.com.vn/wp-content/uploads/2026/03/banner-2.jpg',
-        'cta_img'      => 'https://vanphongluatsu.com.vn/wp-content/uploads/2026/03/97db0e89-c7ef-4519-b790-a2c9f1b02bf3.jpg',
+        // Ảnh các section — mỗi site tự chọn ở Customizer (rỗng = không hiện ảnh).
+        'hero_img'     => '',
+        'about_img'    => '',
+        'featured_img' => '',
+        'cta_img'      => '',
     );
 
     // 1) Customizer override.

@@ -19,11 +19,11 @@ function dragon_customize_register($wp_customize)
     ));
 
     $fields = array(
-        'dragon_phone'        => array('Điện thoại chính (hiển thị)', '0983 019 109'),
-        'dragon_hotline'      => array('Hotline / tổng đài', '1900 599 979'),
+        'dragon_phone'        => array('Điện thoại chính (hiển thị)', ''),
+        'dragon_hotline'      => array('Hotline / tổng đài', ''),
         'dragon_show_hotline' => array('Hiện hotline? (1 = có, 0 = ẩn)', '1'),
-        'dragon_email'        => array('Email', 'dragonlawfirm@gmail.com'),
-        'dragon_zalo'         => array('Số Zalo (chỉ số)', '0983019109'),
+        'dragon_email'        => array('Email', ''),
+        'dragon_zalo'         => array('Số Zalo (chỉ số)', ''),
         'dragon_address'      => array('Địa chỉ trụ sở', ''),
         'dragon_work_hours'   => array('Thời gian tiếp nhận tư vấn', ''),
         'dragon_map_embed'    => array('Link nhúng Google Maps (embed)', ''),
