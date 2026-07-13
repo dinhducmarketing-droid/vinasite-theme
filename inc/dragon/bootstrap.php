@@ -16,8 +16,9 @@ require_once $dragon_dir . 'icons.php';
 require_once $dragon_dir . 'customizer.php';
 require_once $dragon_dir . 'ajax.php';
 require_once $dragon_dir . 'schema.php';
+require_once $dragon_dir . 'design-tokens.php';
 
-define('DRAGON_ASSET_VER', '1.4.6');
+define('DRAGON_ASSET_VER', '1.4.7');
 
 add_action('wp_enqueue_scripts', 'dragon_enqueue_assets', 20);
 function dragon_enqueue_assets()
@@ -44,8 +45,9 @@ function dragon_enqueue_assets()
         'url' => admin_url('admin-ajax.php'),
     ));
 
-    // Preconnect Google Fonts + load Be Vietnam Pro (VN-complete, 3 weights only).
-    wp_enqueue_style('dragon-font', 'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap', array(), null);
+    // Preconnect Google Fonts + load font đã chọn trong Customizer (mặc định Be Vietnam Pro).
+    $vinasite_font = function_exists('dragon_font_current') ? dragon_font_current() : array('query' => 'Be+Vietnam+Pro:wght@400;600;700');
+    wp_enqueue_style('dragon-font', 'https://fonts.googleapis.com/css2?family=' . $vinasite_font['query'] . '&display=swap', array(), null);
 }
 
 /** Preconnect hints for the webfont (faster LCP). */

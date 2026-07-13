@@ -3,6 +3,9 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [Đang phát triển — Bước 1: nền tảng đa-site]
+- **Màu & font theo từng site** (`inc/dragon/design-tokens.php`): mục Customizer "VinaSite – Màu sắc & Phông chữ". Chủ site chọn Màu chính + Màu nhấn → tự suy ra tông đậm/nhạt/hover (PHP color-mix); chọn 1 trong 6 font (Be Vietnam Pro/Inter/Roboto/Montserrat/Open Sans/Lora). Chỉ ghi đè khi có tùy chỉnh → site cũ giữ nguyên.
+
 ## [1.0.1] — 2026-07 (baseline trên Git)
 Bản khởi tạo đưa lên GitHub làm mốc gốc.
 
