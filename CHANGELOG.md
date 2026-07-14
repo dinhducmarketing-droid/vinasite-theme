@@ -3,6 +3,9 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.2.4] — 2026-07
+- Làm mới Bảng điều khiển: hero gradient + logo, thanh tiến độ thiết lập (%), thẻ card icon tròn + hover, khu Liên kết nhanh.
+
 ## [1.2.3] — 2026-07
 - Icon menu VinaSite dùng ẢNH LOGO thật (chữ V swoosh xanh + đỏ).
 
