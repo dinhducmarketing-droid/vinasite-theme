@@ -3,6 +3,9 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.2.2] — 2026-07
+- Icon menu VinaSite dùng chữ "V" hai màu (xanh + đỏ) theo logo, thay vì V xám.
+
 ## [1.2.1] — 2026-07 (sửa lỗi)
 - Gộp menu admin: bỏ menu "VinaSite" trùng (do file branding cũ tạo). Trang "Giới thiệu Vinasite" thành sub-mục của Bảng điều khiển. Chỉ còn 1 menu VinaSite.
 

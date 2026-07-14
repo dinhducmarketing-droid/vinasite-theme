@@ -15,9 +15,10 @@ if (!defined('ABSPATH')) {
 add_action('admin_menu', 'vinasite_admin_menu', 5);
 function vinasite_admin_menu()
 {
-    $icon = 'data:image/svg+xml;base64,' . base64_encode(
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#a7aaad"><path d="M4 3h3.2l4.8 12.5L16.8 3H20l-6.5 18h-3L4 3z"/></svg>'
-    );
+    // Icon chữ "V" hai màu (xanh + đỏ) theo logo VinaSite — dùng lại từ file branding.
+    $icon = function_exists('vinasite_admin_icon')
+        ? vinasite_admin_icon()
+        : 'dashicons-admin-appearance';
     add_menu_page('VinaSite', 'VinaSite', 'edit_theme_options', 'vinasite', 'vinasite_admin_dashboard', $icon, 2);
     add_submenu_page('vinasite', 'Bảng điều khiển', 'Bảng điều khiển', 'edit_theme_options', 'vinasite', 'vinasite_admin_dashboard');
     add_submenu_page('vinasite', 'Tùy chọn giao diện', 'Tùy chọn giao diện', 'edit_theme_options', 'customize.php');
