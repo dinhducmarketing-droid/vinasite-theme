@@ -23,6 +23,9 @@ function vinasite_admin_menu()
     add_submenu_page('vinasite', 'Tùy chọn giao diện', 'Tùy chọn giao diện', 'edit_theme_options', 'customize.php');
     add_submenu_page('vinasite', 'Bắt đầu nhanh', 'Bắt đầu nhanh', 'edit_theme_options', 'vinasite-setup', 'vinasite_admin_setup');
     add_submenu_page('vinasite', 'Nhật ký cập nhật', 'Nhật ký cập nhật', 'edit_theme_options', 'vinasite-changelog', 'vinasite_admin_changelog');
+    if (function_exists('vinasite_admin_brand_page')) {
+        add_submenu_page('vinasite', 'Giới thiệu Vinasite', 'Giới thiệu Vinasite', 'edit_theme_options', 'vinasite-about', 'vinasite_admin_brand_page');
+    }
 }
 
 /** CSS nội tuyến cho các trang VinaSite. */

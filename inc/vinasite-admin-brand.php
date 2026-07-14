@@ -19,20 +19,8 @@ function vinasite_admin_icon()
     return 'data:image/svg+xml;base64,' . base64_encode(str_replace(array('%233f9bd6', '%23e2251b'), array('#3f9bd6', '#e2251b'), $svg));
 }
 
-add_action('admin_menu', 'vinasite_admin_brand_menu');
-function vinasite_admin_brand_menu()
-{
-    add_menu_page(
-        'VinaSite',
-        'VinaSite',
-        'read',
-        'vinasite-brand',
-        'vinasite_admin_brand_page',
-        vinasite_admin_icon(),
-        1 // near the very top of the sidebar
-    );
-}
-
+/* Trang giới thiệu giờ là sub-mục của menu "VinaSite" (đăng ký trong
+   vinasite-admin-panel.php) — KHÔNG tạo menu top-level riêng nữa để tránh trùng. */
 function vinasite_admin_brand_page()
 {
     $theme = wp_get_theme();
