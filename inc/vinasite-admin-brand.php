@@ -10,13 +10,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-/* Menu icon: VinaSite "V" mark as an inline SVG data URI (blue + red). */
+/* Menu icon: chữ "V" logo VinaSite (ảnh PNG bundle trong theme). */
 function vinasite_admin_icon()
 {
-    $svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>"
-        . "<path fill='%233f9bd6' d='M4 5h4l3 9-2 4z'/>"
-        . "<path fill='%23e2251b' d='M14 4h3l-4 15-2-5z'/></svg>";
-    return 'data:image/svg+xml;base64,' . base64_encode(str_replace(array('%233f9bd6', '%23e2251b'), array('#3f9bd6', '#e2251b'), $svg));
+    return get_template_directory_uri() . '/assets/icon-vinasite.png';
 }
 
 /* Trang giới thiệu giờ là sub-mục của menu "VinaSite" (đăng ký trong

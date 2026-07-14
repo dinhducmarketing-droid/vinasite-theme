@@ -11,6 +11,13 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+/** Icon menu hiện rõ, đúng kích thước (WP mặc định làm mờ icon ảnh). */
+add_action('admin_head', 'vinasite_admin_menu_icon_css');
+function vinasite_admin_menu_icon_css()
+{
+    echo '<style>#toplevel_page_vinasite .wp-menu-image img{opacity:1;width:22px;height:22px;padding-top:6px}#toplevel_page_vinasite:hover .wp-menu-image img,#toplevel_page_vinasite.current .wp-menu-image img{opacity:1}</style>';
+}
+
 /** Đăng ký menu admin. */
 add_action('admin_menu', 'vinasite_admin_menu', 5);
 function vinasite_admin_menu()
