@@ -58,6 +58,7 @@ require_once get_template_directory() . '/inc/vinasite-shim.php';
 /* Admin white-label branding (menu item + footer). */
 if (is_admin()) {
     require_once get_template_directory() . '/inc/vinasite-admin-brand.php';
+    require_once get_template_directory() . '/inc/vinasite-admin-panel.php';
 }
 
 /* Article / page / archive typography (content areas outside the homepage). */

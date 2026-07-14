@@ -3,6 +3,9 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.2.0] — 2026-07
+- **Bảng điều khiển VinaSite** (menu admin riêng, kiểu Flatsome): Bảng điều khiển (welcome + checklist thiết lập), Tùy chọn giao diện (mở Customizer), Bắt đầu nhanh (hướng dẫn dựng site), Nhật ký cập nhật. Giúp theme giống sản phẩm premium, dễ cấu hình.
+
 ## [1.1.1] — 2026-07 (bản test cơ chế tự-update)
 - Chỉ tăng version để kiểm thử luồng cập nhật + xác nhận update KHÔNG làm mất cấu hình (theme_mods/menu/option giữ nguyên). Không đổi giao diện.
 
