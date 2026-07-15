@@ -25,8 +25,9 @@ if (!defined('ABSPATH')) {
 function vinasite_home_presets()
 {
     return array(
-        'vinasite' => 'VinaSite – giới thiệu theme & dịch vụ (mặc định)',
-        'dragon'   => 'Dragon – trang chủ công ty luật (site cũ)',
+        'vinasite' => 'VinaSite – giới thiệu theme & dịch vụ (site cài mới)',
+        'dragon'   => 'Dragon – trang chủ công ty luật',
+        'content'  => 'Nội dung trang chủ soạn trong WordPress (site di cư)',
     );
 }
 
@@ -79,10 +80,20 @@ add_action('after_switch_theme', 'vinasite_home_preset_on_activate');
 
 /**
  * Preset đang dùng.
+ *
+ * Ưu tiên theme_mod `vinasite_front_mode` để TƯƠNG THÍCH NGƯỢC: các site di cư
+ * từ Flatsome (vd vietnhatsknn.com) đã đặt sẵn mod này = 'content' và đang chạy
+ * thật. Không đọc nó thì update sẽ ép trang chủ họ thành các section Dragon.
+ *
  * Không có option = site đã chạy theme từ trước bản 1.3.0 → giữ trang chủ cũ.
  */
 function vinasite_home_preset()
 {
+    $mode = get_theme_mod('vinasite_front_mode', '');
+    if ($mode === 'content') {
+        return 'content';
+    }
+
     $preset = (string) get_option('vinasite_home_preset', 'dragon');
     return array_key_exists($preset, vinasite_home_presets()) ? $preset : 'dragon';
 }

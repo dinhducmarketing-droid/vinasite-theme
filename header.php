@@ -48,22 +48,29 @@ $logo_url = dragon_logo_url();
 $logo_txt = dragon_opt('company_name') ? dragon_opt('company_name') : get_bloginfo('name');
 $phone    = dragon_opt('phone');
 $areas    = dragon_practice_areas();
+$vinasite_che_do = vinasite_home_preset();
+$vs_moi   = $vinasite_che_do === 'vinasite'; // site cài mới
+$la_dragon = $vinasite_che_do === 'dragon';  // site công ty luật đang chạy
 
-/*
- * $vs_moi = site cài mới (preset "vinasite"). CHỈ site cài mới mới được dọn các
- * link rỗng (tel:, mailto:, zalo.me/) khi chưa nhập thông tin.
- * Site đang chạy sẵn (preset "dragon") giữ NGUYÊN markup như bản 1.2.4 — không
- * thêm không bớt, để tuyệt đối không đổi giao diện của họ.
- */
-$vs_moi = vinasite_home_preset() === 'vinasite';
+// CTA header cấu hình được per-site (Customizer); mặc định giữ hành vi cũ.
+$cta_text = dragon_opt('cta_text') !== '' ? dragon_opt('cta_text') : ($vs_moi ? 'Nhận tư vấn' : 'Đặt lịch tư vấn');
+$cta_url  = dragon_opt('cta_url') !== '' ? dragon_opt('cta_url') : '#dragon-consultation';
 ?>
 <header class="dragon-header" role="banner">
 
     <!-- Topbar -->
-    <?php if (!$vs_moi || $phone !== '' || dragon_opt('email') !== '') : ?>
     <div class="dragon-topbar">
         <div class="dragon-container dragon-topbar__inner dragon-topbar__inner--right">
             <ul class="dragon-topbar__list dragon-topbar__list--secondary">
+                <?php // Địa chỉ + giờ làm trên topbar: KHÔNG hiện ở site công ty luật để
+                      // giữ nguyên topbar gọn như họ đang chạy. ?>
+                <?php if (!$la_dragon && dragon_opt('address') !== '') : ?>
+                    <li class="dragon-topbar__address"><?php dragon_the_icon('map-pin'); ?><span><?php echo esc_html(dragon_opt('address')); ?></span></li>
+                <?php endif; ?>
+                <?php if (!$la_dragon && dragon_opt('work_hours') !== '') : ?>
+                    <li><?php dragon_the_icon('clock'); ?><span><?php echo esc_html(dragon_opt('work_hours')); ?></span></li>
+                <?php endif; ?>
+                <?php // Site cài mới chưa nhập thì ẩn, tránh link "tel:" / "mailto:" rỗng. ?>
                 <?php if (!$vs_moi || $phone !== '') : ?>
                     <li><a href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?><span><?php echo esc_html($phone); ?></span></a></li>
                 <?php endif; ?>
@@ -73,7 +80,6 @@ $vs_moi = vinasite_home_preset() === 'vinasite';
             </ul>
         </div>
     </div>
-    <?php endif; ?>
 
     <!-- Main bar -->
     <div class="dragon-bar" id="dragon-bar">
@@ -105,8 +111,8 @@ $vs_moi = vinasite_home_preset() === 'vinasite';
             </nav>
 
             <div class="dragon-header__actions">
-                <a class="dragon-btn dragon-btn--primary" href="#dragon-consultation">
-                    <?php dragon_the_icon('calendar'); ?><span class="dragon-header__cta-text"><?php echo vinasite_home_preset() === 'dragon' ? 'Đặt lịch tư vấn' : 'Nhận tư vấn'; ?></span>
+                <a class="dragon-btn dragon-btn--primary" href="<?php echo esc_url($cta_url); ?>">
+                    <?php dragon_the_icon('calendar'); ?><span class="dragon-header__cta-text"><?php echo esc_html($cta_text); ?></span>
                 </a>
                 <button class="dragon-burger" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="dragon-offcanvas" id="dragon-burger">
                     <?php dragon_the_icon('menu'); ?>
@@ -142,7 +148,7 @@ $vs_moi = vinasite_home_preset() === 'vinasite';
         <?php if (!$vs_moi || $phone !== '') : ?>
             <a class="dragon-btn dragon-btn--primary dragon-btn--block" href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?>Gọi <?php echo esc_html($phone); ?></a>
         <?php endif; ?>
-        <a class="dragon-btn dragon-btn--block" href="#dragon-consultation" data-dragon-close-menu><?php dragon_the_icon('calendar'); ?><?php echo vinasite_home_preset() === 'dragon' ? 'Đặt lịch tư vấn' : 'Nhận tư vấn'; ?></a>
+        <a class="dragon-btn dragon-btn--block" href="<?php echo esc_url($cta_url); ?>" data-dragon-close-menu><?php dragon_the_icon('calendar'); ?><?php echo esc_html($cta_text); ?></a>
     </div>
 </aside>
 

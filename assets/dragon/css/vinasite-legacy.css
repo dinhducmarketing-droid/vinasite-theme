@@ -1,0 +1,416 @@
+/* ============================================================
+   VinaSite legacy components – tái tạo giao diện Flatsome
+   cho site vietnhatsknn.com (07/2026).
+   ============================================================ */
+
+:root {
+	--vn-green: #36833f;
+	--vn-green-dark: #245a2c;
+	--vn-green-light: #6cb643;
+}
+
+/* ---------- Trang chủ legacy: khung chung ---------- */
+.vs-legacy-home { overflow-x: hidden; }
+
+/* Các khối cấp cao nhất KHÔNG nằm trong [section] (Flatsome tự bọc container,
+   shim thì không) → tự căn giữa theo bề rộng container của theme.
+   Riêng hero slider đầu trang giữ full-bleed như bản gốc. */
+.vs-legacy-home > .vs-ux-row,
+.vs-legacy-home > .vs-slider:not(:first-child),
+.vs-legacy-home > .vs-gallery-strip,
+.vs-legacy-home > .vs-blog-grid,
+.vs-legacy-home > .vs-fbox,
+.vs-legacy-home > h1,
+.vs-legacy-home > h2,
+.vs-legacy-home > h3,
+.vs-legacy-home > p,
+.vs-legacy-home > .text-center,
+.vs-legacy-home > .vs-ux-divider,
+.vs-legacy-home > .vs-ux-text {
+	width: 100%;
+	max-width: var(--dragon-container, 1200px);
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 16px;
+	padding-right: 16px;
+	box-sizing: border-box;
+}
+.vs-legacy-home > .vs-ux-divider { width: auto; padding: 0; }
+.vs-legacy-home h1,
+.vs-legacy-home h2 {
+	font-size: 1.7em;
+	font-weight: 700;
+	color: #2b2b2b;
+	margin: 34px auto 10px;
+}
+.vs-legacy-home .is-divider {
+	height: 3px;
+	max-width: 11%;
+	margin: 8px auto 24px;
+	background-color: var(--vn-green);
+	border-radius: 2px;
+}
+.vs-legacy-home section { padding: 34px 0; }
+
+/* Chặn <p> rỗng và <br> của wpautop phá lưới flex (chúng thành flex item + gap) */
+.vs-ux-row > p:empty,
+.vs-ux-row > br,
+.vs-ux-section > .dragon-container > br,
+.vs-legacy-home .vs-slider__track > br,
+.vs-legacy-home .vs-slider__track > p:empty { display: none; }
+
+/* Divider ngắn màu xanh ( [divider] + .is-divider HTML thô ) */
+.vs-legacy-home .vs-ux-divider,
+.vs-legacy-home .is-divider {
+	border: none;
+	height: 3px;
+	max-width: 11%;
+	min-width: 60px;
+	margin: 8px auto 24px;
+	background-color: var(--vn-green);
+	border-radius: 2px;
+	display: block;
+}
+
+/* Section nền xanh đậm: chữ trắng */
+.vs-ux-dark, .vs-ux-dark h1, .vs-ux-dark h2, .vs-ux-dark h3, .vs-ux-dark p { color: #fff; }
+.vs-ux-dark .vs-ux-divider { background-color: rgba(255, 255, 255, .6); }
+/* Nút trong section xanh: nền trắng chữ xanh (khỏi tàng hình) */
+.vs-ux-dark .dragon-btn,
+.vs-ux-dark .dragon-btn--primary {
+	background: #fff !important;
+	color: var(--vn-green) !important;
+	border-color: #fff !important;
+	font-weight: 700;
+	padding: 12px 34px;
+	border-radius: 10px;
+	margin-top: 14px;
+	display: inline-block;
+}
+.vs-ux-dark .dragon-btn:hover { background: var(--vn-green-dark) !important; color: #fff !important; }
+
+/* ---------- Slider ---------- */
+.vs-slider { position: relative; }
+.vs-slider__track {
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+	-webkit-overflow-scrolling: touch;
+}
+.vs-slider__track::-webkit-scrollbar { display: none; }
+.vs-slider__track > * {
+	flex: 0 0 100%;
+	min-width: 100%;
+	scroll-snap-align: start;
+}
+.vs-slider__arrow {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 46px; height: 46px;
+	border-radius: 50%;
+	border: 1.5px solid rgba(0, 0, 0, .15);
+	background: rgba(255, 255, 255, .85);
+	color: #333;
+	font-size: 17px;
+	line-height: 1;
+	cursor: pointer;
+	z-index: 5;
+	transition: all .3s ease;
+	display: flex; align-items: center; justify-content: center;
+	padding: 0;
+}
+.vs-slider__arrow:hover { background: var(--vn-green); color: #fff; border-color: var(--vn-green); }
+.vs-slider__arrow--prev { left: 12px; }
+.vs-slider__arrow--next { right: 12px; }
+.vs-slider--nonav .vs-slider__arrow,
+.vs-slider--single .vs-slider__arrow { display: none; }
+.vs-slider__dots { display: flex; gap: 8px; justify-content: center; padding: 14px 0 4px; }
+.vs-slider__dots button {
+	width: 10px; height: 10px;
+	border-radius: 50%;
+	border: none; padding: 0;
+	background: #bbb;
+	cursor: pointer;
+	transition: background .3s;
+}
+.vs-slider__dots button.is-active { background: var(--vn-green); }
+.vs-slider--nodots .vs-slider__dots,
+.vs-slider--single .vs-slider__dots { display: none; }
+
+/* Hero slider đầu trang: ảnh full width */
+.vs-legacy-home > .vs-slider:first-child img,
+.vs-slider .vs-ux-img img { width: 100%; height: auto; display: block; }
+
+/* ---------- Featured box (icon + tiêu đề + mô tả) ---------- */
+.vs-fbox { display: flex; gap: 14px; }
+.vs-fbox--center { flex-direction: column; align-items: center; text-align: center; }
+.vs-fbox--left { flex-direction: row; align-items: flex-start; text-align: left; }
+.vs-fbox__media { flex: 0 0 auto; }
+.vs-fbox__icon { display: block; }
+.vs-fbox__body h3, .vs-fbox__body h4 {
+	margin: 6px 0 6px;
+	font-size: 1em;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: #2b2b2b;
+}
+.vs-fbox__body p, .vs-fbox__body span { color: #555; line-height: 1.65; }
+
+/* ---------- Team member ---------- */
+.vs-team {
+	background: #fff;
+	border-radius: 12px;
+	padding: 22px 20px;
+	text-align: center;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
+}
+.vs-team__img {
+	width: 47%;
+	height: auto;
+	border-radius: 50%;
+	margin: 0 auto 12px;
+	display: block;
+	border: 3px solid var(--vn-green);
+}
+.vs-team__name { margin: 4px 0 2px; font-size: 1.05em; text-transform: uppercase; color: var(--vn-green-dark); }
+.vs-team__role { margin: 0 0 10px; font-size: .85em; letter-spacing: 1px; text-transform: uppercase; color: #888; }
+.vs-team__body p { color: #555; font-size: .95em; line-height: 1.65; }
+
+/* ---------- Section CTA xanh (Hãy liên hệ...) ---------- */
+.vs-legacy-home section[style*="rgb(54, 131, 63)"] h1,
+.vs-legacy-home .vs-section--dark h1 { color: #fff; }
+
+/* ---------- Gallery strip ---------- */
+.vs-gallery-strip {
+	display: flex;
+	gap: 10px;
+	overflow-x: auto;
+	scroll-snap-type: x proximity;
+	padding-bottom: 8px;
+}
+.vs-gallery-strip__item {
+	flex: 0 0 24%;
+	min-width: 220px;
+	scroll-snap-align: start;
+	border-radius: 8px;
+	overflow: hidden;
+}
+.vs-gallery-strip__item img {
+	width: 100%; height: 170px;
+	object-fit: cover;
+	display: block;
+	transition: transform .35s ease;
+}
+.vs-gallery-strip__item:hover img { transform: scale(1.06); }
+
+/* ---------- Blog grid ---------- */
+.vs-blog-grid { display: grid; gap: 20px; margin: 10px 0 20px; }
+.vs-blog-grid--4 { grid-template-columns: repeat(4, 1fr); }
+.vs-blog-grid--3 { grid-template-columns: repeat(3, 1fr); }
+.vs-blog-card {
+	background: #fff;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, .07);
+	transition: transform .25s ease, box-shadow .25s ease;
+}
+.vs-blog-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0, 0, 0, .12); }
+.vs-blog-card__thumb { display: block; }
+.vs-blog-card__thumb img { width: 100%; height: 160px; object-fit: cover; display: block; }
+.vs-blog-card__body { padding: 14px 14px 16px; }
+.vs-blog-card__title { font-size: .98em; margin: 0 0 8px; line-height: 1.45; }
+.vs-blog-card__title a { color: var(--vn-green-dark); text-decoration: none; }
+.vs-blog-card__title a:hover { color: var(--vn-green-light); }
+.vs-blog-card__excerpt { font-size: .87em; color: #666; line-height: 1.6; margin: 0; }
+
+/* ============================================================
+   Section "Nhận xét khách hàng" – card trắng trên gradient xanh
+   (port nguyên từ thiết kế flatsome-child 07/2026)
+   ============================================================ */
+.vn-testimonials {
+	background: linear-gradient(135deg, #245a2c 0%, #36833f 55%, #4a9e55 100%) !important;
+	position: relative;
+	overflow: hidden;
+	padding: 72px 0 !important;
+}
+.vn-testimonials::before,
+.vn-testimonials::after {
+	content: "";
+	position: absolute;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, .06);
+	pointer-events: none;
+}
+.vn-testimonials::before { width: 420px; height: 420px; top: -170px; left: -130px; }
+.vn-testimonials::after  { width: 540px; height: 540px; bottom: -250px; right: -170px; }
+
+.vn-testimonials .vn-eyebrow {
+	color: rgba(255, 255, 255, .78);
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	font-size: .82em;
+	font-weight: 600;
+	margin-bottom: 8px;
+	text-align: center;
+}
+.vn-testimonials h2.vn-testi-title {
+	color: #fff !important;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 1.9em;
+	margin: 0 0 14px;
+	text-align: center;
+}
+.vn-testimonials .vn-title-divider {
+	width: 64px; height: 3px;
+	margin: 0 auto 6px;
+	border-radius: 2px;
+	background: rgba(255, 255, 255, .65);
+}
+.vn-testimonials .testimonial-box {
+	background: #fff;
+	border-radius: 18px;
+	box-shadow: 0 24px 48px rgba(0, 0, 0, .22);
+	padding: 44px 56px 38px;
+	position: relative;
+	margin: 26px auto 10px;
+	max-width: 860px;
+	text-align: center;
+}
+.vn-testimonials .testimonial-box::before {
+	content: "\201C";
+	font-family: Georgia, serif;
+	font-size: 120px;
+	line-height: 1;
+	color: rgba(54, 131, 63, .14);
+	position: absolute;
+	top: 14px; left: 26px;
+	pointer-events: none;
+}
+.vn-testimonials .testimonial-box .testimonial-image img {
+	border-radius: 50%;
+	border: 4px solid var(--vn-green);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+}
+.vn-testimonials .testimonial-box h3 {
+	color: var(--vn-green-dark);
+	font-size: 1.2em;
+	margin: 16px 0 8px;
+}
+.vn-testimonials .testimonial-box p {
+	color: #4c5a50;
+	font-size: 1.06em;
+	line-height: 1.75;
+	max-width: 760px;
+	margin: 0 auto;
+}
+/* Nút điều hướng & bullet trên nền xanh */
+.vn-testimonials .vs-slider__arrow {
+	background: rgba(255, 255, 255, .16);
+	border: 1.5px solid rgba(255, 255, 255, .55);
+	color: #fff;
+}
+.vn-testimonials .vs-slider__arrow:hover { background: #fff; color: var(--vn-green); }
+.vn-testimonials .vs-slider__dots button { background: #fff; opacity: .4; }
+.vn-testimonials .vs-slider__dots button.is-active { opacity: 1; background: #fff; }
+@media only screen and (min-width: 1200px) {
+	.vn-testimonials .vs-slider__arrow--prev { left: calc(50% - 561px); }
+	.vn-testimonials .vs-slider__arrow--next { right: calc(50% - 561px); }
+}
+
+/* ============================================================
+   Section "Khách hàng & đối tác tiêu biểu"
+   ============================================================ */
+.vn-partners {
+	background: #fbfbfb;
+	border-top: 1px solid #efefef;
+	border-bottom: 1px solid #efefef;
+	padding: 48px 0 !important;
+}
+.vn-partners h2.vn-partners-title {
+	font-size: .95em;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	color: #7a7a7a;
+	font-weight: 600;
+	margin: 0 0 26px;
+	text-align: center;
+}
+.vn-partners .vs-logo { display: flex; justify-content: center; align-items: center; }
+.vn-partners img {
+	filter: grayscale(100%);
+	opacity: .6;
+	transition: all .35s ease;
+}
+.vn-partners img:hover { filter: grayscale(0); opacity: 1; }
+
+/* ---------- Class .dark của Flatsome: chữ trắng trên nền tối ---------- */
+.vs-ux-section .dark,
+.vs-ux-section .dark h1, .vs-ux-section .dark h2, .vs-ux-section .dark h3,
+.vs-ux-section .dark h4, .vs-ux-section .dark p, .vs-ux-section .dark span,
+.vs-textbox .dark, .vs-textbox .dark h3 { color: #fff; }
+
+/* Hộp chữ overlay trong banner: thêm khoảng thở */
+.vs-textbox { padding: 56px 24px; text-align: center; }
+.vs-textbox h3 { margin: 0 0 10px; font-size: 1.4em; text-transform: uppercase; }
+
+/* ---------- Form Contact Form 7 ---------- */
+.wpcf7 input[type="text"],
+.wpcf7 input[type="email"],
+.wpcf7 input[type="tel"],
+.wpcf7 input[type="url"],
+.wpcf7 input[type="number"],
+.wpcf7 input[type="date"],
+.wpcf7 select,
+.wpcf7 textarea {
+	width: 100%;
+	padding: 11px 14px;
+	border: 1px solid #d9d9d9;
+	border-radius: 8px;
+	background: #fff;
+	font: inherit;
+	color: #333;
+	margin: 4px 0 14px;
+	box-sizing: border-box;
+	transition: border-color .25s ease, box-shadow .25s ease;
+}
+.wpcf7 textarea { min-height: 130px; resize: vertical; }
+.wpcf7 input:focus,
+.wpcf7 textarea:focus,
+.wpcf7 select:focus {
+	outline: none;
+	border-color: var(--vn-green);
+	box-shadow: 0 0 0 3px rgba(54, 131, 63, .12);
+}
+.wpcf7 input[type="submit"],
+.wpcf7 button[type="submit"] {
+	background: var(--vn-green);
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	padding: 12px 36px;
+	font-weight: 700;
+	font-size: 1em;
+	cursor: pointer;
+	transition: background .25s ease, transform .15s ease;
+}
+.wpcf7 input[type="submit"]:hover,
+.wpcf7 button[type="submit"]:hover { background: var(--vn-green-dark); transform: translateY(-1px); }
+.wpcf7 .wpcf7-not-valid-tip { color: #c0392b; font-size: .85em; margin-top: -10px; }
+.wpcf7 .wpcf7-response-output { border-radius: 8px; padding: 10px 14px; }
+
+/* ---------- Mobile ---------- */
+@media only screen and (max-width: 849px) {
+	.vs-blog-grid--4, .vs-blog-grid--3 { grid-template-columns: 1fr; }
+	.vs-gallery-strip__item { flex: 0 0 70%; }
+	.vn-testimonials { padding: 48px 0 !important; }
+	.vn-testimonials .testimonial-box { padding: 32px 22px 28px; border-radius: 14px; }
+	.vn-testimonials .testimonial-box::before { font-size: 80px; top: 8px; left: 14px; }
+	.vn-testimonials h2.vn-testi-title { font-size: 1.5em; }
+	.vn-testimonials::before, .vn-testimonials::after { display: none; }
+	.vn-testimonials .vs-slider__arrow { display: none; }
+	.vs-fbox--center { padding: 10px 0; }
+	.vs-slider__arrow { width: 38px; height: 38px; }
+}

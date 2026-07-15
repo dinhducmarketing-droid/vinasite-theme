@@ -6,6 +6,17 @@ Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); th
 ## [1.3.1] — 2026-07
 - Plugin kèm theme **"Vinasite Google Indexing" nâng lên 1.1**: quét index hàng ngày bằng **URL Inspection API** — mỗi ngày hỏi Google từng URL "đã index chưa?", **chỉ bài CHƯA index mới được gửi** lên Indexing API. Bài đã index kiểm lại sau 30 ngày, bài chưa index sau 3 ngày; có ngân sách thời gian 90s/lượt để không treo cron; token cache riêng theo scope. Cần cấp quyền service account trong Search Console mới chạy được.
 
+## [1.3.2] — 2026-07 (đồng bộ repo với code chạy thật — QUAN TRỌNG)
+- **Đưa cơ chế "site di cư" vào repo.** Cơ chế này đã chạy thật trên vietnhatsknn.com từ trước nhưng chưa bao giờ được commit, nên repo đang CŨ HƠN site. Hậu quả nếu không sửa: site di cư bấm cập nhật theme là trang chủ biến thành các section của công ty luật Dragon (đã tái hiện được lỗi này rồi rollback).
+  - `vinasite_front_mode` = `content` → trang chủ render nội dung soạn trong WordPress (Trang > Trang chủ), không dựng từ template-parts. Gộp chung vào "Kiểu trang chủ" nên giờ có 3 lựa chọn: `vinasite` | `dragon` | `content`.
+  - `dragon_practice_areas_off` → ẩn cột "Lĩnh vực hành nghề" ở chân trang.
+  - `cta_text` / `cta_url` → nút CTA header cấu hình theo site (mặc định giữ y như cũ).
+  - `privacy_url` / `terms_url` → thay 2 link `vanphongluatsu.com.vn` hardcode ở chân trang.
+  - Bỏ chữ "luật sư" / "Dragon" khỏi 404, archive, index, search, single — thay bằng option `company_short`, `side_cta_title`, `side_cta_text`.
+  - File mới: `inc/vinasite-shim-extra.php` (shim shortcode Flatsome còn thiếu), `assets/dragon/css/vinasite-legacy.css`, `assets/dragon/js/vinasite-legacy.js`.
+- Site kiểu `dragon` được giữ nguyên tuyệt đối: topbar không thêm địa chỉ/giờ làm, 2 link chính sách giữ nguyên (site này chưa đặt trang chính sách trong WP nên nếu chuyển sang `get_privacy_policy_url()` sẽ mất cả 2 link).
+- Kiểm chứng thật: deploy 1.3.2 lên vietnhatsknn.com → trang chủ **giống hệt từng byte**, chỉ khác chuỗi `?ver=` của CSS.
+
 ## [1.3.0] — 2026-07
 - **Trang chủ mặc định VinaSite**, chỉ dành cho **lần kích hoạt theme đầu tiên**: site mới cài xong sẽ thấy trang giới thiệu giao diện VinaSite + dịch vụ của VinaSite (Hero → Tính năng theme → Dịch vụ → Gói dịch vụ → Liên hệ + form tư vấn), thay vì nội dung Công ty Luật Dragon.
 - **Site đang dùng theme sẵn thì KHÔNG bị đổi BẤT KỲ THỨ GÌ khi update** — preset `dragon` tái tạo đúng hành vi bản 1.2.4. Ba lớp bảo vệ: (1) preset chỉ gán qua hook `after_switch_theme`, hook này chỉ chạy lúc bật theme chứ không chạy khi cập nhật; (2) option `vinasite_da_chay` đánh dấu theme đã từng chạy trên site — nếu ai bật lại theme trên site đang chạy thì vẫn giữ `dragon`; (3) site đã nhập thông tin doanh nghiệp thì luôn giữ `dragon`.

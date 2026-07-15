@@ -58,8 +58,8 @@ while (have_posts()) : the_post();
 
                 <div class="vs-single__cta dragon-card">
                     <div>
-                        <strong>Cần tư vấn về vấn đề pháp lý này?</strong>
-                        <p>Luật sư Dragon tiếp nhận và tư vấn nhanh chóng, bảo mật.</p>
+                        <strong>Cần tư vấn thêm về nội dung này?</strong>
+                        <p><?php echo esc_html(dragon_opt('company_short') !== '' ? dragon_opt('company_short') : 'Chúng tôi'); ?> tiếp nhận và tư vấn nhanh chóng, bảo mật.</p>
                     </div>
                     <div class="vs-single__cta-actions">
                         <a class="dragon-btn dragon-btn--primary" href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?>Gọi <?php echo esc_html(dragon_opt('phone')); ?></a>
@@ -147,8 +147,8 @@ while (have_posts()) : the_post();
 
                 <!-- Contact CTA card -->
                 <div class="vs-widget vs-side-cta">
-                    <h3 class="vs-widget__title">Luật sư tư vấn</h3>
-                    <p>Gọi ngay để được luật sư Dragon tiếp nhận và tư vấn miễn phí.</p>
+                    <h3 class="vs-widget__title"><?php echo esc_html(dragon_opt('side_cta_title') !== '' ? dragon_opt('side_cta_title') : 'Tư vấn miễn phí'); ?></h3>
+                    <p><?php echo esc_html(dragon_opt('side_cta_text') !== '' ? dragon_opt('side_cta_text') : 'Gọi ngay để được tiếp nhận và tư vấn miễn phí.'); ?></p>
                     <a class="dragon-btn dragon-btn--primary dragon-btn--block" href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?><?php echo esc_html(dragon_opt('phone')); ?></a>
                 </div>
             </aside>

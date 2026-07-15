@@ -54,6 +54,7 @@ require_once get_template_directory() . '/inc/dragon/bootstrap.php';
 
 /* Legacy page-builder shortcode shim (Flatsome UX Builder + [ntg_page_title]). */
 require_once get_template_directory() . '/inc/vinasite-shim.php';
+if (file_exists(get_template_directory() . '/inc/vinasite-shim-extra.php')) { require_once get_template_directory() . '/inc/vinasite-shim-extra.php'; }
 
 /* Admin white-label branding (menu item + footer). */
 if (is_admin()) {

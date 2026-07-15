@@ -47,7 +47,7 @@ if ($vs_term && !is_wp_error($vs_term)) {
                     if ($vs_desc) {
                         echo esc_html(wp_trim_words(wp_strip_all_tags($vs_desc), 34, '…'));
                     } else {
-                        echo 'Cập nhật bài viết, phân tích và hướng dẫn pháp lý chuyên sâu trong chuyên mục <strong>' . esc_html($vs_title) . '</strong>.';
+                        echo 'Cập nhật bài viết, phân tích và hướng dẫn chuyên sâu trong chuyên mục <strong>' . esc_html($vs_title) . '</strong>.';
                     }
                     ?>
                 </p>

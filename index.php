@@ -13,7 +13,7 @@ get_header();
     <div class="dragon-container">
         <header class="dragon-section-head">
             <span class="dragon-eyebrow">Bài viết</span>
-            <h1><?php echo esc_html(is_home() && get_option('page_for_posts') ? get_the_title(get_option('page_for_posts')) : 'Tin tức & kiến thức pháp lý'); ?></h1>
+            <h1><?php echo esc_html(is_home() && get_option('page_for_posts') ? get_the_title(get_option('page_for_posts')) : 'Tin tức & kiến thức'); ?></h1>
         </header>
 
         <?php if (have_posts()) : ?>

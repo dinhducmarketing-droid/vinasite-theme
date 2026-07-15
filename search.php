@@ -26,7 +26,7 @@ get_header();
                 <?php the_posts_pagination(array('mid_size' => 2, 'prev_text' => '‹', 'next_text' => '›')); ?>
             </div>
         <?php else : ?>
-            <p class="vs-empty">Không tìm thấy kết quả phù hợp. Vui lòng thử từ khoá khác hoặc liên hệ luật sư qua <a href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php echo esc_html(dragon_opt('phone')); ?></a>.</p>
+            <p class="vs-empty">Không tìm thấy kết quả phù hợp. Vui lòng thử từ khoá khác hoặc liên hệ với chúng tôi qua <a href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php echo esc_html(dragon_opt('phone')); ?></a>.</p>
         <?php endif; ?>
     </div>
 </section>

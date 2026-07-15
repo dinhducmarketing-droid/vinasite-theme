@@ -159,6 +159,7 @@ function dragon_cat_url($slug)
  */
 function dragon_practice_areas()
 {
+    if (get_theme_mod('dragon_practice_areas_off')) { return array(); }
     return array(
         array(
             'key'   => 'hinh-su',

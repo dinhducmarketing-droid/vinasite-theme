@@ -97,6 +97,11 @@ function dragon_meta_description()
         return;
     }
 
+    // Site di cư: nội dung trang chủ là của họ, theme không áp mô tả nào cả.
+    if (vinasite_home_preset() === 'content') {
+        return;
+    }
+
     if (vinasite_home_preset() === 'dragon') {
         $mo_ta = 'Công ty Luật TNHH Dragon tư vấn, tranh tụng và hỗ trợ pháp lý cho cá nhân, doanh nghiệp tại Hà Nội. Liên hệ luật sư qua số ' . dragon_opt('phone') . '.';
     } else {
