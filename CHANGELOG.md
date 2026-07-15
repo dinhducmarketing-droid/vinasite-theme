@@ -3,6 +3,10 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.3.6] — 2026-07
+- Plugin kèm theme **"Vinasite Google Indexing" nâng lên 1.2**: nhúng Plugin Update Checker + header `Update URI` → plugin **tự cập nhật từ GitHub** như theme. Trước đây plugin chỉ được cài lúc kích hoạt theme và không bao giờ tự cập nhật, nên các site đang lệch nhau (vanphongluatsu 1.1, vietnhatsknn 1.0, noithathaven 1.0). Mã nguồn tách ra repo riêng `vinasite-google-indexing`.
+- Zip đóng gói `inc/bundled/vinasite-google-indexing.zip` dựng lại từ bản 1.2 để site cài mới có sẵn cơ chế tự cập nhật.
+
 ## [1.3.5] — 2026-07 (sửa hồi quy trên site công ty luật)
 - `single.php` bản "gỡ chất luật sư" (lấy từ site di cư ở 1.3.2) làm đổi chữ trên chính vanphongluatsu.com.vn: "Cần tư vấn về vấn đề pháp lý này?" → "Cần tư vấn thêm về nội dung này?", "Luật sư Dragon tiếp nhận" → "Công ty Luật Dragon tiếp nhận", sidebar "Luật sư tư vấn" → "Tư vấn miễn phí". Chữ trung tính đúng cho site bán đá/quan trắc nhưng SAI với văn phòng luật. Nay mặc định theo preset: `dragon` giữ nguyên chữ cũ, site khác dùng chữ trung tính; site nào muốn khác thì nhập `side_cta_title`/`side_cta_text` ở Customizer.
 - Phát hiện khi cập nhật thật vanphongluatsu.com.vn 1.2.4 → 1.3.4 rồi so sánh trước/sau.
