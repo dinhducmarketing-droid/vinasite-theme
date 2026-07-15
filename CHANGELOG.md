@@ -6,6 +6,9 @@ Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); th
 ## [1.3.1] — 2026-07
 - Plugin kèm theme **"Vinasite Google Indexing" nâng lên 1.1**: quét index hàng ngày bằng **URL Inspection API** — mỗi ngày hỏi Google từng URL "đã index chưa?", **chỉ bài CHƯA index mới được gửi** lên Indexing API. Bài đã index kiểm lại sau 30 ngày, bài chưa index sau 3 ngày; có ngân sách thời gian 90s/lượt để không treo cron; token cache riêng theo scope. Cần cấp quyền service account trong Search Console mới chạy được.
 
+## [1.3.3] — 2026-07
+- Shortcode `[section]` (shim Flatsome) nhận thêm `class`, `id`, `padding`, `padding__sm`. Site di cư từ Flatsome đặt class riêng lên `[section]` để CSS bám vào — thiếu thì layout trang chủ của họ vỡ. Lấy từ bản đang chạy thật ở giathaistone.com.
+
 ## [1.3.2] — 2026-07 (đồng bộ repo với code chạy thật — QUAN TRỌNG)
 - **Đưa cơ chế "site di cư" vào repo.** Cơ chế này đã chạy thật trên vietnhatsknn.com từ trước nhưng chưa bao giờ được commit, nên repo đang CŨ HƠN site. Hậu quả nếu không sửa: site di cư bấm cập nhật theme là trang chủ biến thành các section của công ty luật Dragon (đã tái hiện được lỗi này rồi rollback).
   - `vinasite_front_mode` = `content` → trang chủ render nội dung soạn trong WordPress (Trang > Trang chủ), không dựng từ template-parts. Gộp chung vào "Kiểu trang chủ" nên giờ có 3 lựa chọn: `vinasite` | `dragon` | `content`.

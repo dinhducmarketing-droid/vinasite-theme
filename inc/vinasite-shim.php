@@ -94,11 +94,19 @@ function vinasite_vis_class($atts)
 
 function vinasite_sc_section($atts, $content = '')
 {
-    $atts = shortcode_atts(array('bg_color' => '', 'dark' => '', 'padding' => '', 'visibility' => '', 'label' => ''), $atts);
+    // Hỗ trợ thêm class/id/padding: các site di cư từ Flatsome đặt class riêng
+    // lên [section] để CSS của họ bám vào. Thiếu thì layout trang chủ của họ vỡ.
+    $atts = shortcode_atts(array('bg_color' => '', 'dark' => '', 'padding' => '', 'padding__sm' => '', 'visibility' => '', 'label' => '', 'class' => '', 'id' => ''), $atts);
     $style = '';
     if ($atts['bg_color']) { $style .= 'background-color:' . esc_attr($atts['bg_color']) . ';'; }
+    if ($atts['padding'] !== '') {
+        $pad = preg_replace('/[^0-9.]/', '', $atts['padding']);
+        if ($pad !== '') { $style .= 'padding-top:' . $pad . 'px;padding-bottom:' . $pad . 'px;'; }
+    }
     $cls = 'vs-ux-section' . vinasite_vis_class($atts) . ($atts['dark'] ? ' vs-ux-dark' : '');
-    return '<section class="' . esc_attr($cls) . '"' . ($style ? ' style="' . $style . '"' : '') . '><div class="dragon-container">' . do_shortcode($content) . '</div></section>';
+    if ($atts['class']) { $cls .= ' ' . $atts['class']; }
+    $id_attr = $atts['id'] ? ' id="' . esc_attr($atts['id']) . '"' : '';
+    return '<section class="' . esc_attr($cls) . '"' . $id_attr . ($style ? ' style="' . $style . '"' : '') . '><div class="dragon-container">' . do_shortcode($content) . '</div></section>';
 }
 
 function vinasite_sc_row($atts, $content = '')
