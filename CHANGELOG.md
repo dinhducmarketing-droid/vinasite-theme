@@ -3,11 +3,9 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
-## [1.3.1] — 2026-07
-- Plugin kèm theme **"Vinasite Google Indexing" nâng lên 1.1**: quét index hàng ngày bằng **URL Inspection API** — mỗi ngày hỏi Google từng URL "đã index chưa?", **chỉ bài CHƯA index mới được gửi** lên Indexing API. Bài đã index kiểm lại sau 30 ngày, bài chưa index sau 3 ngày; có ngân sách thời gian 90s/lượt để không treo cron; token cache riêng theo scope. Cần cấp quyền service account trong Search Console mới chạy được.
-
 ## [1.3.3] — 2026-07
 - Shortcode `[section]` (shim Flatsome) nhận thêm `class`, `id`, `padding`, `padding__sm`. Site di cư từ Flatsome đặt class riêng lên `[section]` để CSS bám vào — thiếu thì layout trang chủ của họ vỡ. Lấy từ bản đang chạy thật ở giathaistone.com.
+- Cần cho việc tách giathaistone.com thành **child theme** (repo riêng `giathai-child`): site đó vốn là bản fork 1.0.1 với 9 file riêng nhét thẳng vào thư mục theme cha, nên không thể cập nhật. Tách child xong thì theme cha tự update bình thường mà không xoá mất phần riêng của họ.
 
 ## [1.3.2] — 2026-07 (đồng bộ repo với code chạy thật — QUAN TRỌNG)
 - **Đưa cơ chế "site di cư" vào repo.** Cơ chế này đã chạy thật trên vietnhatsknn.com từ trước nhưng chưa bao giờ được commit, nên repo đang CŨ HƠN site. Hậu quả nếu không sửa: site di cư bấm cập nhật theme là trang chủ biến thành các section của công ty luật Dragon (đã tái hiện được lỗi này rồi rollback).
@@ -19,6 +17,9 @@ Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); th
   - File mới: `inc/vinasite-shim-extra.php` (shim shortcode Flatsome còn thiếu), `assets/dragon/css/vinasite-legacy.css`, `assets/dragon/js/vinasite-legacy.js`.
 - Site kiểu `dragon` được giữ nguyên tuyệt đối: topbar không thêm địa chỉ/giờ làm, 2 link chính sách giữ nguyên (site này chưa đặt trang chính sách trong WP nên nếu chuyển sang `get_privacy_policy_url()` sẽ mất cả 2 link).
 - Kiểm chứng thật: deploy 1.3.2 lên vietnhatsknn.com → trang chủ **giống hệt từng byte**, chỉ khác chuỗi `?ver=` của CSS.
+
+## [1.3.1] — 2026-07
+- Plugin kèm theme **"Vinasite Google Indexing" nâng lên 1.1**: quét index hàng ngày bằng **URL Inspection API** — mỗi ngày hỏi Google từng URL "đã index chưa?", **chỉ bài CHƯA index mới được gửi** lên Indexing API. Bài đã index kiểm lại sau 30 ngày, bài chưa index sau 3 ngày; có ngân sách thời gian 90s/lượt để không treo cron; token cache riêng theo scope. Cần cấp quyền service account trong Search Console mới chạy được.
 
 ## [1.3.0] — 2026-07
 - **Trang chủ mặc định VinaSite**, chỉ dành cho **lần kích hoạt theme đầu tiên**: site mới cài xong sẽ thấy trang giới thiệu giao diện VinaSite + dịch vụ của VinaSite (Hero → Tính năng theme → Dịch vụ → Gói dịch vụ → Liên hệ + form tư vấn), thay vì nội dung Công ty Luật Dragon.
