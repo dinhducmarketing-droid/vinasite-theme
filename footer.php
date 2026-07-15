@@ -144,7 +144,9 @@ $co_zalo  = dragon_tel('zalo') !== '';
     <?php if ($co_zalo) : ?>
         <a href="https://zalo.me/<?php echo esc_attr(dragon_tel('zalo')); ?>" target="_blank" rel="noopener" aria-label="Nhắn Zalo"><?php dragon_the_icon('zalo'); ?>Zalo</a>
     <?php endif; ?>
-    <a href="#dragon-consultation" class="is-primary" aria-label="Đặt lịch tư vấn"><?php dragon_the_icon('calendar'); ?><?php echo vinasite_home_preset() === 'dragon' ? 'Đặt lịch' : 'Tư vấn'; ?></a>
+    <?php // aria-label phải khớp chữ hiện trên nút để trình đọc màn hình không đọc lệch. ?>
+    <?php $nhan_cta = vinasite_home_preset() === 'dragon' ? 'Đặt lịch tư vấn' : 'Nhận tư vấn'; ?>
+    <a href="#dragon-consultation" class="is-primary" aria-label="<?php echo esc_attr($nhan_cta); ?>"><?php dragon_the_icon('calendar'); ?><?php echo vinasite_home_preset() === 'dragon' ? 'Đặt lịch' : 'Tư vấn'; ?></a>
 </nav>
 
 </div><!-- #wrapper -->

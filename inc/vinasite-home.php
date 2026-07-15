@@ -31,27 +31,37 @@ function vinasite_home_presets()
 }
 
 /**
- * Nhận diện site CŨ để không đổi trang chủ của họ khi update theme.
- * Site đã cấu hình Dragon thì chắc chắn có tên công ty / điện thoại trong
- * theme_mods (kiểm chứng trên vanphongluatsu.com.vn). Site mới cài thì rỗng.
+ * Trang chủ VinaSite chỉ dành cho lần KÍCH HOẠT THEME ĐẦU TIÊN.
+ *
+ * Móc vào after_switch_theme — hook này CHỈ chạy đúng lúc bật theme, không chạy
+ * khi cập nhật theme. Nhờ vậy các site đang dùng theme sẵn (giathaistone.com,
+ * vietnhatsknn.com, vanphongluatsu.com.vn…) update lên bản mới sẽ KHÔNG bị đổi
+ * trang chủ: option không tồn tại → vinasite_home_preset() trả về 'dragon',
+ * đúng giao diện họ đang chạy.
+ *
+ * Thêm một lớp chặn nữa: site nào đã có thông tin doanh nghiệp trong theme_mods
+ * thì dù có bật lại theme cũng giữ nguyên trang chủ cũ.
  */
-function vinasite_home_preset_migrate()
+function vinasite_home_preset_on_activate()
 {
     if (get_option('vinasite_home_preset') !== false) {
-        return; // Đã quyết định rồi, không đụng vào lựa chọn của chủ site.
+        return; // Đã có lựa chọn — không đụng vào.
     }
     $da_cau_hinh = get_theme_mod('dragon_company_name', '') !== ''
         || get_theme_mod('dragon_phone', '') !== '';
 
     add_option('vinasite_home_preset', $da_cau_hinh ? 'dragon' : 'vinasite');
 }
-add_action('after_setup_theme', 'vinasite_home_preset_migrate', 5);
+add_action('after_switch_theme', 'vinasite_home_preset_on_activate');
 
-/** Preset đang dùng. */
+/**
+ * Preset đang dùng.
+ * Không có option = site đã chạy theme từ trước bản 1.3.0 → giữ trang chủ cũ.
+ */
 function vinasite_home_preset()
 {
-    $preset = (string) get_option('vinasite_home_preset', 'vinasite');
-    return array_key_exists($preset, vinasite_home_presets()) ? $preset : 'vinasite';
+    $preset = (string) get_option('vinasite_home_preset', 'dragon');
+    return array_key_exists($preset, vinasite_home_presets()) ? $preset : 'dragon';
 }
 
 /** Sanitize lựa chọn preset. */

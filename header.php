@@ -96,7 +96,7 @@ $areas    = dragon_practice_areas();
 
             <div class="dragon-header__actions">
                 <a class="dragon-btn dragon-btn--primary" href="#dragon-consultation">
-                    <?php dragon_the_icon('calendar'); ?><span class="dragon-header__cta-text">Đặt lịch tư vấn</span>
+                    <?php dragon_the_icon('calendar'); ?><span class="dragon-header__cta-text"><?php echo vinasite_home_preset() === 'dragon' ? 'Đặt lịch tư vấn' : 'Nhận tư vấn'; ?></span>
                 </a>
                 <button class="dragon-burger" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="dragon-offcanvas" id="dragon-burger">
                     <?php dragon_the_icon('menu'); ?>
@@ -132,7 +132,7 @@ $areas    = dragon_practice_areas();
         <?php if ($phone !== '') : ?>
             <a class="dragon-btn dragon-btn--primary dragon-btn--block" href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?>Gọi <?php echo esc_html($phone); ?></a>
         <?php endif; ?>
-        <a class="dragon-btn dragon-btn--block" href="#dragon-consultation" data-dragon-close-menu><?php dragon_the_icon('calendar'); ?>Đặt lịch tư vấn</a>
+        <a class="dragon-btn dragon-btn--block" href="#dragon-consultation" data-dragon-close-menu><?php dragon_the_icon('calendar'); ?><?php echo vinasite_home_preset() === 'dragon' ? 'Đặt lịch tư vấn' : 'Nhận tư vấn'; ?></a>
     </div>
 </aside>
 

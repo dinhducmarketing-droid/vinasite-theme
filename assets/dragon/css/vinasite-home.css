@@ -57,7 +57,10 @@
 
 .vs-hero .dragon-eyebrow { color: var(--vs-yellow); }
 
-.vs-hero__title {
+/* Phải viết .vs-hero .vs-hero__title (độ ưu tiên 0,2,0) để thắng
+   ".dragon-scope h1" (0,1,1) trong dragon-base.css — nếu không, tiêu đề bị tô
+   màu chính (xanh đậm) và chìm hẳn vào nền hero cũng màu xanh. */
+.vs-hero .vs-hero__title {
   margin: .6rem 0 1rem;
   font-size: clamp(1.9rem, 4.2vw, 3.1rem);
   line-height: 1.18;
@@ -65,7 +68,7 @@
   color: var(--dragon-white);
 }
 
-.vs-hero__title strong { color: var(--vs-yellow); font-weight: 700; }
+.vs-hero .vs-hero__title strong { color: var(--vs-yellow); font-weight: 700; }
 
 .vs-hero__desc {
   margin: 0 0 1.6rem;

@@ -41,7 +41,7 @@ $phone = vinasite_info('phone');
 
         <aside class="vs-hero__card" aria-label="Thông tin giao diện">
             <div class="vs-hero__card-head">
-                <span class="vs-hero__badge"><?php dragon_the_icon('shield'); ?>Đang cài đặt</span>
+                <span class="vs-hero__badge"><?php dragon_the_icon('shield'); ?>Đang sử dụng</span>
                 <strong><?php echo esc_html($theme->get('Name')); ?></strong>
                 <span class="vs-hero__ver">Phiên bản <?php echo esc_html($theme->get('Version')); ?></span>
             </div>
@@ -51,11 +51,17 @@ $phone = vinasite_info('phone');
                 <li><span>Màu thương hiệu</span><b>Tuỳ chỉnh</b></li>
                 <li><span>Plugin kèm theo</span><b>2 plugin</b></li>
             </ul>
-            <p class="vs-hero__note">
-                <?php dragon_the_icon('help'); ?>
-                Đây là trang chủ mặc định của giao diện. Vào <strong>Giao diện → Tuỳ biến</strong> để nhập thông tin
-                doanh nghiệp của bạn, hoặc đổi kiểu trang chủ tại mục <strong>VinaSite – Kiểu trang chủ</strong>.
-            </p>
+            <?php
+            // Ghi chú hướng dẫn: CHỈ hiện với người quản trị site — khách vào web
+            // không cần (và không nên) thấy hướng dẫn cấu hình.
+            // Chữ phải bọc trong 1 thẻ <span>: .vs-hero__note là display:flex nên
+            // mỗi thẻ con sẽ thành 1 cột riêng, làm đoạn văn vỡ vụn.
+            if (current_user_can('edit_theme_options')) : ?>
+                <p class="vs-hero__note">
+                    <?php dragon_the_icon('help'); ?>
+                    <span>Đây là trang chủ mặc định của giao diện. Vào <strong>Giao diện → Tuỳ biến</strong> để nhập thông tin doanh nghiệp của bạn, hoặc đổi kiểu trang chủ tại mục <strong>VinaSite – Kiểu trang chủ</strong>.</span>
+                </p>
+            <?php endif; ?>
         </aside>
 
     </div>
