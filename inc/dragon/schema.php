@@ -14,7 +14,8 @@ if (!defined('ABSPATH')) {
 add_action('wp_head', 'dragon_output_schema', 20);
 function dragon_output_schema()
 {
-    if (!is_front_page()) {
+    // Chỉ dùng cho trang chủ kiểu "dragon" — schema LegalService là của công ty luật.
+    if (!is_front_page() || vinasite_home_preset() !== 'dragon') {
         return;
     }
 
@@ -79,16 +80,32 @@ function dragon_output_schema()
 add_filter('pre_get_document_title', 'dragon_document_title', 5);
 function dragon_document_title($title)
 {
-    if (is_front_page() && !defined('RANK_MATH_VERSION')) {
+    if (!is_front_page() || defined('RANK_MATH_VERSION')) {
+        return $title;
+    }
+    if (vinasite_home_preset() === 'dragon') {
         return 'Công ty Luật TNHH Dragon | Luật sư uy tín tại Hà Nội';
     }
+    // Trang chủ mặc định: để WordPress tự dựng tiêu đề từ tên + mô tả site.
     return $title;
 }
 
 add_action('wp_head', 'dragon_meta_description', 1);
 function dragon_meta_description()
 {
-    if (is_front_page() && !defined('RANK_MATH_VERSION')) {
-        echo '<meta name="description" content="Công ty Luật TNHH Dragon tư vấn, tranh tụng và hỗ trợ pháp lý cho cá nhân, doanh nghiệp tại Hà Nội. Liên hệ luật sư qua số ' . esc_attr(dragon_opt('phone')) . '."/>' . "\n";
+    if (!is_front_page() || defined('RANK_MATH_VERSION')) {
+        return;
     }
+
+    if (vinasite_home_preset() === 'dragon') {
+        $mo_ta = 'Công ty Luật TNHH Dragon tư vấn, tranh tụng và hỗ trợ pháp lý cho cá nhân, doanh nghiệp tại Hà Nội. Liên hệ luật sư qua số ' . dragon_opt('phone') . '.';
+    } else {
+        // Trang chủ mặc định: ưu tiên mô tả site chủ đã nhập, nếu trống thì giới thiệu theme.
+        $mo_ta = get_bloginfo('description');
+        if ($mo_ta === '') {
+            $mo_ta = 'Giao diện VinaSite — website WordPress nhẹ, chuẩn SEO, tự cập nhật, do Công ty TNHH VinaSite Việt Nam thiết kế và phát triển.';
+        }
+    }
+
+    echo '<meta name="description" content="' . esc_attr($mo_ta) . '"/>' . "\n";
 }

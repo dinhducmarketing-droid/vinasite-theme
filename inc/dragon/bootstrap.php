@@ -17,11 +17,12 @@ require_once $dragon_dir . 'customizer.php';
 require_once $dragon_dir . 'ajax.php';
 require_once $dragon_dir . 'schema.php';
 require_once $dragon_dir . 'design-tokens.php';
+require_once get_stylesheet_directory() . '/inc/vinasite-home.php';
 require_once get_stylesheet_directory() . '/inc/vinasite-license.php';
 require_once get_stylesheet_directory() . '/inc/vinasite-bundled-plugin.php';
 require_once get_stylesheet_directory() . '/inc/vinasite-theme-updater.php';
 
-define('DRAGON_ASSET_VER', '1.4.8');
+define('DRAGON_ASSET_VER', '1.4.9');
 
 add_action('wp_enqueue_scripts', 'dragon_enqueue_assets', 20);
 function dragon_enqueue_assets()
@@ -40,6 +41,11 @@ function dragon_enqueue_assets()
     if (is_front_page() || is_page(array('ve-chung-toi', 'doi-ngu-nhan-su', 'ho-so-nang-luc', 'thanh-tich', 'video-truyen-hinh', 'khach-hang-noi-ve-chung-toi'))) {
         wp_enqueue_style('dragon-home', $base . 'css/dragon-home.css', array('dragon-base'), $ver);
         wp_enqueue_style('dragon-responsive', $base . 'css/dragon-responsive.css', array('dragon-home'), $ver);
+    }
+
+    // Trang chủ mặc định VinaSite — nạp thêm style riêng cho các khối giới thiệu.
+    if (is_front_page() && vinasite_home_preset() === 'vinasite') {
+        wp_enqueue_style('vinasite-home', $base . 'css/vinasite-home.css', array('dragon-home'), $ver);
     }
 
     // Behaviour (nav/offcanvas needed site-wide; slider/form guard on presence).

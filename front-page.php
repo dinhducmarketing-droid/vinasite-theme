@@ -1,41 +1,47 @@
 <?php
 /**
- * Dragon Law Firm – Home page template.
+ * Trang chủ — chọn nội dung theo preset (Customizer → "VinaSite – Kiểu trang chủ").
  *
- * WordPress uses front-page.php for the site front page automatically, so this
- * overrides the old UX Builder homepage WITHOUT touching page 7783's content.
- * Rollback = delete this file; the old homepage returns untouched.
+ *  - vinasite (mặc định): giới thiệu theme VinaSite + dịch vụ của VinaSite.
+ *  - dragon: trang chủ bespoke của Công ty Luật TNHH Dragon (site cũ giữ nguyên).
  *
- * Section order per brief:
- *  Header → Hero → Trust bar → About → Practice areas → Problem selector →
- *  CTA → Process → Lawyers → Achievements → News → Legal knowledge →
- *  Testimonials → FAQ → Consultation form → Footer.
- *
- * @package ntgsite-dragon
+ * @package vinasite
  */
 if (!defined('ABSPATH')) {
     exit;
 }
 get_header();
 
-$parts = array(
-    'hero',
-    'trust-bar',
-    'about',
-    'practice-areas',
-    'problem-selector',
-    'cta',
-    'process',
-    'lawyers',
-    'achievements',
-    'legal-posts',
-    'testimonials',
-    'faq',
-    'consultation-form',
-    'news', // moved to the bottom (just above the footer) per request
-);
+if (vinasite_home_preset() === 'dragon') {
+    // Thứ tự khối theo bản thiết kế riêng của Dragon.
+    $parts = array(
+        'home/hero',
+        'home/trust-bar',
+        'home/about',
+        'home/practice-areas',
+        'home/problem-selector',
+        'home/cta',
+        'home/process',
+        'home/lawyers',
+        'home/achievements',
+        'home/legal-posts',
+        'home/testimonials',
+        'home/faq',
+        'home/consultation-form',
+        'home/news', // đưa xuống cuối, ngay trên footer, theo yêu cầu.
+    );
+} else {
+    $parts = array(
+        'vinasite/hero',
+        'vinasite/features',
+        'vinasite/services',
+        'vinasite/pricing',
+        'vinasite/contact',
+    );
+}
+
 foreach ($parts as $part) {
-    get_template_part('template-parts/home/' . $part);
+    get_template_part('template-parts/' . $part);
 }
 
 get_footer();

@@ -3,6 +3,14 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.3.0] — 2026-07
+- **Trang chủ mặc định VinaSite**: site mới cài giờ hiển thị trang giới thiệu giao diện VinaSite + dịch vụ của VinaSite (Hero → Tính năng theme → Dịch vụ → Gói dịch vụ → Liên hệ + form tư vấn), thay vì nội dung Công ty Luật Dragon.
+- **Tùy chọn "VinaSite – Kiểu trang chủ"** trong Customizer: chọn `vinasite` (mặc định) hoặc `dragon` (trang chủ bespoke công ty luật). Site CŨ được tự động gán `dragon` một lần khi update (nhận diện qua theme_mods đã cấu hình) nên **không đổi giao diện, không cần làm gì**.
+- Bỏ nội dung Dragon rò rỉ sang site khác: thẻ `<title>`/meta description trang chủ, schema `LegalService`, cột "Lĩnh vực hành nghề" và link chính sách `vanphongluatsu.com.vn` ở chân trang — nay chỉ hiện với preset `dragon`.
+- Site chưa nhập điện thoại/Zalo/email: ẩn topbar, nút gọi nổi và nút Zalo thay vì render link rỗng (`tel:`, `zalo.me/`).
+- Form tư vấn dùng chung handler sẵn có (nonce, bẫy bot, chống spam theo IP); email báo về hiển thị đúng tên dịch vụ VinaSite.
+- File mới: `inc/vinasite-home.php`, `template-parts/vinasite/*.php`, `assets/dragon/css/vinasite-home.css`.
+
 ## [1.2.4] — 2026-07
 - Làm mới Bảng điều khiển: hero gradient + logo, thanh tiến độ thiết lập (%), thẻ card icon tròn + hover, khu Liên kết nhanh.
 

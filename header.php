@@ -49,15 +49,21 @@ $areas    = dragon_practice_areas();
 ?>
 <header class="dragon-header" role="banner">
 
-    <!-- Topbar -->
+    <!-- Topbar — chỉ hiện khi site đã nhập điện thoại/email (tránh link rỗng). -->
+    <?php if ($phone !== '' || dragon_opt('email') !== '') : ?>
     <div class="dragon-topbar">
         <div class="dragon-container dragon-topbar__inner dragon-topbar__inner--right">
             <ul class="dragon-topbar__list dragon-topbar__list--secondary">
-                <li><a href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?><span><?php echo esc_html($phone); ?></span></a></li>
-                <li><a href="mailto:<?php echo esc_attr(dragon_opt('email')); ?>"><?php dragon_the_icon('mail'); ?><span><?php echo esc_html(dragon_opt('email')); ?></span></a></li>
+                <?php if ($phone !== '') : ?>
+                    <li><a href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?><span><?php echo esc_html($phone); ?></span></a></li>
+                <?php endif; ?>
+                <?php if (dragon_opt('email') !== '') : ?>
+                    <li><a href="mailto:<?php echo esc_attr(dragon_opt('email')); ?>"><?php dragon_the_icon('mail'); ?><span><?php echo esc_html(dragon_opt('email')); ?></span></a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
+    <?php endif; ?>
 
     <!-- Main bar -->
     <div class="dragon-bar" id="dragon-bar">
@@ -123,7 +129,9 @@ $areas    = dragon_practice_areas();
     }
     ?>
     <div class="dragon-offcanvas__actions">
-        <a class="dragon-btn dragon-btn--primary dragon-btn--block" href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?>Gọi <?php echo esc_html($phone); ?></a>
+        <?php if ($phone !== '') : ?>
+            <a class="dragon-btn dragon-btn--primary dragon-btn--block" href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?>Gọi <?php echo esc_html($phone); ?></a>
+        <?php endif; ?>
         <a class="dragon-btn dragon-btn--block" href="#dragon-consultation" data-dragon-close-menu><?php dragon_the_icon('calendar'); ?>Đặt lịch tư vấn</a>
     </div>
 </aside>
