@@ -4,6 +4,11 @@
    "Màu chính / Màu nhấn" mà chủ site chọn ở Customizer.
    ========================================================================== */
 
+/* Vàng dòng tagline trong logo ("TRÂN TRỌNG NIỀM TIN CỦA BẠN").
+   Dùng cho chữ nhỏ / icon trên nền hero xanh đậm: đỏ logo đặt trên xanh chỉ đạt
+   ~2.5:1 (chìm), còn vàng này đạt ~4.7:1 nên đọc rõ. */
+:root { --vs-yellow: #ffd100; }
+
 /* --- Lưới dùng chung ---------------------------------------------------- */
 .vs-grid {
   display: grid;
@@ -37,8 +42,8 @@
   width: 460px;
   height: 460px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--dragon-accent) 0%, transparent 68%);
-  opacity: .28;
+  background: radial-gradient(circle, var(--vs-yellow) 0%, transparent 68%);
+  opacity: .20;
   pointer-events: none;
 }
 
@@ -50,7 +55,7 @@
   align-items: center;
 }
 
-.vs-hero .dragon-eyebrow { color: var(--dragon-accent); }
+.vs-hero .dragon-eyebrow { color: var(--vs-yellow); }
 
 .vs-hero__title {
   margin: .6rem 0 1rem;
@@ -60,7 +65,7 @@
   color: var(--dragon-white);
 }
 
-.vs-hero__title strong { color: var(--dragon-accent); font-weight: 700; }
+.vs-hero__title strong { color: var(--vs-yellow); font-weight: 700; }
 
 .vs-hero__desc {
   margin: 0 0 1.6rem;
@@ -97,7 +102,7 @@
   flex: none;
   width: 18px;
   height: 18px;
-  color: var(--dragon-accent);
+  color: var(--vs-yellow);
 }
 
 /* Thẻ thông tin theme bên phải hero */
@@ -130,7 +135,7 @@
   padding: .25rem .6rem;
   border-radius: 999px;
   background: rgba(255, 255, 255, .14);
-  color: var(--dragon-accent);
+  color: var(--vs-yellow);
   font-size: .74rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -257,7 +262,7 @@
   padding: .25rem .7rem;
   border-radius: 999px;
   background: var(--dragon-accent);
-  color: var(--dragon-primary-dark);
+  color: #fff;
   font-size: .74rem;
   font-weight: 700;
   text-transform: uppercase;
