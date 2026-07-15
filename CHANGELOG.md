@@ -5,13 +5,14 @@ Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); th
 
 ## [1.3.0] — 2026-07
 - **Trang chủ mặc định VinaSite**, chỉ dành cho **lần kích hoạt theme đầu tiên**: site mới cài xong sẽ thấy trang giới thiệu giao diện VinaSite + dịch vụ của VinaSite (Hero → Tính năng theme → Dịch vụ → Gói dịch vụ → Liên hệ + form tư vấn), thay vì nội dung Công ty Luật Dragon.
-- **Site đang dùng theme sẵn thì KHÔNG bị đổi gì khi update.** Preset chỉ được gán qua hook `after_switch_theme` (chỉ chạy đúng lúc bật theme, không chạy khi cập nhật); site đã chạy theme từ trước bản 1.3.0 không có option nên mặc định giữ trang chủ cũ.
+- **Site đang dùng theme sẵn thì KHÔNG bị đổi BẤT KỲ THỨ GÌ khi update** — preset `dragon` tái tạo đúng hành vi bản 1.2.4. Ba lớp bảo vệ: (1) preset chỉ gán qua hook `after_switch_theme`, hook này chỉ chạy lúc bật theme chứ không chạy khi cập nhật; (2) option `vinasite_da_chay` đánh dấu theme đã từng chạy trên site — nếu ai bật lại theme trên site đang chạy thì vẫn giữ `dragon`; (3) site đã nhập thông tin doanh nghiệp thì luôn giữ `dragon`.
+- Mọi thay đổi ở header/footer (ẩn link rỗng, sửa CSS logo) đều gắn theo preset — chỉ áp dụng cho site cài mới, qua class `vinasite-moi` trên `<body>`.
 - **Tùy chọn "VinaSite – Kiểu trang chủ"** trong Customizer: đổi qua lại giữa `vinasite` và `dragon` bất cứ lúc nào.
 - Bỏ nội dung Dragon rò rỉ sang site khác: thẻ `<title>`/meta description trang chủ, schema `LegalService`, cột "Lĩnh vực hành nghề" và link chính sách `vanphongluatsu.com.vn` ở chân trang — nay chỉ hiện với preset `dragon`.
-- Site chưa nhập điện thoại/Zalo/email: ẩn topbar, nút gọi nổi và nút Zalo thay vì render link rỗng (`tel:`, `zalo.me/`).
+- Site cài mới chưa nhập điện thoại/Zalo/email: ẩn topbar, nút gọi nổi và nút Zalo thay vì render link rỗng (`tel:`, `zalo.me/`).
 - Form tư vấn dùng chung handler sẵn có (nonce, bẫy bot, chống spam theo IP); email báo về hiển thị đúng tên dịch vụ VinaSite.
 - **Đồng bộ màu theo logo VinaSite** (chỉ áp dụng cho preset `vinasite`, toàn site chứ không riêng trang chủ): xanh `#1e5aa8` làm màu chính, xanh logo `#4790cd` màu phụ, đỏ logo `#e51e22` màu nhấn, vàng tagline `#ffd100` cho chữ/icon trên nền xanh; nền và viền chuyển sang tông lạnh. Màu gốc đo trực tiếp từ file logo (đỏ `#ed2024`, xanh `#4790cd`) rồi chỉnh sắc độ để mọi cặp chữ/nền đạt WCAG AA 4.5:1 — dùng thẳng màu gốc thì chữ trắng trên xanh chỉ đạt 3.4:1 và trên đỏ 4.35:1. Site tự chọn màu ở Customizer vẫn được ưu tiên.
-- Sửa lỗi hiển thị trên site mới cài: tiêu đề H1 hero bị `.dragon-scope h1` ghi đè thành màu xanh đậm nên chìm vào nền hero (nay dùng đúng chữ trắng); khối ghi chú hero vỡ thành nhiều cột do `display:flex`; logo dạng chữ (site chưa tải logo ảnh) bị gạch chân như link thường.
+- Sửa lỗi hiển thị (chỉ site cài mới): tiêu đề H1 hero bị `.dragon-scope h1` ghi đè thành màu xanh đậm nên chìm vào nền hero (nay dùng đúng chữ trắng); khối ghi chú hero vỡ thành nhiều cột do `display:flex`; logo dạng chữ (site chưa tải logo ảnh) bị gạch chân như link thường.
 - Ghi chú hướng dẫn cấu hình ở hero chỉ hiện với người quản trị, khách vào web không thấy. Nhãn nút CTA đổi theo preset ("Nhận tư vấn" / "Đặt lịch tư vấn"), `aria-label` khớp chữ trên nút.
 - File mới: `inc/vinasite-home.php`, `template-parts/vinasite/*.php`, `assets/dragon/css/vinasite-home.css`.
 

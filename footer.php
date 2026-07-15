@@ -14,6 +14,13 @@ $hotline  = dragon_opt('hotline');
 $show_hl  = dragon_opt('show_hotline') === '1' && $hotline !== '';
 $areas    = dragon_practice_areas();
 $la_dragon = vinasite_home_preset() === 'dragon';
+
+/*
+ * $vs_moi = site cài mới (preset "vinasite"). CHỈ site cài mới mới ẩn các dòng /
+ * nút chưa có dữ liệu. Site đang chạy sẵn (preset "dragon") giữ NGUYÊN markup
+ * như bản 1.2.4 — không thêm không bớt.
+ */
+$vs_moi = !$la_dragon;
 ?>
 </main>
 
@@ -24,35 +31,35 @@ $la_dragon = vinasite_home_preset() === 'dragon';
 
                 <div class="dragon-footer__brand">
                     <?php if ($logo_url) : ?><img src="<?php echo esc_url($logo_url); ?>" width="150" height="60" alt="<?php echo esc_attr($logo_txt); ?>" loading="lazy"/><?php else : ?><span class="dragon-logo__text"><?php echo esc_html($logo_txt); ?></span><?php endif; ?>
-                    <?php if (dragon_opt('slogan') !== '') : ?>
+                    <?php if (!$vs_moi || dragon_opt('slogan') !== '') : ?>
                         <p class="dragon-footer__slogan">“<?php echo esc_html(dragon_opt('slogan')); ?>”</p>
                     <?php endif; ?>
                     <div class="dragon-footer__meta">
                         <strong><?php echo esc_html(dragon_opt('company_name')); ?></strong>
-                        <?php // Mã số doanh nghiệp chỉ hiện khi site đã nhập. ?>
-                        <?php if (dragon_opt('so_dkkd') !== '') : ?><br>Số ĐKKD: <?php echo esc_html(dragon_opt('so_dkkd')); ?><?php endif; ?>
-                        <?php if (dragon_opt('mst') !== '') : ?><br>MST: <?php echo esc_html(dragon_opt('mst')); ?><?php endif; ?>
-                        <?php if (dragon_opt('noi_cap') !== '') : ?><br>Nơi cấp: <?php echo esc_html(dragon_opt('noi_cap')); ?><?php endif; ?>
+                        <?php // Site cài mới: mã số doanh nghiệp chỉ hiện khi đã nhập. ?>
+                        <?php if (!$vs_moi || dragon_opt('so_dkkd') !== '') : ?><br>Số ĐKKD: <?php echo esc_html(dragon_opt('so_dkkd')); ?><?php endif; ?>
+                        <?php if (!$vs_moi || dragon_opt('mst') !== '') : ?><br>MST: <?php echo esc_html(dragon_opt('mst')); ?><?php endif; ?>
+                        <?php if (!$vs_moi || dragon_opt('noi_cap') !== '') : ?><br>Nơi cấp: <?php echo esc_html(dragon_opt('noi_cap')); ?><?php endif; ?>
                     </div>
                 </div>
 
                 <div>
                     <h3>Liên hệ</h3>
-                    <?php // Mỗi dòng chỉ hiện khi site đã nhập — tránh dòng trống / link rỗng. ?>
+                    <?php // Site cài mới: mỗi dòng chỉ hiện khi đã nhập — tránh dòng trống / link rỗng. ?>
                     <ul class="dragon-footer__contact">
-                        <?php if (dragon_opt('address') !== '') : ?>
+                        <?php if (!$vs_moi || dragon_opt('address') !== '') : ?>
                             <li><?php dragon_the_icon('map-pin'); ?><span><?php echo esc_html(dragon_opt('address')); ?></span></li>
                         <?php endif; ?>
-                        <?php if ($phone !== '') : ?>
+                        <?php if (!$vs_moi || $phone !== '') : ?>
                             <li><?php dragon_the_icon('phone'); ?><a href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php echo esc_html($phone); ?></a></li>
                         <?php endif; ?>
                         <?php if ($show_hl) : ?>
                             <li><?php dragon_the_icon('chat'); ?><span>Tổng đài: <a href="tel:<?php echo esc_attr(dragon_tel('hotline')); ?>"><?php echo esc_html($hotline); ?></a></span></li>
                         <?php endif; ?>
-                        <?php if (dragon_opt('email') !== '') : ?>
+                        <?php if (!$vs_moi || dragon_opt('email') !== '') : ?>
                             <li><?php dragon_the_icon('mail'); ?><a href="mailto:<?php echo esc_attr(dragon_opt('email')); ?>"><?php echo esc_html(dragon_opt('email')); ?></a></li>
                         <?php endif; ?>
-                        <?php if (dragon_opt('work_hours') !== '') : ?>
+                        <?php if (!$vs_moi || dragon_opt('work_hours') !== '') : ?>
                             <li><?php dragon_the_icon('clock'); ?><span><?php echo esc_html(dragon_opt('work_hours')); ?></span></li>
                         <?php endif; ?>
                     </ul>
@@ -119,10 +126,10 @@ $la_dragon = vinasite_home_preset() === 'dragon';
 </footer>
 
 <?php
-// Nút nổi & thanh hành động mobile — chỉ hiện nút nào site đã có dữ liệu,
-// tránh link "tel:" / "zalo.me/" rỗng trên site mới cài chưa cấu hình.
-$co_phone = dragon_tel('phone') !== '';
-$co_zalo  = dragon_tel('zalo') !== '';
+// Nút nổi & thanh hành động mobile. Site cài mới: chỉ hiện nút đã có dữ liệu,
+// tránh link "tel:" / "zalo.me/" rỗng. Site đang chạy: giữ nguyên như cũ.
+$co_phone = !$vs_moi || dragon_tel('phone') !== '';
+$co_zalo  = !$vs_moi || dragon_tel('zalo') !== '';
 ?>
 <?php if ($co_phone || $co_zalo) : ?>
 <!-- Floating desktop CTAs -->

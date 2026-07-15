@@ -31,26 +31,49 @@ function vinasite_home_presets()
 }
 
 /**
- * Trang chủ VinaSite chỉ dành cho lần KÍCH HOẠT THEME ĐẦU TIÊN.
+ * Đánh dấu "theme đã từng chạy trên site này".
  *
- * Móc vào after_switch_theme — hook này CHỈ chạy đúng lúc bật theme, không chạy
- * khi cập nhật theme. Nhờ vậy các site đang dùng theme sẵn (giathaistone.com,
- * vietnhatsknn.com, vanphongluatsu.com.vn…) update lên bản mới sẽ KHÔNG bị đổi
- * trang chủ: option không tồn tại → vinasite_home_preset() trả về 'dragon',
- * đúng giao diện họ đang chạy.
+ * Chạy ở mọi request. Site đang dùng theme sẵn sẽ được đánh dấu ngay lần tải
+ * trang đầu tiên sau khi update lên 1.3.0 — TRƯỚC khi có bất kỳ lần bật lại
+ * theme nào. Nhờ vậy phân biệt được "bật theme lần đầu" với "bật lại theme
+ * trên site đang chạy".
  *
- * Thêm một lớp chặn nữa: site nào đã có thông tin doanh nghiệp trong theme_mods
- * thì dù có bật lại theme cũng giữ nguyên trang chủ cũ.
+ * Biến toàn cục ghi lại trạng thái TRƯỚC khi đánh dấu, vì trong chính request
+ * bật theme thì after_setup_theme chạy trước after_switch_theme — nếu đọc
+ * option sau khi đã đánh dấu thì lúc nào cũng thấy "đã chạy rồi".
+ */
+function vinasite_danh_dau_da_chay()
+{
+    $GLOBALS['vinasite_da_chay_tu_truoc'] = get_option('vinasite_da_chay') !== false;
+    if (!$GLOBALS['vinasite_da_chay_tu_truoc']) {
+        add_option('vinasite_da_chay', 1);
+    }
+}
+add_action('after_setup_theme', 'vinasite_danh_dau_da_chay', 1);
+
+/**
+ * Trang chủ VinaSite CHỈ dành cho lần KÍCH HOẠT THEME ĐẦU TIÊN.
+ *
+ * Ba lớp bảo vệ để tuyệt đối không đụng vào website đang chạy:
+ *  1. Móc vào after_switch_theme — hook này chỉ chạy đúng lúc bật theme, KHÔNG
+ *     chạy khi cập nhật. Site đang dùng update lên bản mới thì không có option
+ *     → vinasite_home_preset() trả 'dragon' → hành vi y hệt bản 1.2.4.
+ *  2. Nếu theme đã từng chạy trên site này (bật lại theme) → giữ 'dragon'.
+ *  3. Nếu site đã nhập thông tin doanh nghiệp → giữ 'dragon'.
  */
 function vinasite_home_preset_on_activate()
 {
     if (get_option('vinasite_home_preset') !== false) {
         return; // Đã có lựa chọn — không đụng vào.
     }
+
+    $da_chay_tu_truoc = !empty($GLOBALS['vinasite_da_chay_tu_truoc']);
     $da_cau_hinh = get_theme_mod('dragon_company_name', '') !== ''
         || get_theme_mod('dragon_phone', '') !== '';
 
-    add_option('vinasite_home_preset', $da_cau_hinh ? 'dragon' : 'vinasite');
+    $lan_dau = !$da_chay_tu_truoc && !$da_cau_hinh;
+
+    add_option('vinasite_home_preset', $lan_dau ? 'vinasite' : 'dragon');
 }
 add_action('after_switch_theme', 'vinasite_home_preset_on_activate');
 

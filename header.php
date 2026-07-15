@@ -33,7 +33,9 @@ if (!defined('ABSPATH')) {
     <?php endif; ?>
 </head>
 
-<body <?php body_class('dragon-scope'); ?>>
+<?php // Class "vinasite-moi" chỉ có ở site cài mới — dùng để giới hạn phạm vi các
+      // sửa lỗi CSS, không đụng tới site đang chạy. ?>
+<body <?php body_class(vinasite_home_preset() === 'vinasite' ? 'dragon-scope vinasite-moi' : 'dragon-scope'); ?>>
 <?php if (function_exists('wp_body_open')) { wp_body_open(); } ?>
 <?php do_action('flatsome_after_body_open'); ?>
 
@@ -46,18 +48,26 @@ $logo_url = dragon_logo_url();
 $logo_txt = dragon_opt('company_name') ? dragon_opt('company_name') : get_bloginfo('name');
 $phone    = dragon_opt('phone');
 $areas    = dragon_practice_areas();
+
+/*
+ * $vs_moi = site cài mới (preset "vinasite"). CHỈ site cài mới mới được dọn các
+ * link rỗng (tel:, mailto:, zalo.me/) khi chưa nhập thông tin.
+ * Site đang chạy sẵn (preset "dragon") giữ NGUYÊN markup như bản 1.2.4 — không
+ * thêm không bớt, để tuyệt đối không đổi giao diện của họ.
+ */
+$vs_moi = vinasite_home_preset() === 'vinasite';
 ?>
 <header class="dragon-header" role="banner">
 
-    <!-- Topbar — chỉ hiện khi site đã nhập điện thoại/email (tránh link rỗng). -->
-    <?php if ($phone !== '' || dragon_opt('email') !== '') : ?>
+    <!-- Topbar -->
+    <?php if (!$vs_moi || $phone !== '' || dragon_opt('email') !== '') : ?>
     <div class="dragon-topbar">
         <div class="dragon-container dragon-topbar__inner dragon-topbar__inner--right">
             <ul class="dragon-topbar__list dragon-topbar__list--secondary">
-                <?php if ($phone !== '') : ?>
+                <?php if (!$vs_moi || $phone !== '') : ?>
                     <li><a href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?><span><?php echo esc_html($phone); ?></span></a></li>
                 <?php endif; ?>
-                <?php if (dragon_opt('email') !== '') : ?>
+                <?php if (!$vs_moi || dragon_opt('email') !== '') : ?>
                     <li><a href="mailto:<?php echo esc_attr(dragon_opt('email')); ?>"><?php dragon_the_icon('mail'); ?><span><?php echo esc_html(dragon_opt('email')); ?></span></a></li>
                 <?php endif; ?>
             </ul>
@@ -129,7 +139,7 @@ $areas    = dragon_practice_areas();
     }
     ?>
     <div class="dragon-offcanvas__actions">
-        <?php if ($phone !== '') : ?>
+        <?php if (!$vs_moi || $phone !== '') : ?>
             <a class="dragon-btn dragon-btn--primary dragon-btn--block" href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?>Gọi <?php echo esc_html($phone); ?></a>
         <?php endif; ?>
         <a class="dragon-btn dragon-btn--block" href="#dragon-consultation" data-dragon-close-menu><?php dragon_the_icon('calendar'); ?><?php echo vinasite_home_preset() === 'dragon' ? 'Đặt lịch tư vấn' : 'Nhận tư vấn'; ?></a>
