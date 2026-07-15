@@ -3,6 +3,9 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.3.1] — 2026-07
+- Plugin kèm theme **"Vinasite Google Indexing" nâng lên 1.1**: quét index hàng ngày bằng **URL Inspection API** — mỗi ngày hỏi Google từng URL "đã index chưa?", **chỉ bài CHƯA index mới được gửi** lên Indexing API. Bài đã index kiểm lại sau 30 ngày, bài chưa index sau 3 ngày; có ngân sách thời gian 90s/lượt để không treo cron; token cache riêng theo scope. Cần cấp quyền service account trong Search Console mới chạy được.
+
 ## [1.3.0] — 2026-07
 - **Trang chủ mặc định VinaSite**, chỉ dành cho **lần kích hoạt theme đầu tiên**: site mới cài xong sẽ thấy trang giới thiệu giao diện VinaSite + dịch vụ của VinaSite (Hero → Tính năng theme → Dịch vụ → Gói dịch vụ → Liên hệ + form tư vấn), thay vì nội dung Công ty Luật Dragon.
 - **Site đang dùng theme sẵn thì KHÔNG bị đổi BẤT KỲ THỨ GÌ khi update** — preset `dragon` tái tạo đúng hành vi bản 1.2.4. Ba lớp bảo vệ: (1) preset chỉ gán qua hook `after_switch_theme`, hook này chỉ chạy lúc bật theme chứ không chạy khi cập nhật; (2) option `vinasite_da_chay` đánh dấu theme đã từng chạy trên site — nếu ai bật lại theme trên site đang chạy thì vẫn giữ `dragon`; (3) site đã nhập thông tin doanh nghiệp thì luôn giữ `dragon`.
@@ -15,9 +18,6 @@ Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); th
 - Sửa lỗi hiển thị (chỉ site cài mới): tiêu đề H1 hero bị `.dragon-scope h1` ghi đè thành màu xanh đậm nên chìm vào nền hero (nay dùng đúng chữ trắng); khối ghi chú hero vỡ thành nhiều cột do `display:flex`; logo dạng chữ (site chưa tải logo ảnh) bị gạch chân như link thường.
 - Ghi chú hướng dẫn cấu hình ở hero chỉ hiện với người quản trị, khách vào web không thấy. Nhãn nút CTA đổi theo preset ("Nhận tư vấn" / "Đặt lịch tư vấn"), `aria-label` khớp chữ trên nút.
 - File mới: `inc/vinasite-home.php`, `template-parts/vinasite/*.php`, `assets/dragon/css/vinasite-home.css`.
-
-## [1.2.5] — 2026-07
-- Plugin kèm theme "Vinasite Google Indexing" nâng lên 1.1: quét index hàng ngày bằng URL Inspection API, chỉ gửi bài CHƯA được index (bài đã index kiểm lại sau 30 ngày, chưa index sau 3 ngày).
 
 ## [1.2.4] — 2026-07
 - Làm mới Bảng điều khiển: hero gradient + logo, thanh tiến độ thiết lập (%), thẻ card icon tròn + hover, khu Liên kết nhanh.
