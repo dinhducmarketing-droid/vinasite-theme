@@ -16,6 +16,9 @@ Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); th
 - Ghi chú hướng dẫn cấu hình ở hero chỉ hiện với người quản trị, khách vào web không thấy. Nhãn nút CTA đổi theo preset ("Nhận tư vấn" / "Đặt lịch tư vấn"), `aria-label` khớp chữ trên nút.
 - File mới: `inc/vinasite-home.php`, `template-parts/vinasite/*.php`, `assets/dragon/css/vinasite-home.css`.
 
+## [1.2.5] — 2026-07
+- Plugin kèm theme "Vinasite Google Indexing" nâng lên 1.1: quét index hàng ngày bằng URL Inspection API, chỉ gửi bài CHƯA được index (bài đã index kiểm lại sau 30 ngày, chưa index sau 3 ngày).
+
 ## [1.2.4] — 2026-07
 - Làm mới Bảng điều khiển: hero gradient + logo, thanh tiến độ thiết lập (%), thẻ card icon tròn + hover, khu Liên kết nhanh.
 
