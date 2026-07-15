@@ -3,6 +3,11 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.3.4] — 2026-07 (sửa lỗi chặn child theme)
+- **`inc/dragon/bootstrap.php` dùng `get_stylesheet_directory()` để nạp file của chính theme cha** — khi site chạy child theme thì hàm này trỏ vào thư mục child, không tìm thấy file → **fatal error, sập site**. Tức theme CHƯA TỪNG tương thích child theme. Tàn dư từ thời theme này còn là child theme của Flatsome. Đổi sang `get_template_directory()` (cả `template-parts/home/lawyers.php`).
+- Nhờ vậy giathaistone.com tách được thành child theme `giathai-child` và lần đầu tiên nhận được cập nhật từ GitHub. Đã kích hoạt thật: 6 trang (trang chủ, sản phẩm, danh mục, giỏ hàng, bài viết, tìm kiếm) không lỗi, footer/CTA/Google Ads/nút mua hàng khớp 100%.
+- Sửa luôn lỗi site đó đang mắc: 404, tìm kiếm và 19 bài viết hiện chữ "liên hệ luật sư" / "Cần tư vấn về vấn đề pháp lý này" trên một website bán đá (do các template đó lấy nguyên từ bản 1.0.1 chưa gỡ chất luật sư).
+
 ## [1.3.3] — 2026-07
 - Shortcode `[section]` (shim Flatsome) nhận thêm `class`, `id`, `padding`, `padding__sm`. Site di cư từ Flatsome đặt class riêng lên `[section]` để CSS bám vào — thiếu thì layout trang chủ của họ vỡ. Lấy từ bản đang chạy thật ở giathaistone.com.
 - Cần cho việc tách giathaistone.com thành **child theme** (repo riêng `giathai-child`): site đó vốn là bản fork 1.0.1 với 9 file riêng nhét thẳng vào thư mục theme cha, nên không thể cập nhật. Tách child xong thì theme cha tự update bình thường mà không xoá mất phần riêng của họ.

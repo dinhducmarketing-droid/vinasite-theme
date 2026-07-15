@@ -1,7 +1,12 @@
 <?php
 /**
  * Dragon – bootstrap: load modules and enqueue assets.
- * Included from the child theme functions.php.
+ * Nạp từ functions.php của theme.
+ *
+ * PHẢI dùng get_template_directory() (thư mục theme CHA), không phải
+ * get_stylesheet_directory(): khi site chạy child theme thì get_stylesheet_*
+ * trỏ vào thư mục child → không tìm thấy các file này → fatal error, sập site.
+ * (Tàn dư từ thời theme này còn là child theme của Flatsome.)
  *
  * @package ntgsite-dragon
  */
@@ -9,7 +14,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$dragon_dir = get_stylesheet_directory() . '/inc/dragon/';
+$dragon_dir = get_template_directory() . '/inc/dragon/';
 require_once $dragon_dir . 'config.php';
 require_once $dragon_dir . 'data.php';
 require_once $dragon_dir . 'icons.php';
@@ -17,17 +22,17 @@ require_once $dragon_dir . 'customizer.php';
 require_once $dragon_dir . 'ajax.php';
 require_once $dragon_dir . 'schema.php';
 require_once $dragon_dir . 'design-tokens.php';
-require_once get_stylesheet_directory() . '/inc/vinasite-home.php';
-require_once get_stylesheet_directory() . '/inc/vinasite-license.php';
-require_once get_stylesheet_directory() . '/inc/vinasite-bundled-plugin.php';
-require_once get_stylesheet_directory() . '/inc/vinasite-theme-updater.php';
+require_once get_template_directory() . '/inc/vinasite-home.php';
+require_once get_template_directory() . '/inc/vinasite-license.php';
+require_once get_template_directory() . '/inc/vinasite-bundled-plugin.php';
+require_once get_template_directory() . '/inc/vinasite-theme-updater.php';
 
 define('DRAGON_ASSET_VER', '1.4.9');
 
 add_action('wp_enqueue_scripts', 'dragon_enqueue_assets', 20);
 function dragon_enqueue_assets()
 {
-    $base = get_stylesheet_directory_uri() . '/assets/dragon/';
+    $base = get_template_directory_uri() . '/assets/dragon/';
     $ver  = DRAGON_ASSET_VER;
 
     // Site-wide (header + footer overrides are global).

@@ -46,7 +46,7 @@ if ($q->have_posts()) : ?>
                                 'height'  => 400,
                             ));
                         else : ?>
-                            <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/user_02.jpeg'); ?>" width="300" height="400" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy"/>
+                            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/user_02.jpeg'); ?>" width="300" height="400" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy"/>
                         <?php endif; ?>
                     </div>
                     <div class="dragon-lawyer__body">
