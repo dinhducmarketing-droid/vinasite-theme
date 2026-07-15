@@ -12,3 +12,7 @@ desktop.ini
 node_modules/
 .vscode/
 .idea/
+
+# Ngu canh Claude (chi de local, repo Public)
+CLAUDE.md
+.claude/
