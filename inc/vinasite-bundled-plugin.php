@@ -38,10 +38,10 @@ function vinasite_recommended_plugins()
             'label'  => 'LiteSpeed Cache',
             'auto'   => true,
         ),
-        'easy-table-of-contents' => array(
-            'source' => 'wporg',
-            'file'   => 'easy-table-of-contents/easy-table-of-contents.php',
-            'label'  => 'Easy Table of Contents',
+        'vinasite-toc' => array(
+            'source' => 'bundled',
+            'file'   => 'vinasite-toc/vinasite-toc.php',
+            'label'  => 'Vinasite Mục Lục',
             'auto'   => true,
         ),
         'contact-form-7' => array(

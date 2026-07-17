@@ -3,6 +3,10 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.4.2] — 2026-07
+- **Thay Easy Table of Contents bằng plugin tự viết "Vinasite Mục Lục"** (1.0.0, 100% thương hiệu VinaSite — viết mới hoàn toàn, không dùng code của Easy Table of Contents). Tự tạo mục lục từ tiêu đề h2–h6, gắn id neo, cuộn mượt, thu gọn được, đánh số; chèn tự động hoặc bằng shortcode `[vinasite_toc]`. CSS/JS nội tuyến, không phụ thuộc thư viện ngoài. Đóng gói `inc/bundled/vinasite-toc.zip`, thay slot easy-table-of-contents trong danh sách plugin tự cài.
+- Kiểm chứng thật trên noithathaven.com: cài + kích hoạt OK; bài viết 4 tiêu đề → mục lục render đúng, link neo khớp id tự sinh (kể cả tiếng Việt có dấu).
+
 ## [1.4.1] — 2026-07
 - Thêm **Vinasite Light Star Ratings** (1.0.0) vào nhóm plugin tự cài khi kích hoạt theme — plugin tự viết, thay thế nhẹ cho kk Star Ratings (giữ nguyên shortcode/AJAX/post meta cũ). Đóng gói zip trong `inc/bundled/`. Kiểm chứng cài + kích hoạt thật trên noithathaven.com.
 
