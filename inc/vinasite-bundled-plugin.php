@@ -68,6 +68,12 @@ function vinasite_recommended_plugins()
             'label'  => 'Vinasite Google Indexing',
             'auto'   => true,
         ),
+        'vinasite-light-star-rating' => array(
+            'source' => 'bundled',
+            'file'   => 'vinasite-light-star-rating/vinasite-light-star-rating.php',
+            'label'  => 'Vinasite Light Star Ratings',
+            'auto'   => true,
+        ),
         // WooCommerce: nền tảng bán hàng — chỉ cài khi bấm nút (không phải site
         // nào cũng cần), nên auto = false.
         'woocommerce' => array(

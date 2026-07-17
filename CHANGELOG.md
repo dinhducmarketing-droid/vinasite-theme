@@ -3,6 +3,9 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.4.1] — 2026-07
+- Thêm **Vinasite Light Star Ratings** (1.0.0) vào nhóm plugin tự cài khi kích hoạt theme — plugin tự viết, thay thế nhẹ cho kk Star Ratings (giữ nguyên shortcode/AJAX/post meta cũ). Đóng gói zip trong `inc/bundled/`. Kiểm chứng cài + kích hoạt thật trên noithathaven.com.
+
 ## [1.4.0] — 2026-07
 - **Cài sẵn plugin khuyến nghị khi kích hoạt theme.** Kích hoạt theme lần đầu → tự cài + bật: LiteSpeed Cache, Easy Table of Contents, Contact Form 7, Advanced Editor Tools (tải từ WordPress.org), cùng Call By Vinasite.com.vn và Vinasite Google Indexing (đóng gói kèm theme).
 - Plugin WordPress.org **tải trực tiếp từ kho theo slug** (`plugins_api` + `Plugin_Upgrader`), luôn lấy bản mới nhất và WP tự cập nhật sau — KHÔNG nhồi zip vào theme (tránh đóng băng bản cũ dính lỗ hổng và phình repo). Chỉ plugin tự viết mới bundle zip.
