@@ -3,6 +3,14 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.4.0] — 2026-07
+- **Cài sẵn plugin khuyến nghị khi kích hoạt theme.** Kích hoạt theme lần đầu → tự cài + bật: LiteSpeed Cache, Easy Table of Contents, Contact Form 7, Advanced Editor Tools (tải từ WordPress.org), cùng Call By Vinasite.com.vn và Vinasite Google Indexing (đóng gói kèm theme).
+- Plugin WordPress.org **tải trực tiếp từ kho theo slug** (`plugins_api` + `Plugin_Upgrader`), luôn lấy bản mới nhất và WP tự cập nhật sau — KHÔNG nhồi zip vào theme (tránh đóng băng bản cũ dính lỗ hổng và phình repo). Chỉ plugin tự viết mới bundle zip.
+- **WooCommerce KHÔNG tự cài** — chỉ hiện nút "Cài WooCommerce" trong thông báo admin, vì không phải site nào cũng bán hàng.
+- Site đang chạy cập nhật theme sẽ KHÔNG bị tự cài thêm (hook `after_switch_theme` chỉ chạy lúc bật theme). Thay vào đó có **thông báo trong admin** liệt kê plugin còn thiếu + nút "Cài & kích hoạt tất cả" (có thể ẩn thông báo theo từng người dùng).
+- Kiểm chứng thật: cơ chế tải từ WordPress.org chạy đúng trên noithathaven.com (cài Easy Table of Contents 2.0.85). Lưu ý kỹ thuật: `plugins_api` trả link ở trường `download_link` (không phải `download_url`).
+- Viết lại `inc/vinasite-bundled-plugin.php` thành trình cài plugin khuyến nghị thống nhất (2 nguồn: wporg + bundled).
+
 ## [1.3.6] — 2026-07
 - Plugin kèm theme **"Vinasite Google Indexing" nâng lên 1.2**: nhúng Plugin Update Checker + header `Update URI` → plugin **tự cập nhật từ GitHub** như theme. Trước đây plugin chỉ được cài lúc kích hoạt theme và không bao giờ tự cập nhật, nên các site đang lệch nhau (vanphongluatsu 1.1, vietnhatsknn 1.0, noithathaven 1.0). Mã nguồn tách ra repo riêng `vinasite-google-indexing`.
 - Zip đóng gói `inc/bundled/vinasite-google-indexing.zip` dựng lại từ bản 1.2 để site cài mới có sẵn cơ chế tự cập nhật.
