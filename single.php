@@ -58,15 +58,9 @@ while (have_posts()) : the_post();
 
                 <div class="vs-single__cta dragon-card">
                     <div>
-                        <?php // Site công ty luật giữ đúng chữ nghĩa pháp lý của họ; site khác dùng chữ trung tính. ?>
-                        <strong><?php echo vinasite_home_preset() === 'dragon' ? 'Cần tư vấn về vấn đề pháp lý này?' : 'Cần tư vấn thêm về nội dung này?'; ?></strong>
-                        <?php
-                        // Site công ty luật giữ nguyên "Luật sư Dragon" như bản cũ; site khác
-                        // lấy tên ngắn ở Customizer, chưa nhập thì "Chúng tôi".
-                        $vs_ten = vinasite_home_preset() === 'dragon'
-                            ? 'Luật sư Dragon'
-                            : (dragon_opt('company_short') !== '' ? dragon_opt('company_short') : 'Chúng tôi');
-                        ?>
+                        <?php // Tiêu đề + tên đơn vị lấy từ option (site/child tự đặt), có mặc định trung tính. ?>
+                        <strong><?php echo esc_html(dragon_opt('single_cta_heading') !== '' ? dragon_opt('single_cta_heading') : 'Cần tư vấn thêm về nội dung này?'); ?></strong>
+                        <?php $vs_ten = dragon_opt('company_short') !== '' ? dragon_opt('company_short') : 'Chúng tôi'; ?>
                         <p><?php echo esc_html($vs_ten); ?> tiếp nhận và tư vấn nhanh chóng, bảo mật.</p>
                     </div>
                     <div class="vs-single__cta-actions">
@@ -156,11 +150,9 @@ while (have_posts()) : the_post();
                 <!-- Contact CTA card -->
                 <div class="vs-widget vs-side-cta">
                     <?php
-                    // Mặc định theo preset: site công ty luật giữ nguyên chữ cũ, site khác
-                    // dùng chữ trung tính. Site nào muốn khác thì nhập ở Customizer.
-                    $vs_la_dragon  = vinasite_home_preset() === 'dragon';
-                    $vs_cta_title  = dragon_opt('side_cta_title') !== '' ? dragon_opt('side_cta_title') : ($vs_la_dragon ? 'Luật sư tư vấn' : 'Tư vấn miễn phí');
-                    $vs_cta_text   = dragon_opt('side_cta_text') !== '' ? dragon_opt('side_cta_text') : ($vs_la_dragon ? 'Gọi ngay để được luật sư Dragon tiếp nhận và tư vấn miễn phí.' : 'Gọi ngay để được tiếp nhận và tư vấn miễn phí.');
+                    // Chữ CTA lấy từ option (site/child tự đặt), có mặc định trung tính.
+                    $vs_cta_title = dragon_opt('side_cta_title') !== '' ? dragon_opt('side_cta_title') : 'Tư vấn miễn phí';
+                    $vs_cta_text  = dragon_opt('side_cta_text') !== '' ? dragon_opt('side_cta_text') : 'Gọi ngay để được tiếp nhận và tư vấn miễn phí.';
                     ?>
                     <h3 class="vs-widget__title"><?php echo esc_html($vs_cta_title); ?></h3>
                     <p><?php echo esc_html($vs_cta_text); ?></p>

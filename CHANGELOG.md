@@ -3,6 +3,14 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.5.0] — 2026-07 (theme đa năng — tách hẳn nội dung hãng luật)
+- **Theme cha giờ 100% generic, cài được cho mọi lĩnh vực.** Toàn bộ nội dung chuyên biệt Công ty Luật Dragon (trang chủ dragon, 15 section `template-parts/home/*`, 6 trang landing `page-*.php`, dữ liệu lĩnh vực/hero/FAQ, schema `LegalService`, tiêu đề hãng luật) đã **tách sang child theme riêng `vanphong-dragon`** cho vanphongluatsu.com.vn.
+- Cơ chế: theme cha định nghĩa `dragon_practice_areas()` / `dragon_hero_slides()` / `dragon_faq_items()` trả về `apply_filters(...)` rỗng; child bơm dữ liệu qua filter (không khai báo lại hàm → không lỗi trùng hàm). Schema/tiêu đề hãng luật chuyển sang child.
+- Kiểu trang chủ theme cha còn 2: `vinasite` (mặc định) | `content`. Bỏ preset `dragon`. Nội dung theo ngành do child ghi đè `front-page.php`.
+- `front-page.php`, `footer.php`, `single.php`, `ajax.php`, `schema.php`, `customizer.php`, `bootstrap.php`, `vinasite-home.php` — gỡ mọi chuỗi hãng luật hiển thị cho khách; footer/single dùng option (`side_cta_*`, `privacy_url`, `terms_url`, `footer_areas_title`, `single_cta_heading`) với mặc định trung tính; bootstrap nạp CSS trang landing qua filter `vinasite_home_css_pages` thay vì hardcode slug.
+- Kiểm chứng thật: migrate vanphongluatsu.com.vn (site đang chạy) → child `vanphong-dragon` + parent 1.5.0. Trang chủ **58 section giống hệt trước/sau**, schema LegalService/FAQPage = 1 (không trùng), 6 trang landing render đủ nội dung, 0 lỗi. Parent 1.5.0 cũng chạy đúng trên child theme khác (noithathaven.com — Nội Thất AT Haven).
+- Chuỗi "Dragon" còn lại trong theme cha chỉ là **codename nội bộ của design system** (prefix `dragon_`, class `dragon-*`), không phải nội dung hãng luật.
+
 ## [1.4.2] — 2026-07
 - **Thay Easy Table of Contents bằng plugin tự viết "Vinasite Mục Lục"** (1.0.0, 100% thương hiệu VinaSite — viết mới hoàn toàn, không dùng code của Easy Table of Contents). Tự tạo mục lục từ tiêu đề h2–h6, gắn id neo, cuộn mượt, thu gọn được, đánh số; chèn tự động hoặc bằng shortcode `[vinasite_toc]`. CSS/JS nội tuyến, không phụ thuộc thư viện ngoài. Đóng gói `inc/bundled/vinasite-toc.zip`, thay slot easy-table-of-contents trong danh sách plugin tự cài.
 - Kiểm chứng thật trên noithathaven.com: cài + kích hoạt OK; bài viết 4 tiêu đề → mục lục render đúng, link neo khớp id tự sinh (kể cả tiếng Việt có dấu).

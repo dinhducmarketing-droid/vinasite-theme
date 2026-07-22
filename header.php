@@ -47,7 +47,6 @@ if (!defined('ABSPATH')) {
 $logo_url = dragon_logo_url();
 $logo_txt = dragon_opt('company_name') ? dragon_opt('company_name') : get_bloginfo('name');
 $phone    = dragon_opt('phone');
-$areas    = dragon_practice_areas();
 $vinasite_che_do = vinasite_home_preset();
 $vs_moi   = $vinasite_che_do === 'vinasite'; // site cài mới
 $la_dragon = $vinasite_che_do === 'dragon';  // site công ty luật đang chạy

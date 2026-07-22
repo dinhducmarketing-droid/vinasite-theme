@@ -102,8 +102,8 @@ function dragon_handle_consultation()
     }
 
     // 7) Compose email. Subject carries NO case content (privacy).
-    // Tra nhãn từ cả 2 nguồn: lĩnh vực hành nghề (preset dragon) và dịch vụ
-    // VinaSite (preset mặc định) — form nào gửi lên cũng ra đúng tên.
+    // Tra nhãn từ 2 nguồn: danh mục do child theme cung cấp (filter) và dịch vụ
+    // VinaSite — form nào gửi lên cũng ra đúng tên.
     $labels = array();
     foreach (dragon_practice_areas() as $a) { $labels[$a['key']] = $a['title']; }
     if (function_exists('vinasite_home_services')) {
@@ -156,10 +156,7 @@ function dragon_handle_consultation()
     set_transient($key, $hits + 1, 10 * MINUTE_IN_SECONDS);
 
     if ($sent) {
-        $loi_cam_on = vinasite_home_preset() === 'dragon'
-            ? 'Cảm ơn bạn! Yêu cầu đã được gửi. Luật sư Dragon sẽ liên hệ trong thời gian sớm nhất.'
-            : 'Cảm ơn bạn! Yêu cầu đã được gửi. Chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.';
-        dragon_consultation_respond(true, $loi_cam_on, $is_ajax);
+        dragon_consultation_respond(true, 'Cảm ơn bạn! Yêu cầu đã được gửi. Chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.', $is_ajax);
     }
     dragon_consultation_respond(false, 'Không gửi được yêu cầu. Vui lòng gọi ' . esc_html(dragon_opt('phone')) . ' để được hỗ trợ ngay.', $is_ajax);
 }

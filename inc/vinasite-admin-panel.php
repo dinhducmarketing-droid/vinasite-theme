@@ -220,7 +220,7 @@ function vinasite_admin_setup()
         <ol style="font-size:14px;line-height:2;max-width:720px">
             <li>Vào <b>Tùy biến → VinaSite – Màu sắc &amp; Phông chữ</b>: chọn màu chính, màu nhấn, font.</li>
             <li>Vào <b>Tùy biến → Nhận diện site</b>: tải logo.</li>
-            <li>Vào <b>Tùy biến → Dragon – Thông tin &amp; Trang chủ</b>: nhập SĐT, email, địa chỉ, MST, Facebook/YouTube, mã Google Analytics, ảnh các section.</li>
+            <li>Vào <b>Tùy biến → VinaSite – Thông tin &amp; Trang chủ</b>: nhập SĐT, email, địa chỉ, MST, Facebook/YouTube, mã Google Analytics, ảnh các section.</li>
             <li>Vào <b>Cài đặt → Đọc</b>: đặt một Trang tĩnh làm Trang chủ.</li>
             <li>Vào <b>Giao diện → Menu</b>: tạo menu và gán vào vị trí <i>Main Menu</i> + <i>Footer Menu</i>.</li>
             <li>Vào <b>Cài đặt → Cài đặt call button</b>: bật nút gọi (SĐT/Zalo/Email).</li>

@@ -153,136 +153,21 @@ function dragon_cat_url($slug)
 }
 
 /**
- * Practice areas – reused across mega menu, practice grid, footer, problem selector.
- * URLs are resolved dynamically via dragon_cat_url() from the category slug that
- * has the most content, so links always point at the real (nested) archive URL.
+ * Lĩnh vực / nhóm dịch vụ — dùng ở mega menu, lưới, footer, bộ chọn vấn đề.
+ * Theme cha để TRỐNG (generic). Child theme theo ngành bơm dữ liệu qua filter
+ * 'dragon_practice_areas'. Site không có child → mảng rỗng, các khối tự ẩn.
  */
 function dragon_practice_areas()
 {
     if (get_theme_mod('dragon_practice_areas_off')) { return array(); }
-    return array(
-        array(
-            'key'   => 'hinh-su',
-            'icon'  => 'gavel',
-            'title' => 'Luật hình sự',
-            'desc'  => 'Bào chữa, bảo vệ quyền lợi trong các vụ án hình sự; tư vấn thủ tục tố tụng, tạm giam, khởi tố và tranh tụng tại toà.',
-            'url'   => dragon_cat_url('tu-van-hinh-su'),
-            'subs'  => array(
-                array('Tranh tụng hình sự', dragon_cat_url('tranh-tung-hinh-su')),
-                array('Tư vấn hình sự', dragon_cat_url('tu-van-hinh-su')),
-            ),
-        ),
-        array(
-            'key'   => 'dan-su',
-            'icon'  => 'scale',
-            'title' => 'Dân sự & tranh chấp',
-            'desc'  => 'Giải quyết tranh chấp dân sự, thừa kế, bồi thường thiệt hại; đại diện thương lượng, hoà giải và khởi kiện.',
-            'url'   => dragon_cat_url('tu-van-dan-su'),
-            'subs'  => array(
-                array('Di chúc – thừa kế', dragon_cat_url('di-chuc-thua-ke')),
-                array('Luật sư riêng', dragon_cat_url('luat-su-rieng')),
-            ),
-        ),
-        array(
-            'key'   => 'dat-dai',
-            'icon'  => 'home',
-            'title' => 'Đất đai & nhà ở',
-            'desc'  => 'Tư vấn chuyển nhượng, cấp sổ, tranh chấp ranh giới, thu hồi và đền bù; hỗ trợ thủ tục hành chính về nhà đất.',
-            'url'   => dragon_cat_url('luat-su-dat-dai'),
-            'subs'  => array(
-                array('Luật sư đất đai', dragon_cat_url('luat-su-dat-dai')),
-            ),
-        ),
-        array(
-            'key'   => 'hon-nhan',
-            'icon'  => 'heart',
-            'title' => 'Hôn nhân & gia đình',
-            'desc'  => 'Tư vấn ly hôn, phân chia tài sản, quyền nuôi con, cấp dưỡng và nhận con nuôi; giải quyết nhanh, kín đáo.',
-            'url'   => dragon_cat_url('tu-van-hon-nhan'),
-            'subs'  => array(
-                array('Tư vấn hôn nhân', dragon_cat_url('tu-van-hon-nhan')),
-                array('Nhận con nuôi', dragon_cat_url('nhan-con-nuoi')),
-            ),
-        ),
-        array(
-            'key'   => 'doanh-nghiep',
-            'icon'  => 'building',
-            'title' => 'Doanh nghiệp & thương mại',
-            'desc'  => 'Thành lập, tái cấu trúc, tư vấn thường xuyên cho doanh nghiệp; giải quyết tranh chấp cổ đông và kinh doanh thương mại.',
-            'url'   => dragon_cat_url('tu-van-doanh-nghiep'),
-            'subs'  => array(
-                array('Kinh doanh thương mại', dragon_cat_url('kinh-doanh-thuong-mai')),
-                array('Tư vấn doanh nghiệp', dragon_cat_url('tu-van-doanh-nghiep')),
-            ),
-        ),
-        array(
-            'key'   => 'hop-dong',
-            'icon'  => 'contract',
-            'title' => 'Hợp đồng & đầu tư',
-            'desc'  => 'Rà soát, soạn thảo, đàm phán hợp đồng; tư vấn đầu tư trong và ngoài nước, điều chỉnh giấy chứng nhận đầu tư.',
-            'url'   => dragon_cat_url('dich-vu-luat-su'),
-            'subs'  => array(
-                array('Điều chỉnh giấy chứng nhận đầu tư', home_url('/dieu-chinh-giay-chung-nhan-dau-tu/')),
-            ),
-        ),
-        array(
-            'key'   => 'hanh-chinh',
-            'icon'  => 'stamp',
-            'title' => 'Hành chính',
-            'desc'  => 'Khiếu nại, khởi kiện quyết định hành chính; tư vấn thủ tục cấp phép, xử phạt vi phạm và làm việc với cơ quan nhà nước.',
-            'url'   => dragon_cat_url('hanh-chinh'),
-            'subs'  => array(
-                array('Thủ tục cấp phép', dragon_cat_url('thu-tuc-cap-phep')),
-            ),
-        ),
-        array(
-            'key'   => 'trong-tai',
-            'icon'  => 'briefcase',
-            'title' => 'Trọng tài thương mại',
-            'desc'  => 'Đại diện giải quyết tranh chấp bằng trọng tài thương mại; tư vấn lựa chọn phương thức và thi hành phán quyết.',
-            'url'   => dragon_cat_url('trong-tai-thuong-mai'),
-            'subs'  => array(
-                array('Trọng tài thương mại', dragon_cat_url('trong-tai-thuong-mai')),
-            ),
-        ),
-    );
+    return apply_filters('dragon_practice_areas', array());
 }
 
-/** Hero slides – text is real HTML, never baked into images. */
+/**
+ * Hero slides trang chủ — theme cha để TRỐNG. Child theme theo ngành bơm qua
+ * filter 'dragon_hero_slides'.
+ */
 function dragon_hero_slides()
 {
-    $phone = dragon_opt('phone');
-    // Per-slide background photos (firm-owned, hosted locally in the Media Library).
-    // Only two artworks supplied, so slide 3 reuses the library shot.
-    $img_library = 'https://vanphongluatsu.com.vn/wp-content/uploads/2026/07/b1.jpg';
-    $img_court   = 'https://vanphongluatsu.com.vn/wp-content/uploads/2026/07/b2.jpg';
-    return array(
-        array(
-            'eyebrow' => 'Công ty Luật TNHH Dragon',
-            'title'   => 'Công ty Luật TNHH Dragon – Luật sư uy tín tại Hà Nội',
-            'is_h1'   => true,
-            'desc'    => 'Đồng hành cùng cá nhân và doanh nghiệp bằng giải pháp pháp lý chuyên nghiệp, bảo mật và hiệu quả.',
-            'img'     => $img_library,
-            'cta1'    => array('Đặt lịch tư vấn', '#dragon-consultation'),
-            'cta2'    => array('Gọi ' . $phone, 'tel:' . dragon_tel('phone')),
-        ),
-        array(
-            'eyebrow' => 'Luật sư tranh tụng',
-            'title'   => 'Luật sư tranh tụng bảo vệ quyền và lợi ích hợp pháp',
-            'is_h1'   => false,
-            'desc'    => 'Tiếp nhận, đánh giá hồ sơ và xây dựng phương án xử lý phù hợp cho từng vụ việc.',
-            'img'     => $img_court,
-            'cta1'    => array('Trao đổi với luật sư', '#dragon-consultation'),
-            'cta2'    => array('Gọi ' . $phone, 'tel:' . dragon_tel('phone')),
-        ),
-        array(
-            'eyebrow' => 'Pháp chế doanh nghiệp',
-            'title'   => 'Tư vấn pháp lý thường xuyên cho doanh nghiệp',
-            'is_h1'   => false,
-            'desc'    => 'Hỗ trợ hợp đồng, đầu tư, lao động, quản trị nội bộ và giải quyết tranh chấp kinh doanh.',
-            'img'     => $img_library,
-            'cta1'    => array('Đăng ký tư vấn doanh nghiệp', '#dragon-consultation'),
-            'cta2'    => array('Gọi ' . $phone, 'tel:' . dragon_tel('phone')),
-        ),
-    );
+    return apply_filters('dragon_hero_slides', array());
 }

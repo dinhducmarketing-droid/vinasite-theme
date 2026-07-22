@@ -1,15 +1,13 @@
 <?php
 /**
- * VinaSite – Trang chủ mặc định (preset) + dữ liệu nội dung.
+ * VinaSite – Trang chủ generic (kiểu trang chủ) + dữ liệu nội dung VinaSite.
  *
- * Theme hỗ trợ 2 kiểu trang chủ:
+ * Theme cha hỗ trợ 2 kiểu trang chủ:
  *  - "vinasite" (MẶC ĐỊNH): giới thiệu theme VinaSite + dịch vụ của VinaSite.
- *    Đây là giao diện site mới thấy ngay sau khi cài, không dính nội dung khách cũ.
- *  - "dragon": trang chủ bespoke của Công ty Luật TNHH Dragon (site
- *    vanphongluatsu.com.vn đang dùng). Giữ nguyên để site cũ không vỡ.
+ *  - "content": render nội dung trang chủ tự soạn trong WordPress (site di cư).
  *
- * Site CŨ được tự động nhận diện & gán preset "dragon" một lần duy nhất
- * (xem vinasite_home_preset_migrate) nên chủ site không phải làm gì khi update.
+ * Nội dung chuyên ngành (vd hãng luật) do CHILD THEME cung cấp bằng cách ghi đè
+ * front-page.php — theme cha không chứa nội dung ngành nghề nào.
  *
  * @package vinasite
  */
@@ -21,81 +19,30 @@ if (!defined('ABSPATH')) {
  * Preset trang chủ
  * ---------------------------------------------------------------------- */
 
-/** Danh sách preset hợp lệ. */
+/** Danh sách kiểu trang chủ hợp lệ (theme generic). Nội dung chuyên ngành do
+ *  child theme cung cấp (child ghi đè front-page.php), không nằm ở đây. */
 function vinasite_home_presets()
 {
     return array(
-        'vinasite' => 'VinaSite – giới thiệu theme & dịch vụ (site cài mới)',
-        'dragon'   => 'Dragon – trang chủ công ty luật',
+        'vinasite' => 'VinaSite – giới thiệu theme & dịch vụ (mặc định)',
         'content'  => 'Nội dung trang chủ soạn trong WordPress (site di cư)',
     );
 }
 
 /**
- * Đánh dấu "theme đã từng chạy trên site này".
+ * Kiểu trang chủ đang dùng.
  *
- * Chạy ở mọi request. Site đang dùng theme sẵn sẽ được đánh dấu ngay lần tải
- * trang đầu tiên sau khi update lên 1.3.0 — TRƯỚC khi có bất kỳ lần bật lại
- * theme nào. Nhờ vậy phân biệt được "bật theme lần đầu" với "bật lại theme
- * trên site đang chạy".
- *
- * Biến toàn cục ghi lại trạng thái TRƯỚC khi đánh dấu, vì trong chính request
- * bật theme thì after_setup_theme chạy trước after_switch_theme — nếu đọc
- * option sau khi đã đánh dấu thì lúc nào cũng thấy "đã chạy rồi".
- */
-function vinasite_danh_dau_da_chay()
-{
-    $GLOBALS['vinasite_da_chay_tu_truoc'] = get_option('vinasite_da_chay') !== false;
-    if (!$GLOBALS['vinasite_da_chay_tu_truoc']) {
-        add_option('vinasite_da_chay', 1);
-    }
-}
-add_action('after_setup_theme', 'vinasite_danh_dau_da_chay', 1);
-
-/**
- * Trang chủ VinaSite CHỈ dành cho lần KÍCH HOẠT THEME ĐẦU TIÊN.
- *
- * Ba lớp bảo vệ để tuyệt đối không đụng vào website đang chạy:
- *  1. Móc vào after_switch_theme — hook này chỉ chạy đúng lúc bật theme, KHÔNG
- *     chạy khi cập nhật. Site đang dùng update lên bản mới thì không có option
- *     → vinasite_home_preset() trả 'dragon' → hành vi y hệt bản 1.2.4.
- *  2. Nếu theme đã từng chạy trên site này (bật lại theme) → giữ 'dragon'.
- *  3. Nếu site đã nhập thông tin doanh nghiệp → giữ 'dragon'.
- */
-function vinasite_home_preset_on_activate()
-{
-    if (get_option('vinasite_home_preset') !== false) {
-        return; // Đã có lựa chọn — không đụng vào.
-    }
-
-    $da_chay_tu_truoc = !empty($GLOBALS['vinasite_da_chay_tu_truoc']);
-    $da_cau_hinh = get_theme_mod('dragon_company_name', '') !== ''
-        || get_theme_mod('dragon_phone', '') !== '';
-
-    $lan_dau = !$da_chay_tu_truoc && !$da_cau_hinh;
-
-    add_option('vinasite_home_preset', $lan_dau ? 'vinasite' : 'dragon');
-}
-add_action('after_switch_theme', 'vinasite_home_preset_on_activate');
-
-/**
- * Preset đang dùng.
- *
- * Ưu tiên theme_mod `vinasite_front_mode` để TƯƠNG THÍCH NGƯỢC: các site di cư
- * từ Flatsome (vd vietnhatsknn.com) đã đặt sẵn mod này = 'content' và đang chạy
- * thật. Không đọc nó thì update sẽ ép trang chủ họ thành các section Dragon.
- *
- * Không có option = site đã chạy theme từ trước bản 1.3.0 → giữ trang chủ cũ.
+ * Ưu tiên theme_mod `vinasite_front_mode` = 'content' để TƯƠNG THÍCH NGƯỢC với
+ * các site di cư từ Flatsome (vd vietnhatsknn.com) đã đặt sẵn mod này.
+ * Còn lại đọc option `vinasite_home_preset`, mặc định 'vinasite'.
  */
 function vinasite_home_preset()
 {
-    $mode = get_theme_mod('vinasite_front_mode', '');
-    if ($mode === 'content') {
+    if (get_theme_mod('vinasite_front_mode', '') === 'content') {
         return 'content';
     }
-
-    $preset = (string) get_option('vinasite_home_preset', 'dragon');
-    return array_key_exists($preset, vinasite_home_presets()) ? $preset : 'dragon';
+    $preset = (string) get_option('vinasite_home_preset', 'vinasite');
+    return array_key_exists($preset, vinasite_home_presets()) ? $preset : 'vinasite';
 }
 
 /** Sanitize lựa chọn preset. */
@@ -123,7 +70,7 @@ function vinasite_home_customize($wp_customize)
     ));
     $wp_customize->add_control('vinasite_home_preset', array(
         'label'       => 'Kiểu trang chủ',
-        'description' => 'Mặc định là trang giới thiệu VinaSite. Site của Công ty Luật Dragon chọn "Dragon" để giữ trang chủ cũ.',
+        'description' => 'Mặc định là trang giới thiệu VinaSite. Chọn "Nội dung tự soạn" nếu bạn tự dựng trang chủ trong WordPress.',
         'section'     => 'vinasite_home',
         'type'        => 'select',
         'choices'     => vinasite_home_presets(),

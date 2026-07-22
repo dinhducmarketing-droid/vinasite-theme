@@ -262,7 +262,7 @@ function vinasite_sc_td_youtube($atts)
     if (empty($ids)) { return ''; }
     $first = preg_replace('/[^A-Za-z0-9_\-]/', '', $ids[0]);
     if (!$first) { return ''; }
-    return '<div class="vs-video"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/' . esc_attr($first) . '" title="Video Luật Dragon" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
+    return '<div class="vs-video"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/' . esc_attr($first) . '" title="Video" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
 }
 
 /* ---- Go Pricing (data lost) → contact fallback ---- */

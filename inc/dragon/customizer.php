@@ -14,7 +14,7 @@ add_action('customize_register', 'dragon_customize_register');
 function dragon_customize_register($wp_customize)
 {
     $wp_customize->add_section('dragon_business', array(
-        'title'    => 'Dragon – Thông tin & Trang chủ',
+        'title'    => 'VinaSite – Thông tin & Trang chủ',
         'priority' => 20,
     ));
 
@@ -34,7 +34,7 @@ function dragon_customize_register($wp_customize)
         'dragon_youtube'      => array('Link YouTube (nếu có)', ''),
         'dragon_hero_img'     => array('Ảnh nền banner hero (URL)', 'ảnh văn phòng'),
         'dragon_about_img'    => array('Ảnh khối Giới thiệu (URL)', 'ảnh đội ngũ'),
-        'dragon_featured_img' => array('Ảnh băng showcase (URL)', 'ảnh luật sư trưởng'),
+        'dragon_featured_img' => array('Ảnh băng showcase (URL)', 'ảnh nổi bật'),
         'dragon_cta_img'      => array('Ảnh nền dải CTA (URL)', 'ảnh tư vấn'),
     );
 

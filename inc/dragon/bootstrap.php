@@ -43,7 +43,10 @@ function dragon_enqueue_assets()
     // Home section styles — also used by the landing pages (Về chúng tôi, Đội ngũ
     // nhân sự, Hồ sơ năng lực), which reuse .dragon-about__*, .dragon-ach__*,
     // .dragon-lawyer*, .dragon-ctastrip.
-    if (is_front_page() || is_page(array('ve-chung-toi', 'doi-ngu-nhan-su', 'ho-so-nang-luc', 'thanh-tich', 'video-truyen-hinh', 'khach-hang-noi-ve-chung-toi'))) {
+    // dragon-home.css: luôn nạp ở trang chủ; ngoài ra child theme (theo ngành)
+    // khai báo thêm các trang cần qua filter 'vinasite_home_css_pages' (mảng slug).
+    $vinasite_home_css_pages = apply_filters('vinasite_home_css_pages', array());
+    if (is_front_page() || (!empty($vinasite_home_css_pages) && is_page($vinasite_home_css_pages))) {
         wp_enqueue_style('dragon-home', $base . 'css/dragon-home.css', array('dragon-base'), $ver);
         wp_enqueue_style('dragon-responsive', $base . 'css/dragon-responsive.css', array('dragon-home'), $ver);
     }
