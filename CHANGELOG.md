@@ -3,6 +3,9 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.6.3] — 2026-07
+- Hero slider: tốc độ trình chiếu cấu hình được per-site qua thuộc tính `data-delay` (ms) trên phần tử `[data-dragon-slider]`; mặc định giữ 6s.
+
 ## [1.6.2] — 2026-07
 - Thêm filter `vinasite_la_dragon` ở header: child hãng luật ép topbar gọn (ẩn địa chỉ + giờ làm) — thay cho preset `dragon` đã bỏ từ 1.5.0 khiến điều kiện cũ thành mã chết.
 

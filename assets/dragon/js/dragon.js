@@ -118,7 +118,8 @@
     var pauseBtn = $('[data-dragon-pause]', root);
     if (slides.length < 2) { if (pauseBtn) pauseBtn.style.display = 'none'; return; }
     var index = 0, timer = null, playing = !reduceMotion;
-    var DELAY = 6000;
+    // Tốc độ trình chiếu cấu hình được per-site qua data-delay (ms); mặc định 6s.
+    var DELAY = parseInt(root.getAttribute('data-delay'), 10) || 6000;
 
     function show(i) {
       slides.forEach(function (s, n) {
