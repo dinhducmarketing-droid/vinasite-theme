@@ -1,0 +1,96 @@
+/* ==========================================================================
+   VinaSite – style cho Block Patterns (bộ dựng trang Gutenberg)
+   Nhẹ, dùng biến --dragon-* nên tự theo màu thương hiệu từng site.
+   Nạp cả frontend lẫn trình soạn thảo.
+   ========================================================================== */
+
+/* Khoảng thở chung cho section pattern */
+.vsp-section,
+.vsp-hero,
+.vsp-cta {
+  padding-top: clamp(2.5rem, 5vw, 4.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+/* Nhãn nhỏ phía trên tiêu đề hero */
+.vsp-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 0.25rem;
+}
+
+/* Card dịch vụ */
+.vsp-card {
+  background: #ffffff;
+  border: 1px solid var(--dragon-border, #e5e8ec);
+  border-radius: 12px;
+  padding: 1.4rem 1.3rem;
+  height: 100%;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.vsp-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.vsp-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.vsp-card a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.vsp-card a:hover {
+  text-decoration: underline;
+}
+
+/* FAQ accordion (block Details của WordPress — không cần JS) */
+.vsp-faq-item {
+  background: var(--dragon-bg-light, #f5f9fd);
+  border: 1px solid var(--dragon-border, #e5e8ec);
+  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 0.7rem;
+}
+
+.vsp-faq-item summary {
+  font-weight: 700;
+  color: var(--dragon-primary, #1e5aa8);
+  cursor: pointer;
+  min-height: 28px; /* vùng bấm thoải mái */
+}
+
+.vsp-faq-item[open] summary {
+  margin-bottom: 0.5rem;
+}
+
+.vsp-faq-item p {
+  margin: 0;
+}
+
+/* Nút outline trên nền màu (hero/CTA): viền trắng cho rõ */
+.vsp-hero .is-style-outline .wp-block-button__link,
+.vsp-cta .is-style-outline .wp-block-button__link {
+  border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.vsp-hero .is-style-outline .wp-block-button__link:hover,
+.vsp-cta .is-style-outline .wp-block-button__link:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Nút trong pattern: vùng chạm tối thiểu + bo góc đồng bộ design system */
+.vsp-hero .wp-block-button__link,
+.vsp-cta .wp-block-button__link,
+.vsp-section .wp-block-button__link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}

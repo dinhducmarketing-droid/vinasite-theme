@@ -23,11 +23,12 @@ require_once $dragon_dir . 'ajax.php';
 require_once $dragon_dir . 'schema.php';
 require_once $dragon_dir . 'design-tokens.php';
 require_once get_template_directory() . '/inc/vinasite-home.php';
+require_once get_template_directory() . '/inc/vinasite-patterns.php';
 require_once get_template_directory() . '/inc/vinasite-license.php';
 require_once get_template_directory() . '/inc/vinasite-bundled-plugin.php';
 require_once get_template_directory() . '/inc/vinasite-theme-updater.php';
 
-define('DRAGON_ASSET_VER', '1.4.9');
+define('DRAGON_ASSET_VER', '1.5.0');
 
 add_action('wp_enqueue_scripts', 'dragon_enqueue_assets', 20);
 function dragon_enqueue_assets()

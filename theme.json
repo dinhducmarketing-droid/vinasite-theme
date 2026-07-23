@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schemas.wp.org/wp/6.5/theme.json",
+  "version": 2,
+  "settings": {
+    "color": {
+      "palette": [
+        { "slug": "vs-primary", "name": "Màu chính (thương hiệu)", "color": "var(--dragon-primary, #1e5aa8)" },
+        { "slug": "vs-primary-dark", "name": "Màu chính đậm", "color": "var(--dragon-primary-dark, #174683)" },
+        { "slug": "vs-secondary", "name": "Màu phụ", "color": "var(--dragon-secondary, #4790cd)" },
+        { "slug": "vs-accent", "name": "Màu nhấn", "color": "var(--dragon-accent, #e51e22)" },
+        { "slug": "vs-accent-text", "name": "Chữ nhấn trên nền sáng", "color": "var(--dragon-gold-text, #c4171b)" },
+        { "slug": "vs-bg-light", "name": "Nền sáng", "color": "var(--dragon-bg-light, #f5f9fd)" },
+        { "slug": "vs-bg-soft", "name": "Nền phụ", "color": "var(--dragon-bg-soft, #eaf2fa)" },
+        { "slug": "vs-text", "name": "Chữ chính", "color": "var(--dragon-text, #201d1a)" },
+        { "slug": "vs-muted", "name": "Chữ phụ", "color": "var(--dragon-muted, #6b645c)" },
+        { "slug": "vs-white", "name": "Trắng", "color": "#ffffff" }
+      ],
+      "defaultPalette": false,
+      "defaultGradients": false,
+      "custom": false,
+      "customGradient": false
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "vs-font",
+          "name": "Font của site (theo Customizer)",
+          "fontFamily": "var(--dragon-font, \"Be Vietnam Pro\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif)"
+        }
+      ],
+      "fontSizes": [
+        { "slug": "small", "name": "Nhỏ", "size": "0.9rem" },
+        { "slug": "medium", "name": "Vừa", "size": "1.05rem" },
+        { "slug": "large", "name": "Lớn", "size": "clamp(1.3rem, 2vw, 1.6rem)" },
+        { "slug": "x-large", "name": "Rất lớn", "size": "clamp(1.8rem, 3.4vw, 2.6rem)" }
+      ],
+      "customFontSize": false
+    },
+    "spacing": {
+      "units": ["px", "rem", "%", "vw"]
+    },
+    "layout": {
+      "contentSize": "820px",
+      "wideSize": "1200px"
+    }
+  },
+  "styles": {
+    "elements": {
+      "button": {
+        "color": {
+          "background": "var(--dragon-primary, #1e5aa8)",
+          "text": "#ffffff"
+        },
+        "border": {
+          "radius": "8px"
+        },
+        "typography": {
+          "fontWeight": "700"
+        }
+      }
+    }
+  }
+}

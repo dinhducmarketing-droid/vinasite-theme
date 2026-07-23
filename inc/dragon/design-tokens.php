@@ -141,9 +141,12 @@ function dragon_design_customize($wp_customize)
     ));
 }
 
-/** Xuất CSS ghi đè token màu/font (chỉ khi site có tùy chỉnh). */
-add_action('wp_enqueue_scripts', 'dragon_output_design_tokens', 30);
-function dragon_output_design_tokens()
+/**
+ * Dựng chuỗi CSS token màu/font của site (dùng chung cho frontend VÀ trình
+ * soạn thảo block — editor cần đúng biến này để bảng màu theme.json hiển thị
+ * đúng màu thương hiệu từng site).
+ */
+function dragon_design_tokens_css()
 {
     $vars  = array();
     $them  = ''; // CSS bổ sung ngoài :root
@@ -165,7 +168,7 @@ function dragon_output_design_tokens()
         $vars['--dragon-gold-text']     = dragon_mix($accent, '#000000', 0.42);
     } elseif ($la_vinasite) {
         // Chưa chọn màu + đang dùng giao diện VinaSite → đồng bộ theo màu logo.
-        // (Site preset "dragon" không vào nhánh này nên giữ nguyên tông nâu/vàng.)
+        // (Site preset khác không vào nhánh này nên giữ nguyên tông mặc định.)
         $vars = vinasite_logo_palette();
 
         // Nút mặc định có nền = màu nhấn (đỏ logo). Chữ mặc định là màu chính đậm
@@ -183,5 +186,12 @@ function dragon_output_design_tokens()
     foreach ($vars as $k => $v) { $css .= $k . ':' . $v . ';'; }
     $css .= '}' . $them;
 
-    wp_add_inline_style('dragon-base', $css);
+    return $css;
+}
+
+/** Xuất CSS ghi đè token màu/font ra frontend. */
+add_action('wp_enqueue_scripts', 'dragon_output_design_tokens', 30);
+function dragon_output_design_tokens()
+{
+    wp_add_inline_style('dragon-base', dragon_design_tokens_css());
 }

@@ -3,6 +3,13 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.6.0] — 2026-07 (Bước 2 – phần 1: bộ dựng trang kéo-thả bằng Gutenberg)
+- **`theme.json`**: bảng màu trong trình soạn thảo block trỏ về biến `--dragon-*` → khách chọn màu trong editor là **đúng màu thương hiệu từng site** (theo Customizer), tắt bảng màu mặc định WP + màu tự do để không chọn lệch nhận diện; font theo site; cỡ chữ chuẩn hoá; layout 820px/1200px; nút block mặc định theo màu chính.
+- **4 Block Patterns đầu tiên** (nhóm "VinaSite" trong nút "+" của editor): Hero trang chủ, Lưới dịch vụ (6 card), FAQ accordion (block Details — không cần JS), Dải CTA. Chèn → sửa chữ/ảnh trực tiếp; nội dung lưu database nên update theme không đụng tới.
+- Token màu/font của site được nạp vào canvas editor (`block_editor_settings_all`) để xem trước đúng màu; tách helper `dragon_design_tokens_css()` dùng chung frontend + editor.
+- File mới: `theme.json`, `inc/vinasite-patterns.php`, `assets/dragon/css/vinasite-patterns.css` (nhẹ, nạp toàn site + editor).
+- Kiểm chứng thật trên noithathaven.com: 4/4 pattern đăng ký, trang test render đủ (hero + 6 card + 4 FAQ + CTA), biến preset `--wp--preset--color--vs-primary` trỏ đúng `--dragon-primary`, trang có sẵn không ảnh hưởng, 0 lỗi. Đã dọn trang test.
+
 ## [1.5.0] — 2026-07 (theme đa năng — tách hẳn nội dung hãng luật)
 - **Theme cha giờ 100% generic, cài được cho mọi lĩnh vực.** Toàn bộ nội dung chuyên biệt Công ty Luật Dragon (trang chủ dragon, 15 section `template-parts/home/*`, 6 trang landing `page-*.php`, dữ liệu lĩnh vực/hero/FAQ, schema `LegalService`, tiêu đề hãng luật) đã **tách sang child theme riêng `vanphong-dragon`** cho vanphongluatsu.com.vn.
 - Cơ chế: theme cha định nghĩa `dragon_practice_areas()` / `dragon_hero_slides()` / `dragon_faq_items()` trả về `apply_filters(...)` rỗng; child bơm dữ liệu qua filter (không khai báo lại hàm → không lỗi trùng hàm). Schema/tiêu đề hãng luật chuyển sang child.
