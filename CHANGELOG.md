@@ -5,7 +5,8 @@ Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); th
 
 ## [1.6.0] — 2026-07 (Bước 2 – phần 1: bộ dựng trang kéo-thả bằng Gutenberg)
 - **`theme.json`**: bảng màu trong trình soạn thảo block trỏ về biến `--dragon-*` → khách chọn màu trong editor là **đúng màu thương hiệu từng site** (theo Customizer), tắt bảng màu mặc định WP + màu tự do để không chọn lệch nhận diện; font theo site; cỡ chữ chuẩn hoá; layout 820px/1200px; nút block mặc định theo màu chính.
-- **4 Block Patterns đầu tiên** (nhóm "VinaSite" trong nút "+" của editor): Hero trang chủ, Lưới dịch vụ (6 card), FAQ accordion (block Details — không cần JS), Dải CTA. Chèn → sửa chữ/ảnh trực tiếp; nội dung lưu database nên update theme không đụng tới.
+- **10 Block Patterns** (nhóm "VinaSite" trong nút "+" của editor): Hero trang chủ, Lưới dịch vụ (6 card), FAQ accordion (block Details — không cần JS), Dải CTA, Quy trình các bước, Giới thiệu 2 cột, Đội ngũ, Đánh giá khách hàng, Bảng giá 3 gói, Form tư vấn. Chèn → sửa chữ/ảnh trực tiếp; nội dung lưu database nên update theme không đụng tới. Ảnh giữ chỗ là SVG siêu nhẹ, bấm vào thay ảnh thật.
+- **Shortcode `[vinasite_form]`** — form tư vấn chèn được vào MỌI trang/bài, dùng lại đúng handler AJAX sẵn có (nonce, bẫy bot, chống spam theo IP, gửi mail) — không thêm plugin form nào. Tự nạp CSS form khi được dùng.
 - Token màu/font của site được nạp vào canvas editor (`block_editor_settings_all`) để xem trước đúng màu; tách helper `dragon_design_tokens_css()` dùng chung frontend + editor.
 - File mới: `theme.json`, `inc/vinasite-patterns.php`, `assets/dragon/css/vinasite-patterns.css` (nhẹ, nạp toàn site + editor).
 - Kiểm chứng thật trên noithathaven.com: 4/4 pattern đăng ký, trang test render đủ (hero + 6 card + 4 FAQ + CTA), biến preset `--wp--preset--color--vs-primary` trỏ đúng `--dragon-primary`, trang có sẵn không ảnh hưởng, 0 lỗi. Đã dọn trang test.

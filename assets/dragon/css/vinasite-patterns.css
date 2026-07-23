@@ -94,3 +94,85 @@
   display: inline-flex;
   align-items: center;
 }
+
+/* Quy trình các bước */
+.vsp-steps {
+  max-width: 640px;
+}
+
+.vsp-step {
+  position: relative;
+  padding-left: 62px;
+  margin-bottom: 1.4rem;
+}
+
+.vsp-step-num {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.vsp-step h3 {
+  margin: 0 0 0.25rem;
+}
+
+.vsp-step p:last-child {
+  margin-bottom: 0;
+}
+
+/* Đội ngũ */
+.vsp-member-photo img {
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.vsp-member h3 {
+  margin-bottom: 0.2rem;
+}
+
+/* Đánh giá */
+.vsp-quote p:first-child {
+  font-style: italic;
+}
+
+/* Bảng giá */
+.vsp-plan {
+  text-align: center;
+}
+
+.vsp-plan-hot {
+  border-color: var(--dragon-accent, #e51e22);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.vsp-plan-price {
+  font-size: 1.15rem;
+  border-bottom: 1px solid var(--dragon-border, #e5e8ec);
+  padding-bottom: 0.8rem;
+}
+
+.vsp-plan .wp-block-list {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.vsp-plan .wp-block-list li {
+  padding: 0.3rem 0;
+  border-bottom: 1px dashed var(--dragon-border, #e5e8ec);
+}
+
+.vsp-plan .wp-block-list li:last-child {
+  border-bottom: 0;
+}
