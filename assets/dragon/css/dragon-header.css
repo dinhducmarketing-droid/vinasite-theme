@@ -15,10 +15,17 @@
   min-height: 40px; flex-wrap: wrap;
 }
 .dragon-topbar__inner--right { justify-content: flex-end; }
-.dragon-topbar__list { display: flex; align-items: center; gap: 1.4rem; list-style: none; margin: 0; padding: .4rem 0; }
-.dragon-topbar__list a { color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; }
+.dragon-topbar__list { display: flex; align-items: center; gap: 1.75rem; list-style: none; margin: 0; padding: .5rem 0; }
+/* Mỗi mục: icon bám theo DÒNG ĐẦU của chữ (không trôi lơ lửng giữa 2 dòng);
+   chữ mặc định 1 dòng, KHÔNG được gãy giữa chừng — đặc biệt số điện thoại. */
+.dragon-topbar__list li { display: inline-flex; align-items: flex-start; gap: .45rem; line-height: 1.55; white-space: nowrap; }
+/* Địa chỉ là mục dài duy nhất được phép xuống dòng; giới hạn bề rộng để 2 dòng
+   ngắt cân đối thay vì 1 dòng dài + 1 mẩu ngắn. Selector phải THẮNG
+   `.dragon-topbar__list li` ở trên (bài học: li nowrap từng đè mất normal). */
+.dragon-topbar__list li.dragon-topbar__address { white-space: normal; flex: 0 1 auto; min-width: 0; max-width: 52ch; text-wrap: balance; }
+.dragon-topbar__list a { color: inherit; text-decoration: none; display: inline-flex; align-items: flex-start; gap: .45rem; }
 .dragon-topbar__list a:hover { color: var(--dragon-accent); }
-.dragon-topbar .dragon-ico { width: 16px; height: 16px; color: var(--dragon-accent); }
+.dragon-topbar .dragon-ico { width: 16px; height: 16px; color: var(--dragon-accent); flex: none; margin-top: .2em; }
 .dragon-topbar__socials { display: flex; gap: .5rem; }
 
 /* Main bar */

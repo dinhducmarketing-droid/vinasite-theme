@@ -3,6 +3,9 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.6.1] — 2026-07
+- Tối ưu topbar: số điện thoại/email không bao giờ gãy dòng giữa chừng; icon bám dòng đầu của chữ; địa chỉ dài ngắt 2 dòng cân đối (max-width + text-wrap balance); tăng nhẹ khoảng cách các mục.
+
 ## [1.6.0] — 2026-07 (Bước 2 – phần 1: bộ dựng trang kéo-thả bằng Gutenberg)
 - **`theme.json`**: bảng màu trong trình soạn thảo block trỏ về biến `--dragon-*` → khách chọn màu trong editor là **đúng màu thương hiệu từng site** (theo Customizer), tắt bảng màu mặc định WP + màu tự do để không chọn lệch nhận diện; font theo site; cỡ chữ chuẩn hoá; layout 820px/1200px; nút block mặc định theo màu chính.
 - **10 Block Patterns** (nhóm "VinaSite" trong nút "+" của editor): Hero trang chủ, Lưới dịch vụ (6 card), FAQ accordion (block Details — không cần JS), Dải CTA, Quy trình các bước, Giới thiệu 2 cột, Đội ngũ, Đánh giá khách hàng, Bảng giá 3 gói, Form tư vấn. Chèn → sửa chữ/ảnh trực tiếp; nội dung lưu database nên update theme không đụng tới. Ảnh giữ chỗ là SVG siêu nhẹ, bấm vào thay ảnh thật.

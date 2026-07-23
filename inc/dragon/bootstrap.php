@@ -28,7 +28,7 @@ require_once get_template_directory() . '/inc/vinasite-license.php';
 require_once get_template_directory() . '/inc/vinasite-bundled-plugin.php';
 require_once get_template_directory() . '/inc/vinasite-theme-updater.php';
 
-define('DRAGON_ASSET_VER', '1.5.0');
+define('DRAGON_ASSET_VER', '1.6.1.2');
 
 add_action('wp_enqueue_scripts', 'dragon_enqueue_assets', 20);
 function dragon_enqueue_assets()
