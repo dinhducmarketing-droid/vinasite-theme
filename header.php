@@ -49,7 +49,9 @@ $logo_txt = dragon_opt('company_name') ? dragon_opt('company_name') : get_blogin
 $phone    = dragon_opt('phone');
 $vinasite_che_do = vinasite_home_preset();
 $vs_moi   = $vinasite_che_do === 'vinasite'; // site cài mới
-$la_dragon = $vinasite_che_do === 'dragon';  // site công ty luật đang chạy
+// Site hãng luật đang chạy: preset 'dragon' đã bỏ từ 1.5.0 nên biểu thức gốc luôn
+// false — child hãng luật ép true qua filter để giữ topbar gọn (ẩn địa chỉ + giờ).
+$la_dragon = apply_filters('vinasite_la_dragon', $vinasite_che_do === 'dragon');
 
 // CTA header cấu hình được per-site (Customizer); mặc định giữ hành vi cũ.
 $cta_text = dragon_opt('cta_text') !== '' ? dragon_opt('cta_text') : ($vs_moi ? 'Nhận tư vấn' : 'Đặt lịch tư vấn');

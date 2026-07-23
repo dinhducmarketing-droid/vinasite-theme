@@ -3,6 +3,9 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.6.2] — 2026-07
+- Thêm filter `vinasite_la_dragon` ở header: child hãng luật ép topbar gọn (ẩn địa chỉ + giờ làm) — thay cho preset `dragon` đã bỏ từ 1.5.0 khiến điều kiện cũ thành mã chết.
+
 ## [1.6.1] — 2026-07
 - Tối ưu topbar: số điện thoại/email không bao giờ gãy dòng giữa chừng; icon bám dòng đầu của chữ; địa chỉ dài ngắt 2 dòng cân đối (max-width + text-wrap balance); tăng nhẹ khoảng cách các mục.
 
