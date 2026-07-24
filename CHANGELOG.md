@@ -3,6 +3,9 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.6.4] — 2026-07
+- Ô đếm số bài ở đầu trang chuyên mục tắt được per-site qua filter `vinasite_archive_hien_so_bai` (mặc định vẫn hiện).
+
 ## [1.6.3] — 2026-07
 - Hero slider: tốc độ trình chiếu cấu hình được per-site qua thuộc tính `data-delay` (ms) trên phần tử `[data-dragon-slider]`; mặc định giữ 6s.
 

@@ -52,10 +52,13 @@ if ($vs_term && !is_wp_error($vs_term)) {
                     ?>
                 </p>
             </div>
-            <div class="vs-blog-count">
-                <div class="vs-blog-count__n"><?php echo esc_html(number_format_i18n($vs_count)); ?></div>
-                <div class="vs-blog-count__l">Bài viết</div>
-            </div>
+            <?php // Ô đếm số bài ở đầu chuyên mục — site tắt được qua filter (mặc định: hiện). ?>
+            <?php if (apply_filters('vinasite_archive_hien_so_bai', true, $vs_count)) : ?>
+                <div class="vs-blog-count">
+                    <div class="vs-blog-count__n"><?php echo esc_html(number_format_i18n($vs_count)); ?></div>
+                    <div class="vs-blog-count__l">Bài viết</div>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </section>
