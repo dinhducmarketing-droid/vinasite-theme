@@ -30,6 +30,9 @@
 .dragon-footer ul { list-style: none; margin: 0; padding: 0; }
 .dragon-footer__links li { margin-bottom: .6rem; font-size: .92rem; }
 .dragon-footer__links a { display: inline-flex; align-items: center; gap: .4rem; }
+/* Nút "Chỉ đường" cạnh mỗi địa chỉ trong cột Liên hệ. */
+.dragon-footer__map { display: inline-block; margin-left: .35rem; padding: .05rem .5rem; border: 1px solid var(--dragon-accent); border-radius: 999px; font-size: .78rem; font-weight: 600; color: var(--dragon-accent); white-space: nowrap; text-decoration: none; }
+.dragon-footer__map:hover { background: var(--dragon-accent); color: var(--dragon-primary-dark); }
 
 .dragon-footer__bottom { border-top: 1px solid rgba(255, 255, 255, .1); padding-block: 1.2rem; }
 .dragon-footer__bottom-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: .85rem; }

@@ -40,15 +40,16 @@ $la_dragon = $vinasite_che_do === 'dragon';   // site công ty luật đang ch�
                     <h3>Liên hệ</h3>
                     <?php // Site cài mới: dòng nào chưa nhập thì ẩn, tránh dòng trống / link rỗng. ?>
                     <ul class="dragon-footer__contact">
+                        <?php $vs_map_main = apply_filters('vinasite_footer_main_map', ''); ?>
                         <?php if (!$vs_moi || dragon_opt('address') !== '') : ?>
-                            <li><?php dragon_the_icon('map-pin'); ?><span><?php echo esc_html(dragon_opt('address')); ?></span></li>
+                            <li><?php dragon_the_icon('map-pin'); ?><span><?php echo esc_html(dragon_opt('address')); ?><?php if ($vs_map_main) : ?> <a class="dragon-footer__map" href="<?php echo esc_url($vs_map_main); ?>" target="_blank" rel="noopener">Chỉ đường ›</a><?php endif; ?></span></li>
                         <?php endif; ?>
                         <?php
                         // Văn phòng/chi nhánh phụ — site có nhiều cơ sở bơm vào qua filter.
-                        // Mỗi mục: ['label'=>'VPGD Hà Nội', 'address'=>'...'].
+                        // Mỗi mục: ['label'=>'VPGD Hà Nội', 'address'=>'...', 'map'=>'https://maps...'].
                         foreach ((array) apply_filters('vinasite_footer_extra_offices', array()) as $vs_vp) :
                             if (empty($vs_vp['address'])) { continue; } ?>
-                            <li><?php dragon_the_icon('map-pin'); ?><span><?php if (!empty($vs_vp['label'])) { echo '<strong>' . esc_html($vs_vp['label']) . ':</strong> '; } echo esc_html($vs_vp['address']); ?></span></li>
+                            <li><?php dragon_the_icon('map-pin'); ?><span><?php if (!empty($vs_vp['label'])) { echo '<strong>' . esc_html($vs_vp['label']) . ':</strong> '; } echo esc_html($vs_vp['address']); ?><?php if (!empty($vs_vp['map'])) : ?> <a class="dragon-footer__map" href="<?php echo esc_url($vs_vp['map']); ?>" target="_blank" rel="noopener">Chỉ đường ›</a><?php endif; ?></span></li>
                         <?php endforeach; ?>
                         <?php if (!$vs_moi || $phone !== '') : ?>
                             <li><?php dragon_the_icon('phone'); ?><a href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php echo esc_html($phone); ?></a></li>
