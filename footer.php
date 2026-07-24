@@ -110,10 +110,20 @@ $la_dragon = $vinasite_che_do === 'dragon';   // site công ty luật đang ch�
                 <?php if (dragon_opt('terms_url') !== '') : ?><a href="<?php echo esc_url(dragon_opt('terms_url')); ?>">Điều khoản sử dụng</a><?php endif; ?>
                 <a href="<?php echo esc_url(home_url('/sitemap_index.xml')); ?>">Sitemap</a>
             </div>
-            <?php if (dragon_opt('facebook') || dragon_opt('youtube')) : ?>
+            <?php
+            // Danh sách mạng xã hội ở chân trang — mỗi mục: ['url','label','icon' (HTML SVG)].
+            // Mặc định: Facebook + YouTube từ Customizer (icon đơn sắc). Site có thể bổ sung/
+            // thay bằng icon màu qua filter `vinasite_footer_socials` (child hãng luật dùng).
+            $vs_socials = array();
+            if (dragon_opt('facebook')) { $vs_socials[] = array('url' => dragon_opt('facebook'), 'label' => 'Facebook', 'icon' => dragon_icon('facebook')); }
+            if (dragon_opt('youtube'))  { $vs_socials[] = array('url' => dragon_opt('youtube'),  'label' => 'YouTube',  'icon' => dragon_icon('youtube')); }
+            $vs_socials = apply_filters('vinasite_footer_socials', $vs_socials);
+            ?>
+            <?php if (!empty($vs_socials)) : ?>
                 <div class="dragon-footer__socials">
-                    <?php if (dragon_opt('facebook')) : ?><a href="<?php echo esc_url(dragon_opt('facebook')); ?>" target="_blank" rel="noopener" aria-label="Facebook"><?php dragon_the_icon('facebook'); ?></a><?php endif; ?>
-                    <?php if (dragon_opt('youtube')) : ?><a href="<?php echo esc_url(dragon_opt('youtube')); ?>" target="_blank" rel="noopener" aria-label="YouTube"><?php dragon_the_icon('youtube'); ?></a><?php endif; ?>
+                    <?php foreach ($vs_socials as $vs_s) : if (empty($vs_s['url'])) { continue; } ?>
+                        <a href="<?php echo esc_url($vs_s['url']); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr($vs_s['label']); ?>"><?php echo $vs_s['icon']; // phpcs:ignore -- SVG nội tuyến tin cậy ?></a>
+                    <?php endforeach; ?>
                 </div>
             <?php endif; ?>
         </div>

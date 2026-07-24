@@ -3,6 +3,9 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.6.5] — 2026-07
+- Chân trang: danh sách MXH mở rộng qua filter `vinasite_footer_socials` (mỗi mục url/label/icon-SVG) — site bổ sung TikTok/Instagram/nhiều kênh + icon MÀU thương hiệu. Mặc định vẫn Facebook + YouTube từ Customizer.
+
 ## [1.6.4] — 2026-07
 - Ô đếm số bài ở đầu trang chuyên mục tắt được per-site qua filter `vinasite_archive_hien_so_bai` (mặc định vẫn hiện).
 
