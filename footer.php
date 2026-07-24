@@ -43,6 +43,13 @@ $la_dragon = $vinasite_che_do === 'dragon';   // site công ty luật đang ch�
                         <?php if (!$vs_moi || dragon_opt('address') !== '') : ?>
                             <li><?php dragon_the_icon('map-pin'); ?><span><?php echo esc_html(dragon_opt('address')); ?></span></li>
                         <?php endif; ?>
+                        <?php
+                        // Văn phòng/chi nhánh phụ — site có nhiều cơ sở bơm vào qua filter.
+                        // Mỗi mục: ['label'=>'VPGD Hà Nội', 'address'=>'...'].
+                        foreach ((array) apply_filters('vinasite_footer_extra_offices', array()) as $vs_vp) :
+                            if (empty($vs_vp['address'])) { continue; } ?>
+                            <li><?php dragon_the_icon('map-pin'); ?><span><?php if (!empty($vs_vp['label'])) { echo '<strong>' . esc_html($vs_vp['label']) . ':</strong> '; } echo esc_html($vs_vp['address']); ?></span></li>
+                        <?php endforeach; ?>
                         <?php if (!$vs_moi || $phone !== '') : ?>
                             <li><?php dragon_the_icon('phone'); ?><a href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php echo esc_html($phone); ?></a></li>
                         <?php endif; ?>
