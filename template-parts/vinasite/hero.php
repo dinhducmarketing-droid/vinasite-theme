@@ -26,22 +26,22 @@ $phone = vinasite_info('phone');
             </p>
             <div class="vs-hero__cta">
                 <a class="dragon-btn dragon-btn--primary" href="#dragon-consultation">
-                    <?php dragon_the_icon('mail'); ?>Nhận tư vấn miễn phí
+                    <?php vinasite_the_icon('mail'); ?>Nhận tư vấn miễn phí
                 </a>
                 <a class="dragon-btn dragon-btn--ghost" href="tel:<?php echo esc_attr(vinasite_info_tel()); ?>">
-                    <?php dragon_the_icon('phone'); ?>Gọi <?php echo esc_html($phone); ?>
+                    <?php vinasite_the_icon('phone'); ?>Gọi <?php echo esc_html($phone); ?>
                 </a>
             </div>
             <ul class="vs-hero__points">
-                <li><?php dragon_the_icon('check'); ?><span>Hơn 1.000 doanh nghiệp &amp; shop tin dùng</span></li>
-                <li><?php dragon_the_icon('check'); ?><span>Bàn giao nhanh, không phụ thuộc page builder</span></li>
-                <li><?php dragon_the_icon('check'); ?><span>Hỗ trợ kỹ thuật trọn đời website</span></li>
+                <li><?php vinasite_the_icon('check'); ?><span>Hơn 1.000 doanh nghiệp &amp; shop tin dùng</span></li>
+                <li><?php vinasite_the_icon('check'); ?><span>Bàn giao nhanh, không phụ thuộc page builder</span></li>
+                <li><?php vinasite_the_icon('check'); ?><span>Hỗ trợ kỹ thuật trọn đời website</span></li>
             </ul>
         </div>
 
         <aside class="vs-hero__card" aria-label="Thông tin giao diện">
             <div class="vs-hero__card-head">
-                <span class="vs-hero__badge"><?php dragon_the_icon('shield'); ?>Đang sử dụng</span>
+                <span class="vs-hero__badge"><?php vinasite_the_icon('shield'); ?>Đang sử dụng</span>
                 <strong><?php echo esc_html($theme->get('Name')); ?></strong>
                 <span class="vs-hero__ver">Phiên bản <?php echo esc_html($theme->get('Version')); ?></span>
             </div>
@@ -58,7 +58,7 @@ $phone = vinasite_info('phone');
             // mỗi thẻ con sẽ thành 1 cột riêng, làm đoạn văn vỡ vụn.
             if (current_user_can('edit_theme_options')) : ?>
                 <p class="vs-hero__note">
-                    <?php dragon_the_icon('help'); ?>
+                    <?php vinasite_the_icon('help'); ?>
                     <span>Đây là trang chủ mặc định của giao diện. Vào <strong>Giao diện → Tuỳ biến</strong> để nhập thông tin doanh nghiệp của bạn, hoặc đổi kiểu trang chủ tại mục <strong>VinaSite – Kiểu trang chủ</strong>.</span>
                 </p>
             <?php endif; ?>

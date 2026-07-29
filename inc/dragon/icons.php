@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-function dragon_icon($name, $title = '')
+function vinasite_icon($name, $title = '')
 {
     $paths = array(
         // Practice areas.
@@ -63,7 +63,7 @@ function dragon_icon($name, $title = '')
     return '<svg class="dragon-ico dragon-ico--' . esc_attr($name) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" ' . $a11y . '>' . $paths[$name] . '</svg>';
 }
 
-function dragon_the_icon($name, $title = '')
+function vinasite_the_icon($name, $title = '')
 {
-    echo dragon_icon($name, $title); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static internal SVG markup.
+    echo vinasite_icon($name, $title); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static internal SVG markup.
 }

@@ -12,8 +12,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-add_action('wp_head', 'dragon_meta_description', 1);
-function dragon_meta_description()
+add_action('wp_head', 'vinasite_meta_description', 1);
+function vinasite_meta_description()
 {
     if (!is_front_page() || defined('RANK_MATH_VERSION')) {
         return;

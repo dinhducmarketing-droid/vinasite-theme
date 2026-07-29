@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 $services = vinasite_home_services();
 $phone    = vinasite_info('phone');
 $email    = vinasite_info('email');
-$address  = dragon_opt('address');
+$address  = vinasite_opt('address');
 ?>
 <section class="dragon-section dragon-section--soft vs-contact" id="dragon-consultation" aria-labelledby="vs-contact-title">
     <div class="dragon-container">
@@ -26,23 +26,23 @@ $address  = dragon_opt('address');
                 <p>Để lại thông tin, đội ngũ <?php echo esc_html(vinasite_info('brand')); ?> sẽ gọi lại tư vấn miễn phí và báo giá theo đúng nhu cầu của bạn.</p>
 
                 <ul class="vs-contact__list">
-                    <li><?php dragon_the_icon('check'); ?><span>Tư vấn miễn phí, không ràng buộc.</span></li>
-                    <li><?php dragon_the_icon('check'); ?><span>Báo giá minh bạch trước khi ký hợp đồng.</span></li>
-                    <li><?php dragon_the_icon('check'); ?><span>Bàn giao đúng hẹn, hỗ trợ kỹ thuật lâu dài.</span></li>
+                    <li><?php vinasite_the_icon('check'); ?><span>Tư vấn miễn phí, không ràng buộc.</span></li>
+                    <li><?php vinasite_the_icon('check'); ?><span>Báo giá minh bạch trước khi ký hợp đồng.</span></li>
+                    <li><?php vinasite_the_icon('check'); ?><span>Bàn giao đúng hẹn, hỗ trợ kỹ thuật lâu dài.</span></li>
                 </ul>
 
                 <ul class="vs-contact__info">
                     <li>
-                        <span class="dragon-ico-chip"><?php dragon_the_icon('phone'); ?></span>
+                        <span class="dragon-ico-chip"><?php vinasite_the_icon('phone'); ?></span>
                         <a href="tel:<?php echo esc_attr(vinasite_info_tel()); ?>"><?php echo esc_html($phone); ?></a>
                     </li>
                     <li>
-                        <span class="dragon-ico-chip"><?php dragon_the_icon('mail'); ?></span>
+                        <span class="dragon-ico-chip"><?php vinasite_the_icon('mail'); ?></span>
                         <a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a>
                     </li>
                     <?php if ($address !== '') : ?>
                         <li>
-                            <span class="dragon-ico-chip"><?php dragon_the_icon('map-pin'); ?></span>
+                            <span class="dragon-ico-chip"><?php vinasite_the_icon('map-pin'); ?></span>
                             <span><?php echo esc_html($address); ?></span>
                         </li>
                     <?php endif; ?>
@@ -96,10 +96,10 @@ $address  = dragon_opt('address');
                             </label>
                         </div>
                         <div class="dragon-field dragon-field--full">
-                            <button type="submit" class="dragon-btn dragon-btn--primary dragon-btn--block"><?php dragon_the_icon('mail'); ?>Gửi yêu cầu tư vấn</button>
+                            <button type="submit" class="dragon-btn dragon-btn--primary dragon-btn--block"><?php vinasite_the_icon('mail'); ?>Gửi yêu cầu tư vấn</button>
                         </div>
                         <div class="dragon-field dragon-field--full">
-                            <p class="dragon-form__micro"><?php dragon_the_icon('shield'); ?>Thông tin của bạn được bảo mật và chỉ dùng để liên hệ tư vấn.</p>
+                            <p class="dragon-form__micro"><?php vinasite_the_icon('shield'); ?>Thông tin của bạn được bảo mật và chỉ dùng để liên hệ tư vấn.</p>
                         </div>
                     </div>
                 </form>

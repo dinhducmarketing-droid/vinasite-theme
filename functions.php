@@ -52,6 +52,10 @@ if (!isset($content_width)) {
  * ---------------------------------------------------------------------- */
 require_once get_template_directory() . '/inc/dragon/bootstrap.php';
 
+/* Lớp tương thích ngược: hàm cũ dragon_*() → vinasite_*() cho child theme cũ.
+   Nạp SAU bootstrap để các hàm vinasite_* đã tồn tại. */
+require_once get_template_directory() . '/inc/compat-legacy.php';
+
 /* Legacy page-builder shortcode shim (Flatsome UX Builder + [ntg_page_title]). */
 require_once get_template_directory() . '/inc/vinasite-shim.php';
 if (file_exists(get_template_directory() . '/inc/vinasite-shim-extra.php')) { require_once get_template_directory() . '/inc/vinasite-shim-extra.php'; }

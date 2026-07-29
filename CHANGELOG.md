@@ -3,6 +3,13 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.7.0] — 2026-07 (đổi tên dragon → vinasite — Pha 1: hàm)
+- Đổi 28 hàm `dragon_*()` → `vinasite_*()` trong theme cha (vd `dragon_opt`→`vinasite_opt`, `dragon_the_icon`→`vinasite_the_icon`). Thêm `inc/compat-legacy.php`: hàm cũ `dragon_*()` thành vỏ bọc chuyển tiếp sang hàm mới, nên 3 child theme khách (vanphong-dragon, giathai-child, vinasite-child) chạy NGUYÊN không cần sửa.
+- Filter `dragon_practice_areas`/`hero_slides`/`faq_items` đổi sang tên `vinasite_*` nhưng VẪN apply cả tên cũ → child hook `dragon_` vẫn bơm dữ liệu được.
+- `vinasite_opt()` đọc-kép theme_mod: khóa `vinasite_` trước, trống thì `dragon_` → không site nào mất cấu hình dù DB chưa migrate.
+- Khóa theme_mod / field form / AJAX action / class CSS GIỮ nguyên tên `dragon_` (hợp đồng dữ liệu với 3 child + database) — xử lý ở các pha sau.
+- Kiểm chứng thật: vanphongluatsu.com.vn trang chủ giống hệt trước/sau (khác 4 dòng nonce), 8 lĩnh vực + 8 FAQ chạy qua filter compat, 0 lỗi; noithathaven.com (child nội thất gọi `dragon_opt`) render OK.
+
 ## [1.6.8] — 2026-07
 - Dọn sạch mọi chữ "Dragon" / "hãng luật" / "công ty luật" trong comment, docblock và nhãn admin của theme cha — theme đọc ra là sản phẩm VinaSite độc lập, không dính gốc theme luật. (Tên hàm `dragon_*` và class `.dragon-*` GIỮ NGUYÊN vì là hợp đồng API mà 3 child theme khách đang gọi — đổi là sập site; đây là định danh nội bộ, không hiển thị cho ai.)
 

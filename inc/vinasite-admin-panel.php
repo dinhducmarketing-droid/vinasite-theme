@@ -129,11 +129,11 @@ function vinasite_admin_dashboard()
 {
     $theme = wp_get_theme();
     vinasite_admin_styles();
-    $has_logo  = get_theme_mod('custom_logo') || (function_exists('dragon_opt') && dragon_opt('logo'));
+    $has_logo  = get_theme_mod('custom_logo') || (function_exists('vinasite_opt') && vinasite_opt('logo'));
     $has_color = get_theme_mod('dragon_color_primary');
     $has_menu  = has_nav_menu('primary');
     $has_front = get_option('show_on_front') === 'page' && get_option('page_on_front');
-    $has_phone = function_exists('dragon_opt') && dragon_opt('phone');
+    $has_phone = function_exists('vinasite_opt') && vinasite_opt('phone');
 
     $steps = array($has_logo, $has_color, $has_menu, $has_front, (bool) $has_phone);
     $done  = count(array_filter($steps));

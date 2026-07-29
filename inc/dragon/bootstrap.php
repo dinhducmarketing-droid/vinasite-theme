@@ -14,14 +14,14 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$dragon_dir = get_template_directory() . '/inc/dragon/';
-require_once $dragon_dir . 'config.php';
-require_once $dragon_dir . 'data.php';
-require_once $dragon_dir . 'icons.php';
-require_once $dragon_dir . 'customizer.php';
-require_once $dragon_dir . 'ajax.php';
-require_once $dragon_dir . 'schema.php';
-require_once $dragon_dir . 'design-tokens.php';
+$vinasite_dir = get_template_directory() . '/inc/dragon/';
+require_once $vinasite_dir . 'config.php';
+require_once $vinasite_dir . 'data.php';
+require_once $vinasite_dir . 'icons.php';
+require_once $vinasite_dir . 'customizer.php';
+require_once $vinasite_dir . 'ajax.php';
+require_once $vinasite_dir . 'schema.php';
+require_once $vinasite_dir . 'design-tokens.php';
 require_once get_template_directory() . '/inc/vinasite-home.php';
 require_once get_template_directory() . '/inc/vinasite-patterns.php';
 require_once get_template_directory() . '/inc/vinasite-license.php';
@@ -30,8 +30,8 @@ require_once get_template_directory() . '/inc/vinasite-theme-updater.php';
 
 define('DRAGON_ASSET_VER', '1.6.8');
 
-add_action('wp_enqueue_scripts', 'dragon_enqueue_assets', 20);
-function dragon_enqueue_assets()
+add_action('wp_enqueue_scripts', 'vinasite_enqueue_assets', 20);
+function vinasite_enqueue_assets()
 {
     $base = get_template_directory_uri() . '/assets/dragon/';
     $ver  = DRAGON_ASSET_VER;
@@ -64,21 +64,21 @@ function dragon_enqueue_assets()
     ));
 
     // Preconnect Google Fonts + load font đã chọn trong Customizer (mặc định Be Vietnam Pro).
-    $vinasite_font = function_exists('dragon_font_current') ? dragon_font_current() : array('query' => 'Be+Vietnam+Pro:wght@400;600;700');
+    $vinasite_font = function_exists('vinasite_font_current') ? vinasite_font_current() : array('query' => 'Be+Vietnam+Pro:wght@400;600;700');
     wp_enqueue_style('dragon-font', 'https://fonts.googleapis.com/css2?family=' . $vinasite_font['query'] . '&display=swap', array(), null);
 }
 
 /** Preconnect hints for the webfont (faster LCP). */
-add_action('wp_head', 'dragon_resource_hints', 1);
-function dragon_resource_hints()
+add_action('wp_head', 'vinasite_resource_hints', 1);
+function vinasite_resource_hints()
 {
     echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
     echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
 }
 
 /** Defer non-critical scripts (keep jQuery + our own intact) for better INP. */
-add_filter('script_loader_tag', 'dragon_defer_scripts', 10, 3);
-function dragon_defer_scripts($tag, $handle, $src)
+add_filter('script_loader_tag', 'vinasite_defer_scripts', 10, 3);
+function vinasite_defer_scripts($tag, $handle, $src)
 {
     $defer = array('dragon-js');
     if (in_array($handle, $defer, true) && strpos($tag, 'defer') === false) {
@@ -88,8 +88,8 @@ function dragon_defer_scripts($tag, $handle, $src)
 }
 
 /** Noindex internal search results (thin content). */
-add_action('wp_head', 'dragon_noindex_search', 1);
-function dragon_noindex_search()
+add_action('wp_head', 'vinasite_noindex_search', 1);
+function vinasite_noindex_search()
 {
     if (is_search()) {
         echo '<meta name="robots" content="noindex,follow"/>' . "\n";

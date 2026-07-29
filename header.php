@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
     <?php wp_head(); ?>
     <?php
     // Google Analytics — mã lấy từ Customizer (rỗng = không chèn). Nhiều mã cách nhau dấu phẩy.
-    $vinasite_ga = array_filter(array_map('trim', explode(',', (string) dragon_opt('ga_ids'))));
+    $vinasite_ga = array_filter(array_map('trim', explode(',', (string) vinasite_opt('ga_ids'))));
     if (!empty($vinasite_ga)) : ?>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr($vinasite_ga[0]); ?>"></script>
@@ -44,9 +44,9 @@ if (!defined('ABSPATH')) {
 <div id="wrapper">
 
 <?php
-$logo_url = dragon_logo_url();
-$logo_txt = dragon_opt('company_name') ? dragon_opt('company_name') : get_bloginfo('name');
-$phone    = dragon_opt('phone');
+$logo_url = vinasite_logo_url();
+$logo_txt = vinasite_opt('company_name') ? vinasite_opt('company_name') : get_bloginfo('name');
+$phone    = vinasite_opt('phone');
 $vinasite_che_do = vinasite_home_preset();
 $vs_moi   = $vinasite_che_do === 'vinasite'; // site cài mới
 // preset 'dragon' đã bỏ từ 1.5.0 nên biểu thức gốc luôn false — child theo ngành
@@ -54,8 +54,8 @@ $vs_moi   = $vinasite_che_do === 'vinasite'; // site cài mới
 $la_dragon = apply_filters('vinasite_la_dragon', $vinasite_che_do === 'dragon');
 
 // CTA header cấu hình được per-site (Customizer); mặc định giữ hành vi cũ.
-$cta_text = dragon_opt('cta_text') !== '' ? dragon_opt('cta_text') : ($vs_moi ? 'Nhận tư vấn' : 'Đặt lịch tư vấn');
-$cta_url  = dragon_opt('cta_url') !== '' ? dragon_opt('cta_url') : '#dragon-consultation';
+$cta_text = vinasite_opt('cta_text') !== '' ? vinasite_opt('cta_text') : ($vs_moi ? 'Nhận tư vấn' : 'Đặt lịch tư vấn');
+$cta_url  = vinasite_opt('cta_url') !== '' ? vinasite_opt('cta_url') : '#dragon-consultation';
 ?>
 <header class="dragon-header" role="banner">
 
@@ -64,18 +64,18 @@ $cta_url  = dragon_opt('cta_url') !== '' ? dragon_opt('cta_url') : '#dragon-cons
         <div class="dragon-container dragon-topbar__inner dragon-topbar__inner--right">
             <ul class="dragon-topbar__list dragon-topbar__list--secondary">
                 <?php // Địa chỉ + giờ làm trên topbar: ẩn khi child bật $la_dragon (giữ topbar gọn). ?>
-                <?php if (!$la_dragon && dragon_opt('address') !== '') : ?>
-                    <li class="dragon-topbar__address"><?php dragon_the_icon('map-pin'); ?><span><?php echo esc_html(dragon_opt('address')); ?></span></li>
+                <?php if (!$la_dragon && vinasite_opt('address') !== '') : ?>
+                    <li class="dragon-topbar__address"><?php vinasite_the_icon('map-pin'); ?><span><?php echo esc_html(vinasite_opt('address')); ?></span></li>
                 <?php endif; ?>
-                <?php if (!$la_dragon && dragon_opt('work_hours') !== '') : ?>
-                    <li><?php dragon_the_icon('clock'); ?><span><?php echo esc_html(dragon_opt('work_hours')); ?></span></li>
+                <?php if (!$la_dragon && vinasite_opt('work_hours') !== '') : ?>
+                    <li><?php vinasite_the_icon('clock'); ?><span><?php echo esc_html(vinasite_opt('work_hours')); ?></span></li>
                 <?php endif; ?>
                 <?php // Site cài mới chưa nhập thì ẩn, tránh link "tel:" / "mailto:" rỗng. ?>
                 <?php if (!$vs_moi || $phone !== '') : ?>
-                    <li><a href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?><span><?php echo esc_html($phone); ?></span></a></li>
+                    <li><a href="tel:<?php echo esc_attr(vinasite_tel('phone')); ?>"><?php vinasite_the_icon('phone'); ?><span><?php echo esc_html($phone); ?></span></a></li>
                 <?php endif; ?>
-                <?php if (!$vs_moi || dragon_opt('email') !== '') : ?>
-                    <li><a href="mailto:<?php echo esc_attr(dragon_opt('email')); ?>"><?php dragon_the_icon('mail'); ?><span><?php echo esc_html(dragon_opt('email')); ?></span></a></li>
+                <?php if (!$vs_moi || vinasite_opt('email') !== '') : ?>
+                    <li><a href="mailto:<?php echo esc_attr(vinasite_opt('email')); ?>"><?php vinasite_the_icon('mail'); ?><span><?php echo esc_html(vinasite_opt('email')); ?></span></a></li>
                 <?php endif; ?>
             </ul>
         </div>
@@ -112,10 +112,10 @@ $cta_url  = dragon_opt('cta_url') !== '' ? dragon_opt('cta_url') : '#dragon-cons
 
             <div class="dragon-header__actions">
                 <a class="dragon-btn dragon-btn--primary" href="<?php echo esc_url($cta_url); ?>">
-                    <?php dragon_the_icon('calendar'); ?><span class="dragon-header__cta-text"><?php echo esc_html($cta_text); ?></span>
+                    <?php vinasite_the_icon('calendar'); ?><span class="dragon-header__cta-text"><?php echo esc_html($cta_text); ?></span>
                 </a>
                 <button class="dragon-burger" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="dragon-offcanvas" id="dragon-burger">
-                    <?php dragon_the_icon('menu'); ?>
+                    <?php vinasite_the_icon('menu'); ?>
                 </button>
             </div>
         </div>
@@ -128,7 +128,7 @@ $cta_url  = dragon_opt('cta_url') !== '' ? dragon_opt('cta_url') : '#dragon-cons
 <aside class="dragon-offcanvas" id="dragon-offcanvas" aria-hidden="true" aria-label="Menu di động">
     <div class="dragon-offcanvas__head">
         <?php if ($logo_url) : ?><img src="<?php echo esc_url($logo_url); ?>" width="140" height="44" alt="<?php echo esc_attr($logo_txt); ?>"/><?php else : ?><span class="dragon-logo__text"><?php echo esc_html($logo_txt); ?></span><?php endif; ?>
-        <button class="dragon-offcanvas__close" type="button" aria-label="Đóng menu" id="dragon-offcanvas-close"><?php dragon_the_icon('close'); ?></button>
+        <button class="dragon-offcanvas__close" type="button" aria-label="Đóng menu" id="dragon-offcanvas-close"><?php vinasite_the_icon('close'); ?></button>
     </div>
     <?php
     // Same WordPress menu for the mobile off-canvas (JS adds collapse toggles).
@@ -146,9 +146,9 @@ $cta_url  = dragon_opt('cta_url') !== '' ? dragon_opt('cta_url') : '#dragon-cons
     ?>
     <div class="dragon-offcanvas__actions">
         <?php if (!$vs_moi || $phone !== '') : ?>
-            <a class="dragon-btn dragon-btn--primary dragon-btn--block" href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?>Gọi <?php echo esc_html($phone); ?></a>
+            <a class="dragon-btn dragon-btn--primary dragon-btn--block" href="tel:<?php echo esc_attr(vinasite_tel('phone')); ?>"><?php vinasite_the_icon('phone'); ?>Gọi <?php echo esc_html($phone); ?></a>
         <?php endif; ?>
-        <a class="dragon-btn dragon-btn--block" href="<?php echo esc_url($cta_url); ?>" data-dragon-close-menu><?php dragon_the_icon('calendar'); ?><?php echo esc_html($cta_text); ?></a>
+        <a class="dragon-btn dragon-btn--block" href="<?php echo esc_url($cta_url); ?>" data-dragon-close-menu><?php vinasite_the_icon('calendar'); ?><?php echo esc_html($cta_text); ?></a>
     </div>
 </aside>
 

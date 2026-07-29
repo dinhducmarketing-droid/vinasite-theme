@@ -27,15 +27,15 @@ while (have_posts()) : the_post();
                     <strong><?php echo esc_html(wp_trim_words(get_the_title(), 9, '…')); ?></strong>
                 </nav>
                 <?php if (!empty($cats)) : ?>
-                    <a class="vs-blog-badge" href="<?php echo esc_url(get_category_link($cats[0]->term_id)); ?>"><?php dragon_the_icon('folder'); ?> <?php echo esc_html($cats[0]->name); ?></a>
+                    <a class="vs-blog-badge" href="<?php echo esc_url(get_category_link($cats[0]->term_id)); ?>"><?php vinasite_the_icon('folder'); ?> <?php echo esc_html($cats[0]->name); ?></a>
                 <?php endif; ?>
                 <h1 class="vs-single__title"><?php the_title(); ?></h1>
                 <div class="vs-single__meta">
-                    <span><?php dragon_the_icon('user-tie'); ?> <?php the_author(); ?></span>
-                    <span><?php dragon_the_icon('calendar'); ?> <?php echo esc_html(get_the_date()); ?></span>
-                    <span><?php dragon_the_icon('clock'); ?> <?php echo (int) vinasite_reading_time(); ?> phút đọc</span>
+                    <span><?php vinasite_the_icon('user-tie'); ?> <?php the_author(); ?></span>
+                    <span><?php vinasite_the_icon('calendar'); ?> <?php echo esc_html(get_the_date()); ?></span>
+                    <span><?php vinasite_the_icon('clock'); ?> <?php echo (int) vinasite_reading_time(); ?> phút đọc</span>
                     <?php if (get_the_modified_date() !== get_the_date()) : ?>
-                        <span><?php dragon_the_icon('check'); ?> Cập nhật <?php echo esc_html(get_the_modified_date()); ?></span>
+                        <span><?php vinasite_the_icon('check'); ?> Cập nhật <?php echo esc_html(get_the_modified_date()); ?></span>
                     <?php endif; ?>
                 </div>
             </div>
@@ -59,12 +59,12 @@ while (have_posts()) : the_post();
                 <div class="vs-single__cta dragon-card">
                     <div>
                         <?php // Tiêu đề + tên đơn vị lấy từ option (site/child tự đặt), có mặc định trung tính. ?>
-                        <strong><?php echo esc_html(dragon_opt('single_cta_heading') !== '' ? dragon_opt('single_cta_heading') : 'Cần tư vấn thêm về nội dung này?'); ?></strong>
-                        <?php $vs_ten = dragon_opt('company_short') !== '' ? dragon_opt('company_short') : 'Chúng tôi'; ?>
+                        <strong><?php echo esc_html(vinasite_opt('single_cta_heading') !== '' ? vinasite_opt('single_cta_heading') : 'Cần tư vấn thêm về nội dung này?'); ?></strong>
+                        <?php $vs_ten = vinasite_opt('company_short') !== '' ? vinasite_opt('company_short') : 'Chúng tôi'; ?>
                         <p><?php echo esc_html($vs_ten); ?> tiếp nhận và tư vấn nhanh chóng, bảo mật.</p>
                     </div>
                     <div class="vs-single__cta-actions">
-                        <a class="dragon-btn dragon-btn--primary" href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?>Gọi <?php echo esc_html(dragon_opt('phone')); ?></a>
+                        <a class="dragon-btn dragon-btn--primary" href="tel:<?php echo esc_attr(vinasite_tel('phone')); ?>"><?php vinasite_the_icon('phone'); ?>Gọi <?php echo esc_html(vinasite_opt('phone')); ?></a>
                         <a class="dragon-btn dragon-btn--outline" href="<?php echo esc_url(home_url('/#dragon-consultation')); ?>">Đặt lịch tư vấn</a>
                     </div>
                 </div>
@@ -82,7 +82,7 @@ while (have_posts()) : the_post();
                     <h3 class="vs-widget__title">Tìm kiếm bài viết</h3>
                     <form class="vs-side-search" method="get" action="<?php echo esc_url(home_url('/')); ?>" role="search">
                         <input type="search" name="s" class="vs-side-search__input" placeholder="Nhập từ khoá bài viết…" value="<?php echo esc_attr(get_search_query()); ?>" aria-label="Tìm kiếm"/>
-                        <button type="submit" class="vs-side-search__btn" aria-label="Tìm"><?php dragon_the_icon('help'); ?></button>
+                        <button type="submit" class="vs-side-search__btn" aria-label="Tìm"><?php vinasite_the_icon('help'); ?></button>
                     </form>
                 </div>
 
@@ -105,7 +105,7 @@ while (have_posts()) : the_post();
                                     </span>
                                     <span class="vs-side-post__body">
                                         <span class="vs-side-post__title"><?php echo esc_html(wp_trim_words(get_the_title(), 14, '…')); ?></span>
-                                        <span class="vs-side-post__date"><?php dragon_the_icon('calendar'); ?> <?php echo esc_html(get_the_date()); ?></span>
+                                        <span class="vs-side-post__date"><?php vinasite_the_icon('calendar'); ?> <?php echo esc_html(get_the_date()); ?></span>
                                     </span>
                                 </a>
                             <?php endwhile; ?>
@@ -136,7 +136,7 @@ while (have_posts()) : the_post();
                                         </span>
                                         <span class="vs-side-post__body">
                                             <span class="vs-side-post__title"><?php echo esc_html(wp_trim_words(get_the_title(), 14, '…')); ?></span>
-                                            <span class="vs-side-post__date"><?php dragon_the_icon('calendar'); ?> <?php echo esc_html(get_the_date()); ?></span>
+                                            <span class="vs-side-post__date"><?php vinasite_the_icon('calendar'); ?> <?php echo esc_html(get_the_date()); ?></span>
                                         </span>
                                     </a>
                                 <?php endwhile; ?>
@@ -151,12 +151,12 @@ while (have_posts()) : the_post();
                 <div class="vs-widget vs-side-cta">
                     <?php
                     // Chữ CTA lấy từ option (site/child tự đặt), có mặc định trung tính.
-                    $vs_cta_title = dragon_opt('side_cta_title') !== '' ? dragon_opt('side_cta_title') : 'Tư vấn miễn phí';
-                    $vs_cta_text  = dragon_opt('side_cta_text') !== '' ? dragon_opt('side_cta_text') : 'Gọi ngay để được tiếp nhận và tư vấn miễn phí.';
+                    $vs_cta_title = vinasite_opt('side_cta_title') !== '' ? vinasite_opt('side_cta_title') : 'Tư vấn miễn phí';
+                    $vs_cta_text  = vinasite_opt('side_cta_text') !== '' ? vinasite_opt('side_cta_text') : 'Gọi ngay để được tiếp nhận và tư vấn miễn phí.';
                     ?>
                     <h3 class="vs-widget__title"><?php echo esc_html($vs_cta_title); ?></h3>
                     <p><?php echo esc_html($vs_cta_text); ?></p>
-                    <a class="dragon-btn dragon-btn--primary dragon-btn--block" href="tel:<?php echo esc_attr(dragon_tel('phone')); ?>"><?php dragon_the_icon('phone'); ?><?php echo esc_html(dragon_opt('phone')); ?></a>
+                    <a class="dragon-btn dragon-btn--primary dragon-btn--block" href="tel:<?php echo esc_attr(vinasite_tel('phone')); ?>"><?php vinasite_the_icon('phone'); ?><?php echo esc_html(vinasite_opt('phone')); ?></a>
                 </div>
             </aside>
         </div>

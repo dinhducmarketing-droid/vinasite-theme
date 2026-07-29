@@ -268,8 +268,8 @@ function vinasite_sc_td_youtube($atts)
 /* ---- Go Pricing (data lost) → contact fallback ---- */
 function vinasite_sc_go_pricing($atts)
 {
-    $phone = function_exists('dragon_opt') ? dragon_opt('phone') : '';
-    $tel   = function_exists('dragon_tel') ? dragon_tel('phone') : preg_replace('/[^0-9]/', '', $phone);
+    $phone = function_exists('vinasite_opt') ? vinasite_opt('phone') : '';
+    $tel   = function_exists('vinasite_tel') ? vinasite_tel('phone') : preg_replace('/[^0-9]/', '', $phone);
     return '<div class="vs-pricing-cta dragon-card">'
         . '<h3>Nhận báo giá dịch vụ chi tiết</h3>'
         . '<p>Mức phí được xác định theo quy mô và yêu cầu cụ thể của từng hồ sơ. Vui lòng liên hệ để nhận báo giá chính xác và tư vấn miễn phí.</p>'
@@ -302,7 +302,7 @@ function vinasite_sc_strip($atts = array(), $content = '')
 /** [elfsight_click_to_call] (widget plugin removed) → a real call button. */
 function vinasite_sc_elfsight_call($atts = array())
 {
-    $phone = function_exists('dragon_opt') ? dragon_opt('phone') : '';
+    $phone = function_exists('vinasite_opt') ? vinasite_opt('phone') : '';
     $tel   = preg_replace('/[^0-9+]/', '', $phone);
     if (!$tel) {
         return '';

@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
  * Read an ACF sub-field from the existing dia_chi_lien_he option repeater.
  * Cached per-request so we don't loop the repeater on every call.
  */
-function dragon_acf_contact($key)
+function vinasite_acf_contact($key)
 {
     static $cache = null;
     if ($cache === null) {
@@ -42,7 +42,7 @@ function dragon_acf_contact($key)
  * @param string $key
  * @return string
  */
-function dragon_opt($key)
+function vinasite_opt($key)
 {
     // Mặc định TRUNG TÍNH cho theme tái dùng — mỗi site tự nhập ở Customizer.
     // (Site cũ đã "chốt" giá trị riêng vào theme_mods nên không bị ảnh hưởng.)
@@ -73,8 +73,12 @@ function dragon_opt($key)
         'cta_img'      => '',
     );
 
-    // 1) Customizer override.
-    $mod = get_theme_mod('dragon_' . $key, '');
+    // 1) Customizer override. Đọc-kép: khóa mới 'vinasite_' trước, trống thì khóa
+    //    cũ 'dragon_' (tương thích site chưa migrate DB — không mất cấu hình).
+    $mod = get_theme_mod('vinasite_' . $key, '');
+    if ($mod === '' || $mod === false) {
+        $mod = get_theme_mod('dragon_' . $key, '');
+    }
     if ($mod !== '' && $mod !== false) {
         return $mod;
     }
@@ -88,7 +92,7 @@ function dragon_opt($key)
         'noi_cap'      => 'noi_cap',
     );
     if (isset($acf_map[$key])) {
-        $v = dragon_acf_contact($acf_map[$key]);
+        $v = vinasite_acf_contact($acf_map[$key]);
         if ($v !== '') {
             return $v;
         }
@@ -99,20 +103,20 @@ function dragon_opt($key)
 }
 
 /** Digits-only phone for tel: / zalo links. */
-function dragon_tel($key = 'phone')
+function vinasite_tel($key = 'phone')
 {
-    return preg_replace('/[^0-9+]/', '', dragon_opt($key));
+    return preg_replace('/[^0-9+]/', '', vinasite_opt($key));
 }
 
 /**
  * Tên thương hiệu hiển thị TRONG NỘI DUNG (thân thiện): company_short → company_name → tên site.
  * Dùng trong tiêu đề/đoạn văn các trang giới thiệu để tái dùng cho mọi site.
  */
-function dragon_brand()
+function vinasite_brand()
 {
-    $s = dragon_opt('company_short');
+    $s = vinasite_opt('company_short');
     if ($s !== '') { return $s; }
-    $c = dragon_opt('company_name');
+    $c = vinasite_opt('company_name');
     return $c !== '' ? $c : get_bloginfo('name');
 }
 
@@ -120,14 +124,14 @@ function dragon_brand()
  * URL logo của site: ưu tiên Logo site (custom_logo) → tùy chọn 'logo' (URL) → rỗng.
  * Rỗng thì header/footer hiển thị tên site bằng chữ.
  */
-function dragon_logo_url()
+function vinasite_logo_url()
 {
     $id = get_theme_mod('custom_logo');
     if ($id) {
         $url = wp_get_attachment_image_url($id, 'full');
         if ($url) { return $url; }
     }
-    return dragon_opt('logo');
+    return vinasite_opt('logo');
 }
 
 /**
@@ -135,7 +139,7 @@ function dragon_logo_url()
  * permalink, then home). Categories on this site use NESTED hierarchical URLs,
  * so we must never hard-code "/chuyen-muc/<slug>/" (those redirect to home).
  */
-function dragon_cat_url($slug)
+function vinasite_cat_url($slug)
 {
     static $cache = array();
     if (isset($cache[$slug])) {
@@ -155,19 +159,21 @@ function dragon_cat_url($slug)
 /**
  * Lĩnh vực / nhóm dịch vụ — dùng ở mega menu, lưới, footer, bộ chọn vấn đề.
  * Theme cha để TRỐNG (generic). Child theme theo ngành bơm dữ liệu qua filter
- * 'dragon_practice_areas'. Site không có child → mảng rỗng, các khối tự ẩn.
+ * 'vinasite_practice_areas'. Site không có child → mảng rỗng, các khối tự ẩn.
  */
-function dragon_practice_areas()
+function vinasite_practice_areas()
 {
-    if (get_theme_mod('dragon_practice_areas_off')) { return array(); }
-    return apply_filters('dragon_practice_areas', array());
+    if (get_theme_mod('vinasite_practice_areas_off', get_theme_mod('dragon_practice_areas_off'))) { return array(); }
+    $data = apply_filters('vinasite_practice_areas', array());
+    return apply_filters('dragon_practice_areas', $data); // compat: child theme cũ hook tên dragon_
 }
 
 /**
  * Hero slides trang chủ — theme cha để TRỐNG. Child theme theo ngành bơm qua
- * filter 'dragon_hero_slides'.
+ * filter 'vinasite_hero_slides'.
  */
-function dragon_hero_slides()
+function vinasite_hero_slides()
 {
-    return apply_filters('dragon_hero_slides', array());
+    $data = apply_filters('vinasite_hero_slides', array());
+    return apply_filters('dragon_hero_slides', $data); // compat: child theme cũ hook tên dragon_
 }

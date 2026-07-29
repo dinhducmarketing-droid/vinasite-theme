@@ -23,8 +23,8 @@ if (!defined('ABSPATH')) {
 add_filter('block_editor_settings_all', 'vinasite_editor_tokens');
 function vinasite_editor_tokens($settings)
 {
-    if (function_exists('dragon_design_tokens_css')) {
-        $settings['styles'][] = array('css' => dragon_design_tokens_css());
+    if (function_exists('vinasite_design_tokens_css')) {
+        $settings['styles'][] = array('css' => vinasite_design_tokens_css());
     }
     return $settings;
 }
@@ -418,11 +418,11 @@ function vinasite_form_shortcode()
             <div class="dragon-field dragon-field--full">
                 <label class="dragon-consent">
                     <input type="checkbox" name="dragon_consent" value="1" required/>
-                    <span>Tôi đồng ý cho <?php echo esc_html(dragon_brand()); ?> liên hệ và xử lý thông tin tôi cung cấp. <span class="req">*</span></span>
+                    <span>Tôi đồng ý cho <?php echo esc_html(vinasite_brand()); ?> liên hệ và xử lý thông tin tôi cung cấp. <span class="req">*</span></span>
                 </label>
             </div>
             <div class="dragon-field dragon-field--full">
-                <button type="submit" class="dragon-btn dragon-btn--primary dragon-btn--block"><?php dragon_the_icon('mail'); ?>Gửi yêu cầu tư vấn</button>
+                <button type="submit" class="dragon-btn dragon-btn--primary dragon-btn--block"><?php vinasite_the_icon('mail'); ?>Gửi yêu cầu tư vấn</button>
             </div>
         </div>
     </form>

@@ -21,7 +21,7 @@ $features = vinasite_home_features();
         <div class="vs-grid vs-grid--3">
             <?php foreach ($features as $f) : ?>
                 <article class="dragon-card vs-feature dragon-reveal">
-                    <span class="dragon-ico-chip"><?php dragon_the_icon($f['icon']); ?></span>
+                    <span class="dragon-ico-chip"><?php vinasite_the_icon($f['icon']); ?></span>
                     <h3 class="vs-feature__title"><?php echo esc_html($f['title']); ?></h3>
                     <p class="vs-feature__desc"><?php echo esc_html($f['desc']); ?></p>
                 </article>

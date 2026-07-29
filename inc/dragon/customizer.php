@@ -10,8 +10,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-add_action('customize_register', 'dragon_customize_register');
-function dragon_customize_register($wp_customize)
+add_action('customize_register', 'vinasite_customize_register');
+function vinasite_customize_register($wp_customize)
 {
     $wp_customize->add_section('dragon_business', array(
         'title'    => 'VinaSite – Thông tin & Trang chủ',

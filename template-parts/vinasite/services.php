@@ -21,11 +21,11 @@ $services = vinasite_home_services();
         <div class="vs-grid vs-grid--3">
             <?php foreach ($services as $s) : ?>
                 <article class="dragon-card vs-service dragon-reveal">
-                    <span class="dragon-ico-chip"><?php dragon_the_icon($s['icon']); ?></span>
+                    <span class="dragon-ico-chip"><?php vinasite_the_icon($s['icon']); ?></span>
                     <h3 class="vs-service__title"><?php echo esc_html($s['title']); ?></h3>
                     <p class="vs-service__desc"><?php echo esc_html($s['desc']); ?></p>
                     <a class="vs-service__link" href="#dragon-consultation">
-                        Tư vấn dịch vụ này<?php dragon_the_icon('arrow-right'); ?>
+                        Tư vấn dịch vụ này<?php vinasite_the_icon('arrow-right'); ?>
                     </a>
                 </article>
             <?php endforeach; ?>

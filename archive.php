@@ -40,7 +40,7 @@ if ($vs_term && !is_wp_error($vs_term)) {
         </nav>
         <div class="vs-blog-hero__grid">
             <div class="vs-blog-hero__main">
-                <span class="vs-blog-badge"><?php dragon_the_icon('folder'); ?> Tin tức &amp; kiến thức</span>
+                <span class="vs-blog-badge"><?php vinasite_the_icon('folder'); ?> Tin tức &amp; kiến thức</span>
                 <h1 class="vs-blog-hero__title"><?php echo esc_html($vs_title); ?></h1>
                 <p class="vs-blog-hero__desc">
                     <?php
@@ -92,7 +92,7 @@ if ($vs_term && !is_wp_error($vs_term)) {
             ?>
             <label class="dragon-visually-hidden" for="vs-blog-s">Tìm kiếm</label>
             <input type="search" id="vs-blog-s" name="s" class="vs-blog-search__input" placeholder="Tìm kiếm bài viết trong chuyên mục…" value="<?php echo esc_attr(get_search_query()); ?>"/>
-            <button type="submit" class="dragon-btn dragon-btn--primary vs-blog-search__btn"><?php dragon_the_icon('help'); ?>Tìm kiếm</button>
+            <button type="submit" class="dragon-btn dragon-btn--primary vs-blog-search__btn"><?php vinasite_the_icon('help'); ?>Tìm kiếm</button>
         </form>
 
         <?php if (have_posts()) : ?>

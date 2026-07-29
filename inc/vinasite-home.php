@@ -97,8 +97,8 @@ function vinasite_info($key)
     );
 
     if ($key !== 'brand' && $key !== 'website') {
-        $tuy_chinh = dragon_opt($key);
-        // dragon_opt('company_name') fallback về tên site nên phải loại trường hợp đó.
+        $tuy_chinh = vinasite_opt($key);
+        // vinasite_opt('company_name') fallback về tên site nên phải loại trường hợp đó.
         if ($tuy_chinh !== '' && $tuy_chinh !== get_bloginfo('name')) {
             return $tuy_chinh;
         }

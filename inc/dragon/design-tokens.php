@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
 }
 
 /** Trộn 2 màu hex theo tỉ lệ $w (0..1 phần của $mix). Trả về hex. */
-function dragon_mix($hex, $mix, $w)
+function vinasite_mix($hex, $mix, $w)
 {
     $parse = function ($h) {
         $h = ltrim((string) $h, '#');
@@ -66,7 +66,7 @@ function vinasite_logo_palette()
 }
 
 /** Danh mục phông chữ hỗ trợ (Google Fonts). */
-function dragon_font_map()
+function vinasite_font_map()
 {
     return array(
         'be-vietnam' => array('label' => 'Be Vietnam Pro (mặc định)', 'query' => 'Be+Vietnam+Pro:wght@400;600;700', 'stack' => '"Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'),
@@ -79,9 +79,9 @@ function dragon_font_map()
 }
 
 /** Font đang chọn (fallback về be-vietnam). */
-function dragon_font_current()
+function vinasite_font_current()
 {
-    $map = dragon_font_map();
+    $map = vinasite_font_map();
     $key = get_theme_mod('dragon_font_family', 'be-vietnam');
     if (!isset($map[$key])) { $key = 'be-vietnam'; }
     $data = $map[$key];
@@ -90,14 +90,14 @@ function dragon_font_current()
 }
 
 /** Sanitize lựa chọn font. */
-function dragon_sanitize_font($val)
+function vinasite_sanitize_font($val)
 {
-    return array_key_exists($val, dragon_font_map()) ? $val : 'be-vietnam';
+    return array_key_exists($val, vinasite_font_map()) ? $val : 'be-vietnam';
 }
 
 /** Đăng ký mục Customizer "Màu sắc & Font". */
-add_action('customize_register', 'dragon_design_customize');
-function dragon_design_customize($wp_customize)
+add_action('customize_register', 'vinasite_design_customize');
+function vinasite_design_customize($wp_customize)
 {
     $wp_customize->add_section('dragon_design', array(
         'title'    => 'VinaSite – Màu sắc & Phông chữ',
@@ -128,9 +128,9 @@ function dragon_design_customize($wp_customize)
 
     // Phông chữ
     $choices = array();
-    foreach (dragon_font_map() as $k => $f) { $choices[$k] = $f['label']; }
+    foreach (vinasite_font_map() as $k => $f) { $choices[$k] = $f['label']; }
     $wp_customize->add_setting('dragon_font_family', array(
-        'default' => 'be-vietnam', 'sanitize_callback' => 'dragon_sanitize_font', 'transport' => 'refresh',
+        'default' => 'be-vietnam', 'sanitize_callback' => 'vinasite_sanitize_font', 'transport' => 'refresh',
     ));
     $wp_customize->add_control('dragon_font_family', array(
         'label'    => 'Phông chữ toàn site',
@@ -146,7 +146,7 @@ function dragon_design_customize($wp_customize)
  * soạn thảo block — editor cần đúng biến này để bảng màu theme.json hiển thị
  * đúng màu thương hiệu từng site).
  */
-function dragon_design_tokens_css()
+function vinasite_design_tokens_css()
 {
     $vars  = array();
     $them  = ''; // CSS bổ sung ngoài :root
@@ -161,11 +161,11 @@ function dragon_design_tokens_css()
         $primary = $primary_mod ? $primary_mod : ($la_vinasite ? '#1e5aa8' : '#4a2c17');
         $accent  = $accent_mod ? $accent_mod : ($la_vinasite ? '#e51e22' : '#d99a1c');
         $vars['--dragon-primary']       = $primary;
-        $vars['--dragon-primary-dark']  = dragon_mix($primary, '#000000', 0.22);
-        $vars['--dragon-secondary']     = dragon_mix($primary, '#ffffff', 0.22);
+        $vars['--dragon-primary-dark']  = vinasite_mix($primary, '#000000', 0.22);
+        $vars['--dragon-secondary']     = vinasite_mix($primary, '#ffffff', 0.22);
         $vars['--dragon-accent']        = $accent;
-        $vars['--dragon-accent-hover']  = dragon_mix($accent, '#000000', 0.16);
-        $vars['--dragon-gold-text']     = dragon_mix($accent, '#000000', 0.42);
+        $vars['--dragon-accent-hover']  = vinasite_mix($accent, '#000000', 0.16);
+        $vars['--dragon-gold-text']     = vinasite_mix($accent, '#000000', 0.42);
     } elseif ($la_vinasite) {
         // Chưa chọn màu + đang dùng giao diện VinaSite → đồng bộ theo màu logo.
         // (Site preset khác không vào nhánh này nên giữ nguyên tông mặc định.)
@@ -179,7 +179,7 @@ function dragon_design_tokens_css()
     }
 
     // Font: luôn xuất theo lựa chọn (mặc định = be-vietnam = giống hiện tại).
-    $font = dragon_font_current();
+    $font = vinasite_font_current();
     $vars['--dragon-font'] = $font['stack'];
 
     $css = ':root{';
@@ -190,8 +190,8 @@ function dragon_design_tokens_css()
 }
 
 /** Xuất CSS ghi đè token màu/font ra frontend. */
-add_action('wp_enqueue_scripts', 'dragon_output_design_tokens', 30);
-function dragon_output_design_tokens()
+add_action('wp_enqueue_scripts', 'vinasite_output_design_tokens', 30);
+function vinasite_output_design_tokens()
 {
-    wp_add_inline_style('dragon-base', dragon_design_tokens_css());
+    wp_add_inline_style('dragon-base', vinasite_design_tokens_css());
 }
