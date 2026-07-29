@@ -1,10 +1,10 @@
 <?php
 /**
- * Dragon Law Firm – site header (child theme override).
+ * VinaSite – site header. Generic; child theme theo ngành có thể ghi đè.
  * Self-contained, semantic, accessible. Works site-wide; the redesigned
  * homepage sections live in front-page.php.
  *
- * @package ntgsite-dragon
+ * @package vinasite
  */
 if (!defined('ABSPATH')) {
     exit;
@@ -49,8 +49,8 @@ $logo_txt = dragon_opt('company_name') ? dragon_opt('company_name') : get_blogin
 $phone    = dragon_opt('phone');
 $vinasite_che_do = vinasite_home_preset();
 $vs_moi   = $vinasite_che_do === 'vinasite'; // site cài mới
-// Site hãng luật đang chạy: preset 'dragon' đã bỏ từ 1.5.0 nên biểu thức gốc luôn
-// false — child hãng luật ép true qua filter để giữ topbar gọn (ẩn địa chỉ + giờ).
+// preset 'dragon' đã bỏ từ 1.5.0 nên biểu thức gốc luôn false — child theo ngành
+// có thể ép true qua filter để giữ topbar gọn (ẩn địa chỉ + giờ).
 $la_dragon = apply_filters('vinasite_la_dragon', $vinasite_che_do === 'dragon');
 
 // CTA header cấu hình được per-site (Customizer); mặc định giữ hành vi cũ.
@@ -63,8 +63,7 @@ $cta_url  = dragon_opt('cta_url') !== '' ? dragon_opt('cta_url') : '#dragon-cons
     <div class="dragon-topbar">
         <div class="dragon-container dragon-topbar__inner dragon-topbar__inner--right">
             <ul class="dragon-topbar__list dragon-topbar__list--secondary">
-                <?php // Địa chỉ + giờ làm trên topbar: KHÔNG hiện ở site công ty luật để
-                      // giữ nguyên topbar gọn như họ đang chạy. ?>
+                <?php // Địa chỉ + giờ làm trên topbar: ẩn khi child bật $la_dragon (giữ topbar gọn). ?>
                 <?php if (!$la_dragon && dragon_opt('address') !== '') : ?>
                     <li class="dragon-topbar__address"><?php dragon_the_icon('map-pin'); ?><span><?php echo esc_html(dragon_opt('address')); ?></span></li>
                 <?php endif; ?>

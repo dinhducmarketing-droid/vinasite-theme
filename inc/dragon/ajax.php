@@ -1,10 +1,10 @@
 <?php
 /**
- * Dragon – consultation form handler (AJAX + no-JS fallback).
+ * VinaSite – consultation form handler (AJAX + no-JS fallback).
  * Security: nonce, honeypot, rate-limit (transient), full sanitisation, safe
  * upload validation, and no sensitive data in the email subject.
  *
- * @package ntgsite-dragon
+ * @package vinasite
  */
 if (!defined('ABSPATH')) {
     exit;

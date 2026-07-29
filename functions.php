@@ -2,7 +2,7 @@
 /**
  * Vinasite theme – standalone functions.
  *
- * Built entirely from the original "Dragon" design code (no Flatsome / no
+ * Built entirely as a self-contained VinaSite theme (no Flatsome / no
  * commercial-theme dependency). Reuses the same nav-menu location slugs as the
  * previous setup so existing menu assignments keep working after switching.
  *
@@ -48,7 +48,7 @@ if (!isset($content_width)) {
 }
 
 /* -------------------------------------------------------------------------
- * Dragon system (config, icons, customizer, ajax, schema, enqueue)
+ * VinaSite core system (config, icons, customizer, ajax, schema, enqueue)
  * ---------------------------------------------------------------------- */
 require_once get_template_directory() . '/inc/dragon/bootstrap.php';
 

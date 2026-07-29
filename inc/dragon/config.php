@@ -1,13 +1,13 @@
 <?php
 /**
- * Dragon Law Firm – Central configuration & Customizer.
+ * VinaSite – Central configuration & Customizer.
  *
  * Single source of truth for business info, phones, Zalo, form recipient,
  * hero slides and service data. Editable in Admin via Appearance > Customize
- * ("Dragon – Thông tin & Trang chủ"). Falls back to the existing ACF
+ * ("VinaSite – Thông tin & Trang chủ"). Falls back to the existing ACF
  * "dia_chi_lien_he" option group so nothing is duplicated.
  *
- * @package ntgsite-dragon
+ * @package vinasite
  */
 
 if (!defined('ABSPATH')) {

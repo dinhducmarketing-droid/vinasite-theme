@@ -1,8 +1,8 @@
 <?php
 /**
- * Dragon Law Firm – site footer (child theme override).
+ * VinaSite – site footer. Generic; child theme theo ngành có thể ghi đè.
  *
- * @package ntgsite-dragon
+ * @package vinasite
  */
 if (!defined('ABSPATH')) {
     exit;
@@ -16,7 +16,7 @@ $areas    = dragon_practice_areas();
 
 $vinasite_che_do = vinasite_home_preset();
 $vs_moi    = $vinasite_che_do === 'vinasite'; // site cài mới
-$la_dragon = $vinasite_che_do === 'dragon';   // site công ty luật đang chạy
+$la_dragon = apply_filters('vinasite_la_dragon', $vinasite_che_do === 'dragon'); // child theo ngành ép qua filter
 ?>
 </main>
 
@@ -121,7 +121,7 @@ $la_dragon = $vinasite_che_do === 'dragon';   // site công ty luật đang ch�
             <?php
             // Danh sách mạng xã hội ở chân trang — mỗi mục: ['url','label','icon' (HTML SVG)].
             // Mặc định: Facebook + YouTube từ Customizer (icon đơn sắc). Site có thể bổ sung/
-            // thay bằng icon màu qua filter `vinasite_footer_socials` (child hãng luật dùng).
+            // thay bằng icon màu qua filter `vinasite_footer_socials` (child theo ngành dùng).
             $vs_socials = array();
             if (dragon_opt('facebook')) { $vs_socials[] = array('url' => dragon_opt('facebook'), 'label' => 'Facebook', 'icon' => dragon_icon('facebook')); }
             if (dragon_opt('youtube'))  { $vs_socials[] = array('url' => dragon_opt('youtube'),  'label' => 'YouTube',  'icon' => dragon_icon('youtube')); }

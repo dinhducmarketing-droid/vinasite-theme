@@ -1,9 +1,9 @@
 <?php
 /**
- * Dragon – WordPress Customizer panel.
+ * VinaSite – WordPress Customizer panel.
  * Native (no plugin) admin editing for the centralised business info & links.
  *
- * @package ntgsite-dragon
+ * @package vinasite
  */
 
 if (!defined('ABSPATH')) {

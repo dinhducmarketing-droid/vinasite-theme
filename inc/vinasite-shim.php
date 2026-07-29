@@ -6,7 +6,7 @@
  * shortcodes ([section][row][col][ux_*] …) plus one custom [ntg_page_title].
  * When VinaSite is active (Flatsome/ntgsite gone) these shortcodes would print
  * as raw text. This shim renders them as clean, responsive HTML using the
- * Dragon design system so those pages keep working.
+ * VinaSite design system so those pages keep working.
  *
  * Only shortcodes actually used by the live pages are implemented. It does NOT
  * try to reproduce Flatsome pixel-for-pixel — it produces readable, on-brand

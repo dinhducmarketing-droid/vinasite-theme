@@ -6,7 +6,7 @@
  *              builder chạy qua shim). Dùng cho site di cư từ Flatsome.
  *  - vinasite: giới thiệu theme VinaSite + dịch vụ (mặc định, site cài mới).
  *
- * Nội dung chuyên biệt theo lĩnh vực (vd hãng luật) do CHILD THEME cung cấp:
+ * Nội dung chuyên biệt theo lĩnh vực do CHILD THEME cung cấp:
  * child ghi đè front-page.php này. Theme cha không chứa nội dung ngành nghề nào.
  *
  * @package vinasite

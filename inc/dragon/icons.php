@@ -1,10 +1,10 @@
 <?php
 /**
- * Dragon inline SVG icon system.
+ * VinaSite inline SVG icon system.
  * Uniform 24x24 viewBox, stroke-based, currentColor. Decorative by default
  * (aria-hidden). Pass $title to make it meaningful for assistive tech.
  *
- * @package ntgsite-dragon
+ * @package vinasite
  */
 
 if (!defined('ABSPATH')) {

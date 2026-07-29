@@ -1,6 +1,6 @@
 <?php
 /**
- * Dragon – bootstrap: load modules and enqueue assets.
+ * VinaSite – bootstrap: load modules and enqueue assets.
  * Nạp từ functions.php của theme.
  *
  * PHẢI dùng get_template_directory() (thư mục theme CHA), không phải
@@ -8,7 +8,7 @@
  * trỏ vào thư mục child → không tìm thấy các file này → fatal error, sập site.
  * (Tàn dư từ thời theme này còn là child theme của Flatsome.)
  *
- * @package ntgsite-dragon
+ * @package vinasite
  */
 if (!defined('ABSPATH')) {
     exit;
@@ -28,7 +28,7 @@ require_once get_template_directory() . '/inc/vinasite-license.php';
 require_once get_template_directory() . '/inc/vinasite-bundled-plugin.php';
 require_once get_template_directory() . '/inc/vinasite-theme-updater.php';
 
-define('DRAGON_ASSET_VER', '1.6.7');
+define('DRAGON_ASSET_VER', '1.6.8');
 
 add_action('wp_enqueue_scripts', 'dragon_enqueue_assets', 20);
 function dragon_enqueue_assets()

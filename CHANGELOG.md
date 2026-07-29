@@ -3,6 +3,9 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.6.8] — 2026-07
+- Dọn sạch mọi chữ "Dragon" / "hãng luật" / "công ty luật" trong comment, docblock và nhãn admin của theme cha — theme đọc ra là sản phẩm VinaSite độc lập, không dính gốc theme luật. (Tên hàm `dragon_*` và class `.dragon-*` GIỮ NGUYÊN vì là hợp đồng API mà 3 child theme khách đang gọi — đổi là sập site; đây là định danh nội bộ, không hiển thị cho ai.)
+
 ## [1.6.7] — 2026-07
 - Cột Liên hệ chân trang: nút "Chỉ đường ›" (Google Maps, mở tab mới) cạnh mỗi địa chỉ — trụ sở qua filter `vinasite_footer_main_map`, văn phòng phụ qua khóa `map` trong `vinasite_footer_extra_offices`.
 

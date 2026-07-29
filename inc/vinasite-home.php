@@ -6,7 +6,7 @@
  *  - "vinasite" (MẶC ĐỊNH): giới thiệu theme VinaSite + dịch vụ của VinaSite.
  *  - "content": render nội dung trang chủ tự soạn trong WordPress (site di cư).
  *
- * Nội dung chuyên ngành (vd hãng luật) do CHILD THEME cung cấp bằng cách ghi đè
+ * Nội dung chuyên ngành do CHILD THEME cung cấp bằng cách ghi đè
  * front-page.php — theme cha không chứa nội dung ngành nghề nào.
  *
  * @package vinasite

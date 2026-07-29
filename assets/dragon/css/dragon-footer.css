@@ -25,8 +25,10 @@
 .dragon-footer__meta { font-size: .9rem; line-height: 1.9; }
 .dragon-footer__meta strong { color: #fff; }
 
-.dragon-footer__contact li { display: flex; gap: .6rem; margin-bottom: .8rem; font-size: .92rem; line-height: 1.55; align-items: flex-start; }
-.dragon-footer__contact .dragon-ico { width: 18px; height: 18px; color: var(--dragon-accent); flex: none; margin-top: 3px; }
+.dragon-footer__contact li { display: flex; gap: .6rem; margin-bottom: .95rem; font-size: .92rem; line-height: 1.62; align-items: flex-start; }
+.dragon-footer__contact .dragon-ico { width: 18px; height: 18px; color: var(--dragon-accent); flex: none; margin-top: .28em; }
+/* Nhãn văn phòng (VPGD, Chi nhánh) tách dòng riêng cho gọn, địa chỉ xuống dưới. */
+.dragon-footer__contact li span strong { display: block; margin-bottom: .1rem; }
 .dragon-footer ul { list-style: none; margin: 0; padding: 0; }
 .dragon-footer__links li { margin-bottom: .6rem; font-size: .92rem; }
 .dragon-footer__links a { display: inline-flex; align-items: center; gap: .4rem; }
