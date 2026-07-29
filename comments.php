@@ -30,7 +30,7 @@ if (post_password_required()) {
     <?php
     comment_form(array(
         'title_reply'        => 'Gửi bình luận',
-        'class_submit'       => 'dragon-btn dragon-btn--primary',
+        'class_submit'       => 'vs-btn vs-btn--primary',
         'label_submit'       => 'Gửi bình luận',
         'comment_notes_after' => '',
     ));

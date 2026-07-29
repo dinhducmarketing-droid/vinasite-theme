@@ -35,11 +35,11 @@ if (!defined('ABSPATH')) {
 
 <?php // Class "vinasite-moi" chỉ có ở site cài mới — dùng để giới hạn phạm vi các
       // sửa lỗi CSS, không đụng tới site đang chạy. ?>
-<body <?php body_class(vinasite_home_preset() === 'vinasite' ? 'dragon-scope vinasite-moi' : 'dragon-scope'); ?>>
+<body <?php body_class(vinasite_home_preset() === 'vinasite' ? 'vs-scope vinasite-moi' : 'vs-scope'); ?>>
 <?php if (function_exists('wp_body_open')) { wp_body_open(); } ?>
 <?php do_action('flatsome_after_body_open'); ?>
 
-<a class="dragon-skip-link" href="#main"><?php esc_html_e('Chuyển đến nội dung chính', 'flatsome'); ?></a>
+<a class="vs-skip-link" href="#main"><?php esc_html_e('Chuyển đến nội dung chính', 'flatsome'); ?></a>
 
 <div id="wrapper">
 
@@ -49,25 +49,24 @@ $logo_txt = vinasite_opt('company_name') ? vinasite_opt('company_name') : get_bl
 $phone    = vinasite_opt('phone');
 $vinasite_che_do = vinasite_home_preset();
 $vs_moi   = $vinasite_che_do === 'vinasite'; // site cài mới
-// preset 'dragon' đã bỏ từ 1.5.0 nên biểu thức gốc luôn false — child theo ngành
-// có thể ép true qua filter để giữ topbar gọn (ẩn địa chỉ + giờ).
-$la_dragon = apply_filters('vinasite_la_dragon', $vinasite_che_do === 'dragon');
+// Topbar gọn (ẩn địa chỉ + giờ làm): child theo ngành ép true qua filter.
+$la_nganh = apply_filters('vinasite_topbar_compact', false);
 
 // CTA header cấu hình được per-site (Customizer); mặc định giữ hành vi cũ.
 $cta_text = vinasite_opt('cta_text') !== '' ? vinasite_opt('cta_text') : ($vs_moi ? 'Nhận tư vấn' : 'Đặt lịch tư vấn');
-$cta_url  = vinasite_opt('cta_url') !== '' ? vinasite_opt('cta_url') : '#dragon-consultation';
+$cta_url  = vinasite_opt('cta_url') !== '' ? vinasite_opt('cta_url') : '#vs-consultation';
 ?>
-<header class="dragon-header" role="banner">
+<header class="vs-header" role="banner">
 
     <!-- Topbar -->
-    <div class="dragon-topbar">
-        <div class="dragon-container dragon-topbar__inner dragon-topbar__inner--right">
-            <ul class="dragon-topbar__list dragon-topbar__list--secondary">
-                <?php // Địa chỉ + giờ làm trên topbar: ẩn khi child bật $la_dragon (giữ topbar gọn). ?>
-                <?php if (!$la_dragon && vinasite_opt('address') !== '') : ?>
-                    <li class="dragon-topbar__address"><?php vinasite_the_icon('map-pin'); ?><span><?php echo esc_html(vinasite_opt('address')); ?></span></li>
+    <div class="vs-topbar">
+        <div class="vs-container vs-topbar__inner vs-topbar__inner--right">
+            <ul class="vs-topbar__list vs-topbar__list--secondary">
+                <?php // Địa chỉ + giờ làm trên topbar: ẩn khi child bật $la_nganh (giữ topbar gọn). ?>
+                <?php if (!$la_nganh && vinasite_opt('address') !== '') : ?>
+                    <li class="vs-topbar__address"><?php vinasite_the_icon('map-pin'); ?><span><?php echo esc_html(vinasite_opt('address')); ?></span></li>
                 <?php endif; ?>
-                <?php if (!$la_dragon && vinasite_opt('work_hours') !== '') : ?>
+                <?php if (!$la_nganh && vinasite_opt('work_hours') !== '') : ?>
                     <li><?php vinasite_the_icon('clock'); ?><span><?php echo esc_html(vinasite_opt('work_hours')); ?></span></li>
                 <?php endif; ?>
                 <?php // Site cài mới chưa nhập thì ẩn, tránh link "tel:" / "mailto:" rỗng. ?>
@@ -82,13 +81,13 @@ $cta_url  = vinasite_opt('cta_url') !== '' ? vinasite_opt('cta_url') : '#dragon-
     </div>
 
     <!-- Main bar -->
-    <div class="dragon-bar" id="dragon-bar">
-        <div class="dragon-container dragon-bar__inner">
-            <a class="dragon-logo" href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-                <?php if ($logo_url) : ?><img src="<?php echo esc_url($logo_url); ?>" width="180" height="56" alt="<?php echo esc_attr($logo_txt); ?>" fetchpriority="high" decoding="async"/><?php else : ?><span class="dragon-logo__text"><?php echo esc_html($logo_txt); ?></span><?php endif; ?>
+    <div class="vs-bar" id="vs-bar">
+        <div class="vs-container vs-bar__inner">
+            <a class="vs-logo" href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+                <?php if ($logo_url) : ?><img src="<?php echo esc_url($logo_url); ?>" width="180" height="56" alt="<?php echo esc_attr($logo_txt); ?>" fetchpriority="high" decoding="async"/><?php else : ?><span class="vs-logo__text"><?php echo esc_html($logo_txt); ?></span><?php endif; ?>
             </a>
 
-            <nav class="dragon-nav" aria-label="Menu chính">
+            <nav class="vs-nav" aria-label="Menu chính">
                 <?php
                 // Render the site's WordPress menu assigned to the "Main Menu" (primary)
                 // location so the admin manages it as before. Falls back to a minimal
@@ -97,38 +96,38 @@ $cta_url  = vinasite_opt('cta_url') !== '' ? vinasite_opt('cta_url') : '#dragon-
                     wp_nav_menu(array(
                         'theme_location' => 'primary',
                         'container'      => false,
-                        'menu_class'     => 'dragon-menu',
-                        'menu_id'        => 'dragon-menu',
+                        'menu_class'     => 'vs-menu',
+                        'menu_id'        => 'vs-menu',
                         'depth'          => 0,
                         'fallback_cb'    => false,
                     ));
                 } else {
-                    echo '<ul class="dragon-menu" id="dragon-menu">'
+                    echo '<ul class="vs-menu" id="vs-menu">'
                         . '<li><a href="' . esc_url(home_url('/')) . '">Trang chủ</a></li>'
                         . '</ul>';
                 }
                 ?>
             </nav>
 
-            <div class="dragon-header__actions">
-                <a class="dragon-btn dragon-btn--primary" href="<?php echo esc_url($cta_url); ?>">
-                    <?php vinasite_the_icon('calendar'); ?><span class="dragon-header__cta-text"><?php echo esc_html($cta_text); ?></span>
+            <div class="vs-header__actions">
+                <a class="vs-btn vs-btn--primary" href="<?php echo esc_url($cta_url); ?>">
+                    <?php vinasite_the_icon('calendar'); ?><span class="vs-header__cta-text"><?php echo esc_html($cta_text); ?></span>
                 </a>
-                <button class="dragon-burger" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="dragon-offcanvas" id="dragon-burger">
+                <button class="vs-burger" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="vs-offcanvas" id="vs-burger">
                     <?php vinasite_the_icon('menu'); ?>
                 </button>
             </div>
         </div>
     </div>
-    <div class="dragon-header__spacer" id="dragon-header-spacer"></div>
+    <div class="vs-header__spacer" id="vs-header-spacer"></div>
 </header>
 
 <!-- Off-canvas mobile -->
-<div class="dragon-overlay" id="dragon-overlay" hidden></div>
-<aside class="dragon-offcanvas" id="dragon-offcanvas" aria-hidden="true" aria-label="Menu di động">
-    <div class="dragon-offcanvas__head">
-        <?php if ($logo_url) : ?><img src="<?php echo esc_url($logo_url); ?>" width="140" height="44" alt="<?php echo esc_attr($logo_txt); ?>"/><?php else : ?><span class="dragon-logo__text"><?php echo esc_html($logo_txt); ?></span><?php endif; ?>
-        <button class="dragon-offcanvas__close" type="button" aria-label="Đóng menu" id="dragon-offcanvas-close"><?php vinasite_the_icon('close'); ?></button>
+<div class="vs-overlay" id="vs-overlay" hidden></div>
+<aside class="vs-offcanvas" id="vs-offcanvas" aria-hidden="true" aria-label="Menu di động">
+    <div class="vs-offcanvas__head">
+        <?php if ($logo_url) : ?><img src="<?php echo esc_url($logo_url); ?>" width="140" height="44" alt="<?php echo esc_attr($logo_txt); ?>"/><?php else : ?><span class="vs-logo__text"><?php echo esc_html($logo_txt); ?></span><?php endif; ?>
+        <button class="vs-offcanvas__close" type="button" aria-label="Đóng menu" id="vs-offcanvas-close"><?php vinasite_the_icon('close'); ?></button>
     </div>
     <?php
     // Same WordPress menu for the mobile off-canvas (JS adds collapse toggles).
@@ -136,20 +135,20 @@ $cta_url  = vinasite_opt('cta_url') !== '' ? vinasite_opt('cta_url') : '#dragon-
         wp_nav_menu(array(
             'theme_location' => 'primary',
             'container'      => false,
-            'menu_class'     => 'dragon-offcanvas__nav',
+            'menu_class'     => 'vs-offcanvas__nav',
             'depth'          => 0,
             'fallback_cb'    => false,
         ));
     } else {
-        echo '<ul class="dragon-offcanvas__nav"><li><a href="' . esc_url(home_url('/')) . '">Trang chủ</a></li></ul>';
+        echo '<ul class="vs-offcanvas__nav"><li><a href="' . esc_url(home_url('/')) . '">Trang chủ</a></li></ul>';
     }
     ?>
-    <div class="dragon-offcanvas__actions">
+    <div class="vs-offcanvas__actions">
         <?php if (!$vs_moi || $phone !== '') : ?>
-            <a class="dragon-btn dragon-btn--primary dragon-btn--block" href="tel:<?php echo esc_attr(vinasite_tel('phone')); ?>"><?php vinasite_the_icon('phone'); ?>Gọi <?php echo esc_html($phone); ?></a>
+            <a class="vs-btn vs-btn--primary vs-btn--block" href="tel:<?php echo esc_attr(vinasite_tel('phone')); ?>"><?php vinasite_the_icon('phone'); ?>Gọi <?php echo esc_html($phone); ?></a>
         <?php endif; ?>
-        <a class="dragon-btn dragon-btn--block" href="<?php echo esc_url($cta_url); ?>" data-dragon-close-menu><?php vinasite_the_icon('calendar'); ?><?php echo esc_html($cta_text); ?></a>
+        <a class="vs-btn vs-btn--block" href="<?php echo esc_url($cta_url); ?>" data-vs-close-menu><?php vinasite_the_icon('calendar'); ?><?php echo esc_html($cta_text); ?></a>
     </div>
 </aside>
 
-<main id="main" class="dragon-scope" role="main">
+<main id="main" class="vs-scope" role="main">

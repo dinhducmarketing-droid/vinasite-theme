@@ -60,7 +60,7 @@ function vinasite_icon($name, $title = '')
         ? 'role="img" aria-label="' . esc_attr($title) . '"'
         : 'aria-hidden="true" focusable="false"';
 
-    return '<svg class="dragon-ico dragon-ico--' . esc_attr($name) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" ' . $a11y . '>' . $paths[$name] . '</svg>';
+    return '<svg class="vs-ico vs-ico--' . esc_attr($name) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" ' . $a11y . '>' . $paths[$name] . '</svg>';
 }
 
 function vinasite_the_icon($name, $title = '')

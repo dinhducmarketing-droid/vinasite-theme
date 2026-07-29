@@ -1,4 +1,4 @@
-/* Dragon Law Firm – front-end behaviour. Vanilla JS, no dependencies.
+/* VinaSite Law Firm – front-end behaviour. Vanilla JS, no dependencies.
  * Progressive enhancement: everything degrades gracefully without JS. */
 (function () {
   'use strict';
@@ -12,8 +12,8 @@
 
   /* ---------- Sticky header ---------- */
   (function stickyHeader() {
-    var bar = $('#dragon-bar');
-    var spacer = $('#dragon-header-spacer');
+    var bar = $('#vs-bar');
+    var spacer = $('#vs-header-spacer');
     if (!bar || !spacer) return;
     var threshold = 160;
     function onScroll() {
@@ -34,7 +34,7 @@
 
   /* ---------- Desktop mega menu (hover + keyboard) ---------- */
   (function megaMenu() {
-    var items = $all('.dragon-has-mega');
+    var items = $all('.vs-has-mega');
     items.forEach(function (li) {
       var link = $('a[aria-haspopup]', li);
       var closeTimer;
@@ -55,22 +55,22 @@
 
   /* ---------- Off-canvas mobile menu ---------- */
   (function offcanvas() {
-    var burger = $('#dragon-burger');
-    var panel = $('#dragon-offcanvas');
-    var overlay = $('#dragon-overlay');
-    var closeBtn = $('#dragon-offcanvas-close');
+    var burger = $('#vs-burger');
+    var panel = $('#vs-offcanvas');
+    var overlay = $('#vs-overlay');
+    var closeBtn = $('#vs-offcanvas-close');
     if (!burger || !panel || !overlay) return;
     function open() {
       panel.classList.add('is-open'); overlay.hidden = false;
       requestAnimationFrame(function () { overlay.classList.add('is-open'); });
       panel.setAttribute('aria-hidden', 'false'); burger.setAttribute('aria-expanded', 'true');
-      doc.body.classList.add('dragon-menu-open');
+      doc.body.classList.add('vs-menu-open');
       var first = $('a, button', panel); if (first) first.focus();
     }
     function close() {
       panel.classList.remove('is-open'); overlay.classList.remove('is-open');
       panel.setAttribute('aria-hidden', 'true'); burger.setAttribute('aria-expanded', 'false');
-      doc.body.classList.remove('dragon-menu-open');
+      doc.body.classList.remove('vs-menu-open');
       setTimeout(function () { overlay.hidden = true; }, 280);
       burger.focus();
     }
@@ -78,16 +78,16 @@
     on(closeBtn, 'click', close);
     on(overlay, 'click', close);
     on(doc, 'keydown', function (e) { if (e.key === 'Escape' && panel.classList.contains('is-open')) close(); });
-    $all('[data-dragon-close-menu]', panel).forEach(function (a) { on(a, 'click', close); });
+    $all('[data-vs-close-menu]', panel).forEach(function (a) { on(a, 'click', close); });
     // Collapsible submenus for the WordPress menu (inject a caret toggle next to
     // each parent link; the link itself still navigates).
     var caretSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
-    $all('.dragon-offcanvas__nav .menu-item-has-children', panel).forEach(function (li) {
+    $all('.vs-offcanvas__nav .menu-item-has-children', panel).forEach(function (li) {
       var sub = li.querySelector(':scope > .sub-menu');
       if (!sub) return;
       var btn = doc.createElement('button');
       btn.type = 'button';
-      btn.className = 'dragon-oc-caret';
+      btn.className = 'vs-oc-caret';
       btn.setAttribute('aria-expanded', 'false');
       btn.setAttribute('aria-label', 'Mở rộng danh mục con');
       btn.innerHTML = caretSvg;
@@ -99,7 +99,7 @@
       });
     });
     // Legacy hardcoded toggles (fallback markup).
-    $all('.dragon-offcanvas__toggle', panel).forEach(function (btn) {
+    $all('.vs-offcanvas__toggle', panel).forEach(function (btn) {
       on(btn, 'click', function () {
         var sub = doc.getElementById(btn.getAttribute('aria-controls'));
         var open = btn.getAttribute('aria-expanded') === 'true';
@@ -111,11 +111,11 @@
 
   /* ---------- Hero slider ---------- */
   (function slider() {
-    var root = $('[data-dragon-slider]');
+    var root = $('[data-vs-slider]');
     if (!root) return;
-    var slides = $all('.dragon-hero__slide', root);
-    var dots = $all('[data-dragon-dot]', root);
-    var pauseBtn = $('[data-dragon-pause]', root);
+    var slides = $all('.vs-hero__slide', root);
+    var dots = $all('[data-vs-dot]', root);
+    var pauseBtn = $('[data-vs-pause]', root);
     if (slides.length < 2) { if (pauseBtn) pauseBtn.style.display = 'none'; return; }
     var index = 0, timer = null, playing = !reduceMotion;
     // Tốc độ trình chiếu cấu hình được per-site qua data-delay (ms); mặc định 6s.
@@ -148,7 +148,7 @@
     }
 
     dots.forEach(function (d) {
-      on(d, 'click', function () { show(parseInt(d.getAttribute('data-dragon-dot'), 10)); if (playing) start(); });
+      on(d, 'click', function () { show(parseInt(d.getAttribute('data-vs-dot'), 10)); if (playing) start(); });
     });
     on(pauseBtn, 'click', function () { setPlaying(!playing); });
     on(root, 'mouseenter', stop);
@@ -163,7 +163,7 @@
 
   /* ---------- FAQ accordion ---------- */
   (function faq() {
-    $all('.dragon-faq__q').forEach(function (btn) {
+    $all('.vs-faq__q').forEach(function (btn) {
       on(btn, 'click', function () {
         var panel = doc.getElementById(btn.getAttribute('aria-controls'));
         var open = btn.getAttribute('aria-expanded') === 'true';
@@ -176,17 +176,17 @@
   /* ---------- Problem selector → form ---------- */
   (function problems() {
     var map = { 'hinh-su': 'hinh-su', 'dat-dai': 'dat-dai', 'hon-nhan': 'hon-nhan', 'doanh-nghiep': 'doanh-nghiep', 'hop-dong': 'hop-dong', 'dan-su': 'dan-su' };
-    $all('[data-dragon-problem]').forEach(function (btn) {
+    $all('[data-vs-problem]').forEach(function (btn) {
       on(btn, 'click', function () {
-        var key = btn.getAttribute('data-dragon-problem');
-        var select = $('#dragon-area');
+        var key = btn.getAttribute('data-vs-problem');
+        var select = $('#vs-area');
         if (select) {
           var val = map[key] || 'khac';
           if ($('option[value="' + val + '"]', select)) select.value = val;
         }
-        var form = $('#dragon-consultation');
+        var form = $('#vs-consultation');
         if (form) form.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-        var nameField = $('#dragon-name');
+        var nameField = $('#vs-name');
         if (nameField) setTimeout(function () { nameField.focus(); }, reduceMotion ? 0 : 500);
       });
     });
@@ -194,13 +194,13 @@
 
   /* ---------- Legal-knowledge category tabs (client-side filter) ---------- */
   (function legalTabs() {
-    var root = $('#dragon-legal');
+    var root = $('#vs-legal');
     if (!root) return;
-    var tabs = $all('.dragon-tabs[role="tablist"] .dragon-tab', root);
-    var grid = $('#dragon-legal-grid', root);
+    var tabs = $all('.vs-tabs[role="tablist"] .vs-tab', root);
+    var grid = $('#vs-legal-grid', root);
     if (!tabs.length || !grid) return;
-    var cards = $all('.dragon-postcard', grid);
-    var empty = $('#dragon-legal-empty', root);
+    var cards = $all('.vs-postcard', grid);
+    var empty = $('#vs-legal-empty', root);
 
     function apply(filter) {
       var shown = 0;
@@ -242,19 +242,19 @@
 
   /* ---------- Consultation form (AJAX) ---------- */
   (function consultForm() {
-    var form = $('#dragon-consult-form');
-    if (!form || !window.DragonAjax) return;
-    var status = $('#dragon-form-status');
+    var form = $('#vs-consult-form');
+    if (!form || !window.VinasiteAjax) return;
+    var status = $('#vs-form-status');
     var submit = $('button[type="submit"]', form);
     on(form, 'submit', function (e) {
       e.preventDefault();
-      status.className = 'dragon-form__status';
+      status.className = 'vs-form__status';
       status.textContent = '';
       if (!form.checkValidity()) { form.reportValidity(); return; }
       submit.classList.add('is-loading');
       var data = new FormData(form);
-      data.append('action', 'dragon_consultation');
-      fetch(DragonAjax.url, { method: 'POST', body: data, credentials: 'same-origin' })
+      data.append('action', 'vinasite_consultation');
+      fetch(VinasiteAjax.url, { method: 'POST', body: data, credentials: 'same-origin' })
         .then(function (r) { return r.json(); })
         .then(function (res) {
           submit.classList.remove('is-loading');
@@ -270,12 +270,12 @@
     });
     // Reflect no-JS fallback redirect result.
     var params = new URLSearchParams(window.location.search);
-    if (params.get('dragon_sent') === '1') { status.textContent = 'Cảm ơn bạn! Yêu cầu đã được gửi.'; status.classList.add('is-ok'); }
+    if (params.get('vinasite_sent') === '1') { status.textContent = 'Cảm ơn bạn! Yêu cầu đã được gửi.'; status.classList.add('is-ok'); }
   })();
 
   /* ---------- Reveal on scroll ---------- */
   (function reveal() {
-    var els = $all('.dragon-reveal');
+    var els = $all('.vs-reveal');
     if (!els.length) return;
     if (reduceMotion || !('IntersectionObserver' in window)) {
       els.forEach(function (el) { el.classList.add('is-visible'); });

@@ -1,0 +1,44 @@
+/* ==========================================================================
+   VinaSite Home – responsive breakpoints
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .vs-practice__grid,
+  .vs-lawyers__grid,
+  .vs-ach__grid { grid-template-columns: repeat(2, 1fr); }
+  .vs-process__grid { grid-template-columns: repeat(2, 1fr); }
+  .vs-process__step::after { display: none; }
+  .vs-postgrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .vs-about__grid,
+  .vs-news__layout,
+  .vs-consult__grid { grid-template-columns: 1fr; }
+  .vs-about__media { order: -1; max-height: 360px; }
+  .vs-trust__grid { grid-template-columns: repeat(2, 1fr); }
+  .vs-problems__grid { grid-template-columns: repeat(2, 1fr); }
+  .vs-testi__grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  :root { --vs-section-y: clamp(2.4rem, 9vw, 3.2rem); }
+  .vs-practice__grid,
+  .vs-lawyers__grid,
+  .vs-ach__grid,
+  .vs-postgrid,
+  .vs-problems__grid,
+  .vs-trust__grid,
+  .vs-process__grid { grid-template-columns: 1fr; }
+  .vs-hero__inner { padding-block: 2.6rem; }
+  .vs-hero__cta .vs-btn { flex: 1 1 100%; }
+  .vs-form__grid { grid-template-columns: 1fr; }
+  .vs-ctastrip__inner { flex-direction: column; text-align: center; }
+  .vs-ctastrip__actions { width: 100%; justify-content: center; }
+  .vs-testi__grid { grid-template-columns: 1fr; }
+  .vs-lawyers__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 400px) {
+  .vs-lawyers__grid { grid-template-columns: 1fr; }
+}

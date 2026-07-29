@@ -73,12 +73,8 @@ function vinasite_opt($key)
         'cta_img'      => '',
     );
 
-    // 1) Customizer override. Đọc-kép: khóa mới 'vinasite_' trước, trống thì khóa
-    //    cũ 'dragon_' (tương thích site chưa migrate DB — không mất cấu hình).
+    // 1) Customizer override (theme_mod 'vinasite_<key>').
     $mod = get_theme_mod('vinasite_' . $key, '');
-    if ($mod === '' || $mod === false) {
-        $mod = get_theme_mod('dragon_' . $key, '');
-    }
     if ($mod !== '' && $mod !== false) {
         return $mod;
     }
@@ -163,9 +159,8 @@ function vinasite_cat_url($slug)
  */
 function vinasite_practice_areas()
 {
-    if (get_theme_mod('vinasite_practice_areas_off', get_theme_mod('dragon_practice_areas_off'))) { return array(); }
-    $data = apply_filters('vinasite_practice_areas', array());
-    return apply_filters('dragon_practice_areas', $data); // compat: child theme cũ hook tên dragon_
+    if (get_theme_mod('vinasite_practice_areas_off')) { return array(); }
+    return apply_filters('vinasite_practice_areas', array());
 }
 
 /**
@@ -174,6 +169,5 @@ function vinasite_practice_areas()
  */
 function vinasite_hero_slides()
 {
-    $data = apply_filters('vinasite_hero_slides', array());
-    return apply_filters('dragon_hero_slides', $data); // compat: child theme cũ hook tên dragon_
+    return apply_filters('vinasite_hero_slides', array());
 }

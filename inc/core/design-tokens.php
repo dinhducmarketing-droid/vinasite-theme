@@ -7,7 +7,7 @@
  * nên chủ site chỉ cần chọn "Màu chính" + "Màu nhấn".
  *
  * An toàn: chỉ xuất CSS ghi đè khi site CÓ chọn màu riêng — nếu để trống,
- * theme dùng đúng bảng màu mặc định trong dragon-base.css (không đổi giao diện).
+ * theme dùng đúng bảng màu mặc định trong vs-base.css (không đổi giao diện).
  *
  * @package vinasite
  */
@@ -51,17 +51,17 @@ function vinasite_mix($hex, $mix, $w)
 function vinasite_logo_palette()
 {
     return array(
-        '--dragon-primary'      => '#1e5aa8', // xanh VinaSite đậm — nền hero, nút chính, tiêu đề
-        '--dragon-primary-dark' => '#174683',
-        '--dragon-secondary'    => '#4790cd', // xanh logo
-        '--dragon-accent'       => '#e51e22', // đỏ logo — mảng nhấn, viền, nền tag
-        '--dragon-accent-hover' => '#c4171b',
-        '--dragon-gold-text'    => '#c4171b', // đỏ đậm — CHỮ nhấn trên nền sáng (đạt AA)
-        '--dragon-lotus'        => '#ffd100', // vàng dòng tagline logo
-        '--dragon-lotus-soft'   => '#fff8dd',
-        '--dragon-bg-light'     => '#f5f9fd', // nền dịu tông lạnh, hợp thương hiệu xanh
-        '--dragon-bg-soft'      => '#eaf2fa',
-        '--dragon-border'       => '#d9e4f0',
+        '--vs-primary'      => '#1e5aa8', // xanh VinaSite đậm — nền hero, nút chính, tiêu đề
+        '--vs-primary-dark' => '#174683',
+        '--vs-secondary'    => '#4790cd', // xanh logo
+        '--vs-accent'       => '#e51e22', // đỏ logo — mảng nhấn, viền, nền tag
+        '--vs-accent-hover' => '#c4171b',
+        '--vs-gold-text'    => '#c4171b', // đỏ đậm — CHỮ nhấn trên nền sáng (đạt AA)
+        '--vs-lotus'        => '#ffd100', // vàng dòng tagline logo
+        '--vs-lotus-soft'   => '#fff8dd',
+        '--vs-bg-light'     => '#f5f9fd', // nền dịu tông lạnh, hợp thương hiệu xanh
+        '--vs-bg-soft'      => '#eaf2fa',
+        '--vs-border'       => '#d9e4f0',
     );
 }
 
@@ -82,7 +82,7 @@ function vinasite_font_map()
 function vinasite_font_current()
 {
     $map = vinasite_font_map();
-    $key = get_theme_mod('dragon_font_family', 'be-vietnam');
+    $key = get_theme_mod('vinasite_font_family', 'be-vietnam');
     if (!isset($map[$key])) { $key = 'be-vietnam'; }
     $data = $map[$key];
     $data['key'] = $key;
@@ -99,42 +99,42 @@ function vinasite_sanitize_font($val)
 add_action('customize_register', 'vinasite_design_customize');
 function vinasite_design_customize($wp_customize)
 {
-    $wp_customize->add_section('dragon_design', array(
+    $wp_customize->add_section('vinasite_design', array(
         'title'    => 'VinaSite – Màu sắc & Phông chữ',
         'priority' => 19,
     ));
 
     // Màu chính
-    $wp_customize->add_setting('dragon_color_primary', array(
+    $wp_customize->add_setting('vinasite_color_primary', array(
         'default' => '', 'sanitize_callback' => 'sanitize_hex_color', 'transport' => 'refresh',
     ));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'dragon_color_primary', array(
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vinasite_color_primary', array(
         'label'       => 'Màu chính (thương hiệu)',
         'description' => 'Dùng cho tiêu đề, header, nút chính. Để trống = giữ màu mặc định của theme.',
-        'section'     => 'dragon_design',
+        'section'     => 'vinasite_design',
         'priority'    => 10,
     )));
 
     // Màu nhấn
-    $wp_customize->add_setting('dragon_color_accent', array(
+    $wp_customize->add_setting('vinasite_color_accent', array(
         'default' => '', 'sanitize_callback' => 'sanitize_hex_color', 'transport' => 'refresh',
     ));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'dragon_color_accent', array(
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'vinasite_color_accent', array(
         'label'       => 'Màu nhấn (nút, điểm nhấn)',
         'description' => 'Dùng cho nút gọi, điểm nhấn, gạch chân tiêu đề.',
-        'section'     => 'dragon_design',
+        'section'     => 'vinasite_design',
         'priority'    => 20,
     )));
 
     // Phông chữ
     $choices = array();
     foreach (vinasite_font_map() as $k => $f) { $choices[$k] = $f['label']; }
-    $wp_customize->add_setting('dragon_font_family', array(
+    $wp_customize->add_setting('vinasite_font_family', array(
         'default' => 'be-vietnam', 'sanitize_callback' => 'vinasite_sanitize_font', 'transport' => 'refresh',
     ));
-    $wp_customize->add_control('dragon_font_family', array(
+    $wp_customize->add_control('vinasite_font_family', array(
         'label'    => 'Phông chữ toàn site',
-        'section'  => 'dragon_design',
+        'section'  => 'vinasite_design',
         'type'     => 'select',
         'choices'  => $choices,
         'priority' => 30,
@@ -151,8 +151,8 @@ function vinasite_design_tokens_css()
     $vars  = array();
     $them  = ''; // CSS bổ sung ngoài :root
 
-    $primary_mod = sanitize_hex_color((string) get_theme_mod('dragon_color_primary', ''));
-    $accent_mod  = sanitize_hex_color((string) get_theme_mod('dragon_color_accent', ''));
+    $primary_mod = sanitize_hex_color((string) get_theme_mod('vinasite_color_primary', ''));
+    $accent_mod  = sanitize_hex_color((string) get_theme_mod('vinasite_color_accent', ''));
     $la_vinasite = vinasite_home_preset() === 'vinasite';
 
     if ($primary_mod || $accent_mod) {
@@ -160,12 +160,12 @@ function vinasite_design_tokens_css()
         // theo bảng màu mặc định của preset đang dùng.
         $primary = $primary_mod ? $primary_mod : ($la_vinasite ? '#1e5aa8' : '#4a2c17');
         $accent  = $accent_mod ? $accent_mod : ($la_vinasite ? '#e51e22' : '#d99a1c');
-        $vars['--dragon-primary']       = $primary;
-        $vars['--dragon-primary-dark']  = vinasite_mix($primary, '#000000', 0.22);
-        $vars['--dragon-secondary']     = vinasite_mix($primary, '#ffffff', 0.22);
-        $vars['--dragon-accent']        = $accent;
-        $vars['--dragon-accent-hover']  = vinasite_mix($accent, '#000000', 0.16);
-        $vars['--dragon-gold-text']     = vinasite_mix($accent, '#000000', 0.42);
+        $vars['--vs-primary']       = $primary;
+        $vars['--vs-primary-dark']  = vinasite_mix($primary, '#000000', 0.22);
+        $vars['--vs-secondary']     = vinasite_mix($primary, '#ffffff', 0.22);
+        $vars['--vs-accent']        = $accent;
+        $vars['--vs-accent-hover']  = vinasite_mix($accent, '#000000', 0.16);
+        $vars['--vs-gold-text']     = vinasite_mix($accent, '#000000', 0.42);
     } elseif ($la_vinasite) {
         // Chưa chọn màu + đang dùng giao diện VinaSite → đồng bộ theo màu logo.
         // (Site preset khác không vào nhánh này nên giữ nguyên tông mặc định.)
@@ -173,14 +173,14 @@ function vinasite_design_tokens_css()
 
         // Nút mặc định có nền = màu nhấn (đỏ logo). Chữ mặc định là màu chính đậm
         // (xanh) sẽ không đọc được trên nền đỏ → ép chữ trắng.
-        $them .= '.dragon-btn{--_fg:#fff;}.dragon-btn:hover{color:#fff;}';
+        $them .= '.vs-btn{--_fg:#fff;}.vs-btn:hover{color:#fff;}';
         // Viền card khi hover: mặc định là be nâu, đổi sang xanh nhạt cho hợp tông.
-        $them .= '.dragon-card:hover{border-color:#b9d2ea;}';
+        $them .= '.vs-card:hover{border-color:#b9d2ea;}';
     }
 
     // Font: luôn xuất theo lựa chọn (mặc định = be-vietnam = giống hiện tại).
     $font = vinasite_font_current();
-    $vars['--dragon-font'] = $font['stack'];
+    $vars['--vs-font'] = $font['stack'];
 
     $css = ':root{';
     foreach ($vars as $k => $v) { $css .= $k . ':' . $v . ';'; }
@@ -193,5 +193,5 @@ function vinasite_design_tokens_css()
 add_action('wp_enqueue_scripts', 'vinasite_output_design_tokens', 30);
 function vinasite_output_design_tokens()
 {
-    wp_add_inline_style('dragon-base', vinasite_design_tokens_css());
+    wp_add_inline_style('vs-base', vinasite_design_tokens_css());
 }

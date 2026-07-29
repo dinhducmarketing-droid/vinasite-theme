@@ -106,7 +106,7 @@ function vinasite_sc_section($atts, $content = '')
     $cls = 'vs-ux-section' . vinasite_vis_class($atts) . ($atts['dark'] ? ' vs-ux-dark' : '');
     if ($atts['class']) { $cls .= ' ' . $atts['class']; }
     $id_attr = $atts['id'] ? ' id="' . esc_attr($atts['id']) . '"' : '';
-    return '<section class="' . esc_attr($cls) . '"' . $id_attr . ($style ? ' style="' . $style . '"' : '') . '><div class="dragon-container">' . do_shortcode($content) . '</div></section>';
+    return '<section class="' . esc_attr($cls) . '"' . $id_attr . ($style ? ' style="' . $style . '"' : '') . '><div class="vs-container">' . do_shortcode($content) . '</div></section>';
 }
 
 function vinasite_sc_row($atts, $content = '')
@@ -176,13 +176,13 @@ function vinasite_sc_divider($atts)
 function vinasite_sc_button($atts, $content = '')
 {
     $atts = shortcode_atts(array('text' => '', 'link' => '#', 'color' => 'primary', 'size' => '', 'expand' => '', 'target' => ''), $atts);
-    $variant = 'dragon-btn--primary';
-    if (in_array($atts['color'], array('white', 'secondary'), true)) { $variant = 'dragon-btn--outline'; }
-    if ($atts['color'] === 'alert' || $atts['color'] === 'success') { $variant = 'dragon-btn--lotus'; }
-    $block = ($atts['expand'] === 'true' || $atts['expand'] === '1') ? ' dragon-btn--block' : '';
+    $variant = 'vs-btn--primary';
+    if (in_array($atts['color'], array('white', 'secondary'), true)) { $variant = 'vs-btn--outline'; }
+    if ($atts['color'] === 'alert' || $atts['color'] === 'success') { $variant = 'vs-btn--lotus'; }
+    $block = ($atts['expand'] === 'true' || $atts['expand'] === '1') ? ' vs-btn--block' : '';
     $label = $atts['text'] !== '' ? $atts['text'] : wp_strip_all_tags($content);
     $tgt   = $atts['target'] === '_blank' ? ' target="_blank" rel="noopener"' : '';
-    return '<a class="dragon-btn ' . esc_attr($variant . $block) . '" href="' . esc_url($atts['link']) . '"' . $tgt . '>' . esc_html($label) . '</a>';
+    return '<a class="vs-btn ' . esc_attr($variant . $block) . '" href="' . esc_url($atts['link']) . '"' . $tgt . '>' . esc_html($label) . '</a>';
 }
 
 function vinasite_sc_title($atts, $content = '')
@@ -270,12 +270,12 @@ function vinasite_sc_go_pricing($atts)
 {
     $phone = function_exists('vinasite_opt') ? vinasite_opt('phone') : '';
     $tel   = function_exists('vinasite_tel') ? vinasite_tel('phone') : preg_replace('/[^0-9]/', '', $phone);
-    return '<div class="vs-pricing-cta dragon-card">'
+    return '<div class="vs-pricing-cta vs-card">'
         . '<h3>Nhận báo giá dịch vụ chi tiết</h3>'
         . '<p>Mức phí được xác định theo quy mô và yêu cầu cụ thể của từng hồ sơ. Vui lòng liên hệ để nhận báo giá chính xác và tư vấn miễn phí.</p>'
         . '<div class="vs-pricing-cta__actions">'
-        . '<a class="dragon-btn dragon-btn--primary" href="tel:' . esc_attr($tel) . '">Gọi ' . esc_html($phone) . '</a>'
-        . '<a class="dragon-btn dragon-btn--outline" href="' . esc_url(home_url('/#dragon-consultation')) . '">Đăng ký tư vấn</a>'
+        . '<a class="vs-btn vs-btn--primary" href="tel:' . esc_attr($tel) . '">Gọi ' . esc_html($phone) . '</a>'
+        . '<a class="vs-btn vs-btn--outline" href="' . esc_url(home_url('/#vs-consultation')) . '">Đăng ký tư vấn</a>'
         . '</div></div>';
 }
 
@@ -307,7 +307,7 @@ function vinasite_sc_elfsight_call($atts = array())
     if (!$tel) {
         return '';
     }
-    return '<p class="vs-vc-call"><a class="dragon-btn dragon-btn--primary" href="tel:' . esc_attr($tel) . '">'
+    return '<p class="vs-vc-call"><a class="vs-btn vs-btn--primary" href="tel:' . esc_attr($tel) . '">'
         . '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:6px"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1 16 16 0 0 1-15-15 1 1 0 0 1 1-1Z"/></svg>'
         . 'Gọi ngay ' . esc_html($phone) . '</a></p>';
 }
@@ -334,9 +334,9 @@ function vinasite_sc_vc_text_separator($atts = array())
 {
     $atts = shortcode_atts(array('title' => ''), $atts);
     if (trim($atts['title']) === '') {
-        return '<hr style="border:0;border-top:2px solid var(--dragon-border);margin:1.4rem 0;"/>';
+        return '<hr style="border:0;border-top:2px solid var(--vs-border);margin:1.4rem 0;"/>';
     }
-    return '<h3 class="vs-vc-separator" style="text-align:center;margin:1.6rem 0 .9rem;color:var(--dragon-primary);font-size:1.05rem;letter-spacing:.03em;">' . esc_html($atts['title']) . '</h3>';
+    return '<h3 class="vs-vc-separator" style="text-align:center;margin:1.6rem 0 .9rem;color:var(--vs-primary);font-size:1.05rem;letter-spacing:.03em;">' . esc_html($atts['title']) . '</h3>';
 }
 
 /** [vc_progress_bar values="url-encoded JSON"] → simple skill bars. */
@@ -356,8 +356,8 @@ function vinasite_sc_vc_progress_bar($atts = array())
         $label = $item['label'];
         $val   = isset($item['value']) ? max(0, min(100, (int) $item['value'])) : 0;
         $out  .= '<div style="margin-bottom:.7rem;">'
-            . '<div style="display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:.25rem;color:var(--dragon-secondary);"><span>' . esc_html($label) . '</span><span>' . $val . '%</span></div>'
-            . '<div style="height:8px;background:var(--dragon-bg-soft);border-radius:4px;overflow:hidden;"><div style="height:100%;width:' . $val . '%;background:var(--dragon-accent);border-radius:4px;"></div></div>'
+            . '<div style="display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:.25rem;color:var(--vs-secondary);"><span>' . esc_html($label) . '</span><span>' . $val . '%</span></div>'
+            . '<div style="height:8px;background:var(--vs-bg-soft);border-radius:4px;overflow:hidden;"><div style="height:100%;width:' . $val . '%;background:var(--vs-accent);border-radius:4px;"></div></div>'
             . '</div>';
     }
     return $out . '</div>';
@@ -374,5 +374,5 @@ function vinasite_sc_vc_btn($atts = array())
     if ($atts['link'] && preg_match('/url:([^|]+)/', $atts['link'], $m)) {
         $url = urldecode($m[1]);
     }
-    return '<a class="dragon-btn dragon-btn--outline" href="' . esc_url($url) . '" style="margin:.6rem 0;">' . esc_html($atts['title']) . '</a>';
+    return '<a class="vs-btn vs-btn--outline" href="' . esc_url($url) . '" style="margin:.6rem 0;">' . esc_html($atts['title']) . '</a>';
 }

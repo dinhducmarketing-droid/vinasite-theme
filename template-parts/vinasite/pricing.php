@@ -10,18 +10,18 @@ if (!defined('ABSPATH')) {
 }
 $packages = vinasite_home_pricing();
 ?>
-<section class="dragon-section vs-pricing" aria-labelledby="vs-pricing-title">
-    <div class="dragon-container">
+<section class="vs-section vs-pricing" aria-labelledby="vs-pricing-title">
+    <div class="vs-container">
 
-        <div class="dragon-section-head dragon-reveal">
-            <span class="dragon-eyebrow">Gói dịch vụ</span>
+        <div class="vs-section-head vs-reveal">
+            <span class="vs-eyebrow">Gói dịch vụ</span>
             <h2 id="vs-pricing-title">Chọn gói phù hợp với quy mô của bạn</h2>
             <p>Mỗi dự án một bài toán khác nhau — hãy để lại thông tin để VinaSite báo giá đúng nhu cầu.</p>
         </div>
 
         <div class="vs-grid vs-grid--3 vs-pricing__grid">
             <?php foreach ($packages as $p) : ?>
-                <article class="dragon-card vs-plan dragon-reveal<?php echo $p['featured'] ? ' vs-plan--featured' : ''; ?>">
+                <article class="vs-card vs-plan vs-reveal<?php echo $p['featured'] ? ' vs-plan--featured' : ''; ?>">
                     <?php if ($p['featured']) : ?>
                         <span class="vs-plan__tag"><?php vinasite_the_icon('star'); ?>Phổ biến nhất</span>
                     <?php endif; ?>
@@ -33,7 +33,7 @@ $packages = vinasite_home_pricing();
                             <li><?php vinasite_the_icon('check'); ?><span><?php echo esc_html($item); ?></span></li>
                         <?php endforeach; ?>
                     </ul>
-                    <a class="dragon-btn <?php echo $p['featured'] ? 'dragon-btn--primary' : 'dragon-btn--outline'; ?> dragon-btn--block" href="#dragon-consultation">
+                    <a class="vs-btn <?php echo $p['featured'] ? 'vs-btn--primary' : 'vs-btn--outline'; ?> vs-btn--block" href="#vs-consultation">
                         Nhận báo giá
                     </a>
                 </article>

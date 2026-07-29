@@ -6,7 +6,7 @@
  * chèn → sửa chữ/ảnh trực tiếp → xong. Nội dung lưu trong database (như kiểu
  * trang chủ "content") nên update theme không bao giờ đụng tới.
  *
- * Màu trong pattern dùng bảng màu theme.json → trỏ về biến --dragon-* nên tự
+ * Màu trong pattern dùng bảng màu theme.json → trỏ về biến --vs-* nên tự
  * theo màu thương hiệu từng site (Customizer → VinaSite – Màu sắc & Phông chữ).
  *
  * @package vinasite
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 
 /* -------------------------------------------------------------------------
  * Editor: nạp token màu/font của site vào canvas soạn thảo, để bảng màu
- * theme.json hiển thị đúng màu thương hiệu (biến --dragon-* vốn chỉ có ở
+ * theme.json hiển thị đúng màu thương hiệu (biến --vs-* vốn chỉ có ở
  * frontend). Dùng block_editor_settings_all để CSS vào đúng iframe canvas.
  * ---------------------------------------------------------------------- */
 add_filter('block_editor_settings_all', 'vinasite_editor_tokens');
@@ -33,15 +33,15 @@ function vinasite_editor_tokens($settings)
 add_action('wp_enqueue_scripts', 'vinasite_patterns_css', 25);
 function vinasite_patterns_css()
 {
-    $ver = defined('DRAGON_ASSET_VER') ? DRAGON_ASSET_VER : '1.0.0';
-    wp_enqueue_style('vinasite-patterns', get_template_directory_uri() . '/assets/dragon/css/vinasite-patterns.css', array(), $ver);
+    $ver = defined('VINASITE_ASSET_VER') ? VINASITE_ASSET_VER : '1.0.0';
+    wp_enqueue_style('vinasite-patterns', get_template_directory_uri() . '/assets/vinasite/css/vinasite-patterns.css', array(), $ver);
 }
 
 add_action('after_setup_theme', 'vinasite_patterns_editor_style');
 function vinasite_patterns_editor_style()
 {
     add_theme_support('editor-styles');
-    add_editor_style('assets/dragon/css/vinasite-patterns.css');
+    add_editor_style('assets/vinasite/css/vinasite-patterns.css');
 }
 
 /* -------------------------------------------------------------------------
@@ -378,51 +378,51 @@ function vinasite_register_patterns()
 
 /* -------------------------------------------------------------------------
  * Shortcode [vinasite_form] — form tư vấn chèn được vào MỌI trang/bài.
- * Dùng lại đúng handler AJAX sẵn có của theme (inc/dragon/ajax.php: nonce,
+ * Dùng lại đúng handler AJAX sẵn có của theme (inc/core/ajax.php: nonce,
  * bẫy bot, chống spam theo IP, gửi mail) — không thêm plugin form nào.
  * ---------------------------------------------------------------------- */
 add_shortcode('vinasite_form', 'vinasite_form_shortcode');
 function vinasite_form_shortcode()
 {
-    // Form dùng class .dragon-form (nằm trong dragon-home.css) → nạp khi cần.
-    wp_enqueue_style('dragon-home', get_template_directory_uri() . '/assets/dragon/css/dragon-home.css', array('dragon-base'), defined('DRAGON_ASSET_VER') ? DRAGON_ASSET_VER : '1.0.0');
+    // Form dùng class .vs-form (nằm trong vs-home.css) → nạp khi cần.
+    wp_enqueue_style('vs-home', get_template_directory_uri() . '/assets/vinasite/css/vs-home.css', array('vs-base'), defined('VINASITE_ASSET_VER') ? VINASITE_ASSET_VER : '1.0.0');
 
     ob_start();
     ?>
-    <form class="dragon-form" id="dragon-consult-form" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post" novalidate>
-        <input type="hidden" name="action" value="dragon_consultation"/>
-        <?php wp_nonce_field('dragon_consultation', 'dragon_nonce'); ?>
+    <form class="vs-form" id="vs-consult-form" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post" novalidate>
+        <input type="hidden" name="action" value="vinasite_consultation"/>
+        <?php wp_nonce_field('vinasite_consultation', 'vinasite_nonce'); ?>
         <!-- Bẫy bot: ẩn với người dùng, bot sẽ điền vào. -->
-        <div class="dragon-field--hp" aria-hidden="true">
-            <label for="dragon-website">Website</label>
-            <input type="text" id="dragon-website" name="dragon_website" tabindex="-1" autocomplete="off"/>
+        <div class="vs-field--hp" aria-hidden="true">
+            <label for="vs-website">Website</label>
+            <input type="text" id="vs-website" name="vinasite_website" tabindex="-1" autocomplete="off"/>
         </div>
-        <div class="dragon-form__status" id="dragon-form-status" role="status" aria-live="polite"></div>
-        <div class="dragon-form__grid">
-            <div class="dragon-field">
-                <label for="dragon-name">Họ và tên <span class="req">*</span></label>
-                <input type="text" id="dragon-name" name="dragon_name" required autocomplete="name"/>
+        <div class="vs-form__status" id="vs-form-status" role="status" aria-live="polite"></div>
+        <div class="vs-form__grid">
+            <div class="vs-field">
+                <label for="vs-name">Họ và tên <span class="req">*</span></label>
+                <input type="text" id="vs-name" name="vinasite_name" required autocomplete="name"/>
             </div>
-            <div class="dragon-field">
-                <label for="dragon-phone">Số điện thoại <span class="req">*</span></label>
-                <input type="tel" id="dragon-phone" name="dragon_phone" required autocomplete="tel" pattern="[0-9+\s.\-]{8,15}"/>
+            <div class="vs-field">
+                <label for="vs-phone">Số điện thoại <span class="req">*</span></label>
+                <input type="tel" id="vs-phone" name="vinasite_phone" required autocomplete="tel" pattern="[0-9+\s.\-]{8,15}"/>
             </div>
-            <div class="dragon-field dragon-field--full">
-                <label for="dragon-email">Email</label>
-                <input type="email" id="dragon-email" name="dragon_email" autocomplete="email"/>
+            <div class="vs-field vs-field--full">
+                <label for="vs-email">Email</label>
+                <input type="email" id="vs-email" name="vinasite_email" autocomplete="email"/>
             </div>
-            <div class="dragon-field dragon-field--full">
-                <label for="dragon-message">Nội dung cần tư vấn</label>
-                <textarea id="dragon-message" name="dragon_message" rows="4"></textarea>
+            <div class="vs-field vs-field--full">
+                <label for="vs-message">Nội dung cần tư vấn</label>
+                <textarea id="vs-message" name="vinasite_message" rows="4"></textarea>
             </div>
-            <div class="dragon-field dragon-field--full">
-                <label class="dragon-consent">
-                    <input type="checkbox" name="dragon_consent" value="1" required/>
+            <div class="vs-field vs-field--full">
+                <label class="vs-consent">
+                    <input type="checkbox" name="vinasite_consent" value="1" required/>
                     <span>Tôi đồng ý cho <?php echo esc_html(vinasite_brand()); ?> liên hệ và xử lý thông tin tôi cung cấp. <span class="req">*</span></span>
                 </label>
             </div>
-            <div class="dragon-field dragon-field--full">
-                <button type="submit" class="dragon-btn dragon-btn--primary dragon-btn--block"><?php vinasite_the_icon('mail'); ?>Gửi yêu cầu tư vấn</button>
+            <div class="vs-field vs-field--full">
+                <button type="submit" class="vs-btn vs-btn--primary vs-btn--block"><?php vinasite_the_icon('mail'); ?>Gửi yêu cầu tư vấn</button>
             </div>
         </div>
     </form>

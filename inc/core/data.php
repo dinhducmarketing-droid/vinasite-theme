@@ -13,6 +13,5 @@ if (!defined('ABSPATH')) {
 
 function vinasite_faq_items()
 {
-    $data = apply_filters('vinasite_faq_items', array());
-    return apply_filters('dragon_faq_items', $data); // compat: child theme cũ hook tên dragon_
+    return apply_filters('vinasite_faq_items', array());
 }

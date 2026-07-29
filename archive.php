@@ -30,7 +30,7 @@ if ($vs_term && !is_wp_error($vs_term)) {
 }
 ?>
 <section class="vs-blog-hero">
-    <div class="dragon-container">
+    <div class="vs-container">
         <nav class="vs-blog-crumb" aria-label="Breadcrumb">
             <a href="<?php echo esc_url(home_url('/')); ?>">Trang chủ</a>
             <span aria-hidden="true">/</span>
@@ -63,8 +63,8 @@ if ($vs_term && !is_wp_error($vs_term)) {
     </div>
 </section>
 
-<section class="dragon-section vs-blog-body">
-    <div class="dragon-container">
+<section class="vs-section vs-blog-body">
+    <div class="vs-container">
 
         <?php if (!empty($vs_chips)) : ?>
             <div class="vs-blog-chips" role="list" aria-label="Lọc chuyên mục">
@@ -90,13 +90,13 @@ if ($vs_term && !is_wp_error($vs_term)) {
                 'class'           => 'vs-blog-search__cat',
             ));
             ?>
-            <label class="dragon-visually-hidden" for="vs-blog-s">Tìm kiếm</label>
+            <label class="vs-visually-hidden" for="vs-blog-s">Tìm kiếm</label>
             <input type="search" id="vs-blog-s" name="s" class="vs-blog-search__input" placeholder="Tìm kiếm bài viết trong chuyên mục…" value="<?php echo esc_attr(get_search_query()); ?>"/>
-            <button type="submit" class="dragon-btn dragon-btn--primary vs-blog-search__btn"><?php vinasite_the_icon('help'); ?>Tìm kiếm</button>
+            <button type="submit" class="vs-btn vs-btn--primary vs-blog-search__btn"><?php vinasite_the_icon('help'); ?>Tìm kiếm</button>
         </form>
 
         <?php if (have_posts()) : ?>
-            <div class="dragon-postgrid vs-blog-grid">
+            <div class="vs-postgrid vs-blog-grid">
                 <?php while (have_posts()) : the_post(); get_template_part('template-parts/content', 'card'); endwhile; ?>
             </div>
             <div class="vs-pagination">

@@ -50,11 +50,8 @@ if (!isset($content_width)) {
 /* -------------------------------------------------------------------------
  * VinaSite core system (config, icons, customizer, ajax, schema, enqueue)
  * ---------------------------------------------------------------------- */
-require_once get_template_directory() . '/inc/dragon/bootstrap.php';
+require_once get_template_directory() . '/inc/core/bootstrap.php';
 
-/* Lớp tương thích ngược: hàm cũ dragon_*() → vinasite_*() cho child theme cũ.
-   Nạp SAU bootstrap để các hàm vinasite_* đã tồn tại. */
-require_once get_template_directory() . '/inc/compat-legacy.php';
 
 /* Legacy page-builder shortcode shim (Flatsome UX Builder + [ntg_page_title]). */
 require_once get_template_directory() . '/inc/vinasite-shim.php';
@@ -70,9 +67,9 @@ if (is_admin()) {
 add_action('wp_enqueue_scripts', 'vinasite_content_styles', 21);
 function vinasite_content_styles()
 {
-    $ver = defined('DRAGON_ASSET_VER') ? DRAGON_ASSET_VER : '1.0.0';
-    wp_enqueue_style('dragon-content', get_template_directory_uri() . '/assets/dragon/css/dragon-content.css', array('dragon-base'), $ver);
-    wp_enqueue_style('dragon-shim', get_template_directory_uri() . '/assets/dragon/css/dragon-shim.css', array('dragon-base'), $ver);
+    $ver = defined('VINASITE_ASSET_VER') ? VINASITE_ASSET_VER : '1.0.0';
+    wp_enqueue_style('vs-content', get_template_directory_uri() . '/assets/vinasite/css/vs-content.css', array('vs-base'), $ver);
+    wp_enqueue_style('vs-shim', get_template_directory_uri() . '/assets/vinasite/css/vs-shim.css', array('vs-base'), $ver);
 }
 
 /* Sidebar widget area (used by blog/archive if desired). */

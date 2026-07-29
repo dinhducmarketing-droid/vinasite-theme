@@ -130,7 +130,7 @@ function vinasite_admin_dashboard()
     $theme = wp_get_theme();
     vinasite_admin_styles();
     $has_logo  = get_theme_mod('custom_logo') || (function_exists('vinasite_opt') && vinasite_opt('logo'));
-    $has_color = get_theme_mod('dragon_color_primary');
+    $has_color = get_theme_mod('vinasite_color_primary');
     $has_menu  = has_nav_menu('primary');
     $has_front = get_option('show_on_front') === 'page' && get_option('page_on_front');
     $has_phone = function_exists('vinasite_opt') && vinasite_opt('phone');
@@ -186,10 +186,10 @@ function vinasite_admin_dashboard()
                 <ul class="vs-check">
                     <?php
                     vinasite_check_row($has_logo, 'Logo site', 'Thêm logo', admin_url('customize.php?autofocus[section]=title_tagline'));
-                    vinasite_check_row($has_color, 'Màu thương hiệu', 'Chọn màu', admin_url('customize.php?autofocus[section]=dragon_design'));
+                    vinasite_check_row($has_color, 'Màu thương hiệu', 'Chọn màu', admin_url('customize.php?autofocus[section]=vinasite_design'));
                     vinasite_check_row($has_menu, 'Menu chính', 'Tạo menu', admin_url('nav-menus.php'));
                     vinasite_check_row($has_front, 'Trang chủ tĩnh', 'Đặt trang chủ', admin_url('options-reading.php'));
-                    vinasite_check_row((bool) $has_phone, 'Thông tin liên hệ (SĐT)', 'Nhập thông tin', admin_url('customize.php?autofocus[section]=dragon_business'));
+                    vinasite_check_row((bool) $has_phone, 'Thông tin liên hệ (SĐT)', 'Nhập thông tin', admin_url('customize.php?autofocus[section]=vinasite_business'));
                     ?>
                 </ul>
             </div>

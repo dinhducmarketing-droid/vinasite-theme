@@ -38,10 +38,10 @@ add_action('wp_enqueue_scripts', 'vinasite_shim_extra_assets', 22);
 function vinasite_shim_extra_assets()
 {
     $dir = get_template_directory();
-    $css = '/assets/dragon/css/vinasite-legacy.css';
-    $js  = '/assets/dragon/js/vinasite-legacy.js';
+    $css = '/assets/vinasite/css/vinasite-legacy.css';
+    $js  = '/assets/vinasite/js/vinasite-legacy.js';
     // Bust cache theo mtime — sửa file là trình duyệt tự lấy bản mới.
-    wp_enqueue_style('vinasite-legacy', get_template_directory_uri() . $css, array('dragon-base'), (string) @filemtime($dir . $css));
+    wp_enqueue_style('vinasite-legacy', get_template_directory_uri() . $css, array('vs-base'), (string) @filemtime($dir . $css));
     wp_enqueue_script('vinasite-legacy', get_template_directory_uri() . $js, array(), (string) @filemtime($dir . $js), true);
 }
 

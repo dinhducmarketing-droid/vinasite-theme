@@ -15,9 +15,9 @@ if (!defined('ABSPATH')) {
 get_header();
 while (have_posts()) : the_post();
     ?>
-    <article <?php post_class('dragon-scope vs-page'); ?>>
+    <article <?php post_class('vs-scope vs-page'); ?>>
         <header class="vs-single__hero">
-            <div class="dragon-container">
+            <div class="vs-container">
                 <nav class="vs-breadcrumb" aria-label="Breadcrumb">
                     <a href="<?php echo esc_url(home_url('/')); ?>">Trang chủ</a> <span aria-hidden="true">›</span>
                     <span><?php the_title(); ?></span>
@@ -25,7 +25,7 @@ while (have_posts()) : the_post();
                 <h1 class="vs-single__title"><?php the_title(); ?></h1>
             </div>
         </header>
-        <div class="dragon-container vs-page__wrap">
+        <div class="vs-container vs-page__wrap">
             <?php if (has_post_thumbnail()) : ?>
                 <figure class="vs-single__thumb"><?php the_post_thumbnail('large', array('alt' => esc_attr(get_the_title()))); ?></figure>
             <?php endif; ?>

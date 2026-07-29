@@ -1,6 +1,6 @@
 /* ==========================================================================
    VinaSite – style cho Block Patterns (bộ dựng trang Gutenberg)
-   Nhẹ, dùng biến --dragon-* nên tự theo màu thương hiệu từng site.
+   Nhẹ, dùng biến --vs-* nên tự theo màu thương hiệu từng site.
    Nạp cả frontend lẫn trình soạn thảo.
    ========================================================================== */
 
@@ -25,7 +25,7 @@
 /* Card dịch vụ */
 .vsp-card {
   background: #ffffff;
-  border: 1px solid var(--dragon-border, #e5e8ec);
+  border: 1px solid var(--vs-border, #e5e8ec);
   border-radius: 12px;
   padding: 1.4rem 1.3rem;
   height: 100%;
@@ -53,8 +53,8 @@
 
 /* FAQ accordion (block Details của WordPress — không cần JS) */
 .vsp-faq-item {
-  background: var(--dragon-bg-light, #f5f9fd);
-  border: 1px solid var(--dragon-border, #e5e8ec);
+  background: var(--vs-bg-light, #f5f9fd);
+  border: 1px solid var(--vs-border, #e5e8ec);
   border-radius: 10px;
   padding: 0.9rem 1.1rem;
   margin-bottom: 0.7rem;
@@ -62,7 +62,7 @@
 
 .vsp-faq-item summary {
   font-weight: 700;
-  color: var(--dragon-primary, #1e5aa8);
+  color: var(--vs-primary, #1e5aa8);
   cursor: pointer;
   min-height: 28px; /* vùng bấm thoải mái */
 }
@@ -152,13 +152,13 @@
 }
 
 .vsp-plan-hot {
-  border-color: var(--dragon-accent, #e51e22);
+  border-color: var(--vs-accent, #e51e22);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .vsp-plan-price {
   font-size: 1.15rem;
-  border-bottom: 1px solid var(--dragon-border, #e5e8ec);
+  border-bottom: 1px solid var(--vs-border, #e5e8ec);
   padding-bottom: 0.8rem;
 }
 
@@ -170,7 +170,7 @@
 
 .vsp-plan .wp-block-list li {
   padding: 0.3rem 0;
-  border-bottom: 1px dashed var(--dragon-border, #e5e8ec);
+  border-bottom: 1px dashed var(--vs-border, #e5e8ec);
 }
 
 .vsp-plan .wp-block-list li:last-child {

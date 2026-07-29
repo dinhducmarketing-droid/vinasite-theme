@@ -16,19 +16,19 @@ $areas    = vinasite_practice_areas();
 
 $vinasite_che_do = vinasite_home_preset();
 $vs_moi    = $vinasite_che_do === 'vinasite'; // site cài mới
-$la_dragon = apply_filters('vinasite_la_dragon', $vinasite_che_do === 'dragon'); // child theo ngành ép qua filter
+$la_nganh = apply_filters('vinasite_topbar_compact', false); // child theo ngành ép true để topbar gọn // child theo ngành ép qua filter
 ?>
 </main>
 
-<footer class="dragon-footer dragon-scope" role="contentinfo">
-    <div class="dragon-footer__main">
-        <div class="dragon-container">
-            <div class="dragon-footer__grid">
+<footer class="vs-footer vs-scope" role="contentinfo">
+    <div class="vs-footer__main">
+        <div class="vs-container">
+            <div class="vs-footer__grid">
 
-                <div class="dragon-footer__brand">
-                    <?php if ($logo_url) : ?><img src="<?php echo esc_url($logo_url); ?>" width="150" height="60" alt="<?php echo esc_attr($logo_txt); ?>" loading="lazy"/><?php else : ?><span class="dragon-logo__text"><?php echo esc_html($logo_txt); ?></span><?php endif; ?>
-                    <p class="dragon-footer__slogan">“<?php echo esc_html(vinasite_opt('slogan')); ?>”</p>
-                    <div class="dragon-footer__meta">
+                <div class="vs-footer__brand">
+                    <?php if ($logo_url) : ?><img src="<?php echo esc_url($logo_url); ?>" width="150" height="60" alt="<?php echo esc_attr($logo_txt); ?>" loading="lazy"/><?php else : ?><span class="vs-logo__text"><?php echo esc_html($logo_txt); ?></span><?php endif; ?>
+                    <p class="vs-footer__slogan">“<?php echo esc_html(vinasite_opt('slogan')); ?>”</p>
+                    <div class="vs-footer__meta">
                         <strong><?php echo esc_html(vinasite_opt('company_name')); ?></strong><br>
                         <?php if (vinasite_opt('so_dkkd') !== '') : ?>Số ĐKKD: <?php echo esc_html(vinasite_opt('so_dkkd')); ?><br><?php endif; ?>
                         <?php if (vinasite_opt('mst') !== '') : ?>MST: <?php echo esc_html(vinasite_opt('mst')); ?><br><?php endif; ?>
@@ -39,17 +39,17 @@ $la_dragon = apply_filters('vinasite_la_dragon', $vinasite_che_do === 'dragon');
                 <div>
                     <h3>Liên hệ</h3>
                     <?php // Site cài mới: dòng nào chưa nhập thì ẩn, tránh dòng trống / link rỗng. ?>
-                    <ul class="dragon-footer__contact">
+                    <ul class="vs-footer__contact">
                         <?php $vs_map_main = apply_filters('vinasite_footer_main_map', ''); ?>
                         <?php if (!$vs_moi || vinasite_opt('address') !== '') : ?>
-                            <li><?php vinasite_the_icon('map-pin'); ?><span><?php echo esc_html(vinasite_opt('address')); ?><?php if ($vs_map_main) : ?> <a class="dragon-footer__map" href="<?php echo esc_url($vs_map_main); ?>" target="_blank" rel="noopener">Chỉ đường ›</a><?php endif; ?></span></li>
+                            <li><?php vinasite_the_icon('map-pin'); ?><span><?php echo esc_html(vinasite_opt('address')); ?><?php if ($vs_map_main) : ?> <a class="vs-footer__map" href="<?php echo esc_url($vs_map_main); ?>" target="_blank" rel="noopener">Chỉ đường ›</a><?php endif; ?></span></li>
                         <?php endif; ?>
                         <?php
                         // Văn phòng/chi nhánh phụ — site có nhiều cơ sở bơm vào qua filter.
                         // Mỗi mục: ['label'=>'VPGD Hà Nội', 'address'=>'...', 'map'=>'https://maps...'].
                         foreach ((array) apply_filters('vinasite_footer_extra_offices', array()) as $vs_vp) :
                             if (empty($vs_vp['address'])) { continue; } ?>
-                            <li><?php vinasite_the_icon('map-pin'); ?><span><?php if (!empty($vs_vp['label'])) { echo '<strong>' . esc_html($vs_vp['label']) . ':</strong> '; } echo esc_html($vs_vp['address']); ?><?php if (!empty($vs_vp['map'])) : ?> <a class="dragon-footer__map" href="<?php echo esc_url($vs_vp['map']); ?>" target="_blank" rel="noopener">Chỉ đường ›</a><?php endif; ?></span></li>
+                            <li><?php vinasite_the_icon('map-pin'); ?><span><?php if (!empty($vs_vp['label'])) { echo '<strong>' . esc_html($vs_vp['label']) . ':</strong> '; } echo esc_html($vs_vp['address']); ?><?php if (!empty($vs_vp['map'])) : ?> <a class="vs-footer__map" href="<?php echo esc_url($vs_vp['map']); ?>" target="_blank" rel="noopener">Chỉ đường ›</a><?php endif; ?></span></li>
                         <?php endforeach; ?>
                         <?php if (!$vs_moi || $phone !== '') : ?>
                             <li><?php vinasite_the_icon('phone'); ?><a href="tel:<?php echo esc_attr(vinasite_tel('phone')); ?>"><?php echo esc_html($phone); ?></a></li>
@@ -69,9 +69,9 @@ $la_dragon = apply_filters('vinasite_la_dragon', $vinasite_che_do === 'dragon');
                 <?php if ($vs_moi) : ?>
                     <div>
                         <h3>Dịch vụ</h3>
-                        <ul class="dragon-footer__links">
+                        <ul class="vs-footer__links">
                             <?php foreach (vinasite_home_services() as $s) : ?>
-                                <li><a href="<?php echo esc_url(home_url('/#dragon-consultation')); ?>"><?php vinasite_the_icon('chevron-right'); ?><?php echo esc_html($s['title']); ?></a></li>
+                                <li><a href="<?php echo esc_url(home_url('/#vs-consultation')); ?>"><?php vinasite_the_icon('chevron-right'); ?><?php echo esc_html($s['title']); ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
@@ -80,7 +80,7 @@ $la_dragon = apply_filters('vinasite_la_dragon', $vinasite_che_do === 'dragon');
                           // Tiêu đề cột đặt ở option 'footer_areas_title' (child/site tự đặt). ?>
                     <div>
                         <h3><?php echo esc_html(vinasite_opt('footer_areas_title') !== '' ? vinasite_opt('footer_areas_title') : 'Danh mục'); ?></h3>
-                        <ul class="dragon-footer__links">
+                        <ul class="vs-footer__links">
                             <?php foreach (array_slice($areas, 0, 6) as $a) : ?>
                                 <li><a href="<?php echo esc_url($a['url']); ?>"><?php vinasite_the_icon('chevron-right'); ?><?php echo esc_html($a['title']); ?></a></li>
                             <?php endforeach; ?>
@@ -95,7 +95,7 @@ $la_dragon = apply_filters('vinasite_la_dragon', $vinasite_che_do === 'dragon');
                     wp_nav_menu(array(
                         'theme_location' => 'footer',
                         'container'      => false,
-                        'menu_class'     => 'dragon-footer__links',
+                        'menu_class'     => 'vs-footer__links',
                         'depth'          => 1,
                         'link_before'    => vinasite_icon('chevron-right'),
                         'fallback_cb'    => false,
@@ -107,10 +107,10 @@ $la_dragon = apply_filters('vinasite_la_dragon', $vinasite_che_do === 'dragon');
         </div>
     </div>
 
-    <div class="dragon-footer__bottom">
-        <div class="dragon-container dragon-footer__bottom-inner">
+    <div class="vs-footer__bottom">
+        <div class="vs-container vs-footer__bottom-inner">
             <div>© <?php echo esc_html(date('Y')); ?> <?php echo esc_html(vinasite_opt('company_name')); ?>. Bảo lưu mọi quyền.</div>
-            <div class="dragon-footer__legal">
+            <div class="vs-footer__legal">
                 <?php // Link chính sách: ưu tiên option site tự nhập, sau đó trang chính sách WP.
                       // Site nào chưa có thì link tự ẩn — không hardcode tên miền nào. ?>
                 <?php $privacy = vinasite_opt('privacy_url') !== '' ? vinasite_opt('privacy_url') : get_privacy_policy_url(); ?>
@@ -128,7 +128,7 @@ $la_dragon = apply_filters('vinasite_la_dragon', $vinasite_che_do === 'dragon');
             $vs_socials = apply_filters('vinasite_footer_socials', $vs_socials);
             ?>
             <?php if (!empty($vs_socials)) : ?>
-                <div class="dragon-footer__socials">
+                <div class="vs-footer__socials">
                     <?php foreach ($vs_socials as $vs_s) : if (empty($vs_s['url'])) { continue; } ?>
                         <a href="<?php echo esc_url($vs_s['url']); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr($vs_s['label']); ?>"><?php echo $vs_s['icon']; // phpcs:ignore -- SVG nội tuyến tin cậy ?></a>
                     <?php endforeach; ?>
@@ -139,17 +139,17 @@ $la_dragon = apply_filters('vinasite_la_dragon', $vinasite_che_do === 'dragon');
 </footer>
 
 <!-- Floating desktop CTAs -->
-<div class="dragon-floats" aria-hidden="false">
+<div class="vs-floats" aria-hidden="false">
     <?php if ($phone !== '') : ?>
-        <a class="dragon-float dragon-float--phone" href="tel:<?php echo esc_attr(vinasite_tel('phone')); ?>" aria-label="Gọi điện <?php echo esc_attr($phone); ?>"><?php vinasite_the_icon('phone'); ?></a>
+        <a class="vs-float vs-float--phone" href="tel:<?php echo esc_attr(vinasite_tel('phone')); ?>" aria-label="Gọi điện <?php echo esc_attr($phone); ?>"><?php vinasite_the_icon('phone'); ?></a>
     <?php endif; ?>
     <?php if (vinasite_opt('zalo') !== '') : ?>
-        <a class="dragon-float dragon-float--zalo" href="https://zalo.me/<?php echo esc_attr(vinasite_tel('zalo')); ?>" target="_blank" rel="noopener" aria-label="Nhắn Zalo"><?php vinasite_the_icon('zalo'); ?></a>
+        <a class="vs-float vs-float--zalo" href="https://zalo.me/<?php echo esc_attr(vinasite_tel('zalo')); ?>" target="_blank" rel="noopener" aria-label="Nhắn Zalo"><?php vinasite_the_icon('zalo'); ?></a>
     <?php endif; ?>
 </div>
 
 <!-- Mobile bottom action bar -->
-<nav class="dragon-mobilebar" aria-label="Liên hệ nhanh">
+<nav class="vs-mobilebar" aria-label="Liên hệ nhanh">
     <?php // Site cài mới chưa nhập thì ẩn, tránh link "tel:" / "zalo.me/" rỗng. ?>
     <?php if (!$vs_moi || $phone !== '') : ?>
         <a href="tel:<?php echo esc_attr(vinasite_tel('phone')); ?>" aria-label="Gọi điện"><?php vinasite_the_icon('phone'); ?>Gọi điện</a>
@@ -158,7 +158,7 @@ $la_dragon = apply_filters('vinasite_la_dragon', $vinasite_che_do === 'dragon');
         <a href="https://zalo.me/<?php echo esc_attr(vinasite_tel('zalo')); ?>" target="_blank" rel="noopener" aria-label="Nhắn Zalo"><?php vinasite_the_icon('zalo'); ?>Zalo</a>
     <?php endif; ?>
     <?php $nhan_cta = $vs_moi ? 'Nhận tư vấn' : 'Đặt lịch tư vấn'; ?>
-    <a href="#dragon-consultation" class="is-primary" aria-label="<?php echo esc_attr($nhan_cta); ?>"><?php vinasite_the_icon('calendar'); ?><?php echo $vs_moi ? 'Tư vấn' : 'Đặt lịch'; ?></a>
+    <a href="#vs-consultation" class="is-primary" aria-label="<?php echo esc_attr($nhan_cta); ?>"><?php vinasite_the_icon('calendar'); ?><?php echo $vs_moi ? 'Tư vấn' : 'Đặt lịch'; ?></a>
 </nav>
 
 </div><!-- #wrapper -->

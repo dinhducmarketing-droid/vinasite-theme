@@ -28,7 +28,7 @@
 .vs-legacy-home > .vs-ux-divider,
 .vs-legacy-home > .vs-ux-text {
 	width: 100%;
-	max-width: var(--dragon-container, 1200px);
+	max-width: var(--vs-container, 1200px);
 	margin-left: auto;
 	margin-right: auto;
 	padding-left: 16px;
@@ -55,7 +55,7 @@
 /* Chặn <p> rỗng và <br> của wpautop phá lưới flex (chúng thành flex item + gap) */
 .vs-ux-row > p:empty,
 .vs-ux-row > br,
-.vs-ux-section > .dragon-container > br,
+.vs-ux-section > .vs-container > br,
 .vs-legacy-home .vs-slider__track > br,
 .vs-legacy-home .vs-slider__track > p:empty { display: none; }
 
@@ -76,8 +76,8 @@
 .vs-ux-dark, .vs-ux-dark h1, .vs-ux-dark h2, .vs-ux-dark h3, .vs-ux-dark p { color: #fff; }
 .vs-ux-dark .vs-ux-divider { background-color: rgba(255, 255, 255, .6); }
 /* Nút trong section xanh: nền trắng chữ xanh (khỏi tàng hình) */
-.vs-ux-dark .dragon-btn,
-.vs-ux-dark .dragon-btn--primary {
+.vs-ux-dark .vs-btn,
+.vs-ux-dark .vs-btn--primary {
 	background: #fff !important;
 	color: var(--vn-green) !important;
 	border-color: #fff !important;
@@ -87,7 +87,7 @@
 	margin-top: 14px;
 	display: inline-block;
 }
-.vs-ux-dark .dragon-btn:hover { background: var(--vn-green-dark) !important; color: #fff !important; }
+.vs-ux-dark .vs-btn:hover { background: var(--vn-green-dark) !important; color: #fff !important; }
 
 /* ---------- Slider ---------- */
 .vs-slider { position: relative; }

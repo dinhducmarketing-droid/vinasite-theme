@@ -2,9 +2,9 @@
 /**
  * Trang chủ VinaSite – khối liên hệ + form tư vấn.
  *
- * Dùng lại đúng handler AJAX sẵn có (inc/dragon/ajax.php: nonce, honeypot,
- * chống spam theo IP, gửi mail) và giữ nguyên id form để dragon.js bắt được.
- * Giữ id khối là "dragon-consultation" vì header/footer/nút nổi đều trỏ tới đó.
+ * Dùng lại đúng handler AJAX sẵn có (inc/core/ajax.php: nonce, honeypot,
+ * chống spam theo IP, gửi mail) và giữ nguyên id form để vinasite.js bắt được.
+ * Giữ id khối là "vs-consultation" vì header/footer/nút nổi đều trỏ tới đó.
  *
  * @package vinasite
  */
@@ -16,12 +16,12 @@ $phone    = vinasite_info('phone');
 $email    = vinasite_info('email');
 $address  = vinasite_opt('address');
 ?>
-<section class="dragon-section dragon-section--soft vs-contact" id="dragon-consultation" aria-labelledby="vs-contact-title">
-    <div class="dragon-container">
+<section class="vs-section vs-section--soft vs-contact" id="vs-consultation" aria-labelledby="vs-contact-title">
+    <div class="vs-container">
         <div class="vs-contact__grid">
 
-            <div class="vs-contact__intro dragon-reveal">
-                <span class="dragon-eyebrow">Liên hệ</span>
+            <div class="vs-contact__intro vs-reveal">
+                <span class="vs-eyebrow">Liên hệ</span>
                 <h2 id="vs-contact-title">Bắt đầu website của bạn hôm nay</h2>
                 <p>Để lại thông tin, đội ngũ <?php echo esc_html(vinasite_info('brand')); ?> sẽ gọi lại tư vấn miễn phí và báo giá theo đúng nhu cầu của bạn.</p>
 
@@ -33,51 +33,51 @@ $address  = vinasite_opt('address');
 
                 <ul class="vs-contact__info">
                     <li>
-                        <span class="dragon-ico-chip"><?php vinasite_the_icon('phone'); ?></span>
+                        <span class="vs-ico-chip"><?php vinasite_the_icon('phone'); ?></span>
                         <a href="tel:<?php echo esc_attr(vinasite_info_tel()); ?>"><?php echo esc_html($phone); ?></a>
                     </li>
                     <li>
-                        <span class="dragon-ico-chip"><?php vinasite_the_icon('mail'); ?></span>
+                        <span class="vs-ico-chip"><?php vinasite_the_icon('mail'); ?></span>
                         <a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a>
                     </li>
                     <?php if ($address !== '') : ?>
                         <li>
-                            <span class="dragon-ico-chip"><?php vinasite_the_icon('map-pin'); ?></span>
+                            <span class="vs-ico-chip"><?php vinasite_the_icon('map-pin'); ?></span>
                             <span><?php echo esc_html($address); ?></span>
                         </li>
                     <?php endif; ?>
                 </ul>
             </div>
 
-            <div class="dragon-reveal">
-                <form class="dragon-form vs-form" id="dragon-consult-form" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post" novalidate>
-                    <input type="hidden" name="action" value="dragon_consultation"/>
-                    <?php wp_nonce_field('dragon_consultation', 'dragon_nonce'); ?>
+            <div class="vs-reveal">
+                <form class="vs-form vs-form" id="vs-consult-form" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post" novalidate>
+                    <input type="hidden" name="action" value="vinasite_consultation"/>
+                    <?php wp_nonce_field('vinasite_consultation', 'vinasite_nonce'); ?>
 
                     <!-- Bẫy bot: ẩn với người dùng, bot sẽ điền vào. -->
-                    <div class="dragon-field--hp" aria-hidden="true">
-                        <label for="dragon-website">Website</label>
-                        <input type="text" id="dragon-website" name="dragon_website" tabindex="-1" autocomplete="off"/>
+                    <div class="vs-field--hp" aria-hidden="true">
+                        <label for="vs-website">Website</label>
+                        <input type="text" id="vs-website" name="vinasite_website" tabindex="-1" autocomplete="off"/>
                     </div>
 
-                    <div class="dragon-form__status" id="dragon-form-status" role="status" aria-live="polite"></div>
+                    <div class="vs-form__status" id="vs-form-status" role="status" aria-live="polite"></div>
 
-                    <div class="dragon-form__grid">
-                        <div class="dragon-field">
-                            <label for="dragon-name">Họ và tên <span class="req">*</span></label>
-                            <input type="text" id="dragon-name" name="dragon_name" required autocomplete="name"/>
+                    <div class="vs-form__grid">
+                        <div class="vs-field">
+                            <label for="vs-name">Họ và tên <span class="req">*</span></label>
+                            <input type="text" id="vs-name" name="vinasite_name" required autocomplete="name"/>
                         </div>
-                        <div class="dragon-field">
-                            <label for="dragon-phone">Số điện thoại <span class="req">*</span></label>
-                            <input type="tel" id="dragon-phone" name="dragon_phone" required autocomplete="tel" pattern="[0-9+\s.\-]{8,15}"/>
+                        <div class="vs-field">
+                            <label for="vs-phone">Số điện thoại <span class="req">*</span></label>
+                            <input type="tel" id="vs-phone" name="vinasite_phone" required autocomplete="tel" pattern="[0-9+\s.\-]{8,15}"/>
                         </div>
-                        <div class="dragon-field">
-                            <label for="dragon-email">Email</label>
-                            <input type="email" id="dragon-email" name="dragon_email" autocomplete="email"/>
+                        <div class="vs-field">
+                            <label for="vs-email">Email</label>
+                            <input type="email" id="vs-email" name="vinasite_email" autocomplete="email"/>
                         </div>
-                        <div class="dragon-field">
-                            <label for="dragon-area">Dịch vụ quan tâm</label>
-                            <select id="dragon-area" name="dragon_area">
+                        <div class="vs-field">
+                            <label for="vs-area">Dịch vụ quan tâm</label>
+                            <select id="vs-area" name="vinasite_area">
                                 <option value="">— Chọn dịch vụ —</option>
                                 <?php foreach ($services as $s) : ?>
                                     <option value="<?php echo esc_attr($s['key']); ?>"><?php echo esc_html($s['title']); ?></option>
@@ -85,21 +85,21 @@ $address  = vinasite_opt('address');
                                 <option value="khac">Dịch vụ khác</option>
                             </select>
                         </div>
-                        <div class="dragon-field dragon-field--full">
-                            <label for="dragon-message">Bạn cần hỗ trợ gì?</label>
-                            <textarea id="dragon-message" name="dragon_message" rows="4" placeholder="Mô tả ngắn về lĩnh vực kinh doanh và mong muốn của bạn."></textarea>
+                        <div class="vs-field vs-field--full">
+                            <label for="vs-message">Bạn cần hỗ trợ gì?</label>
+                            <textarea id="vs-message" name="vinasite_message" rows="4" placeholder="Mô tả ngắn về lĩnh vực kinh doanh và mong muốn của bạn."></textarea>
                         </div>
-                        <div class="dragon-field dragon-field--full">
-                            <label class="dragon-consent">
-                                <input type="checkbox" name="dragon_consent" value="1" required/>
+                        <div class="vs-field vs-field--full">
+                            <label class="vs-consent">
+                                <input type="checkbox" name="vinasite_consent" value="1" required/>
                                 <span>Tôi đồng ý cho <?php echo esc_html(vinasite_info('company_name')); ?> liên hệ tư vấn và xử lý thông tin tôi cung cấp. <span class="req">*</span></span>
                             </label>
                         </div>
-                        <div class="dragon-field dragon-field--full">
-                            <button type="submit" class="dragon-btn dragon-btn--primary dragon-btn--block"><?php vinasite_the_icon('mail'); ?>Gửi yêu cầu tư vấn</button>
+                        <div class="vs-field vs-field--full">
+                            <button type="submit" class="vs-btn vs-btn--primary vs-btn--block"><?php vinasite_the_icon('mail'); ?>Gửi yêu cầu tư vấn</button>
                         </div>
-                        <div class="dragon-field dragon-field--full">
-                            <p class="dragon-form__micro"><?php vinasite_the_icon('shield'); ?>Thông tin của bạn được bảo mật và chỉ dùng để liên hệ tư vấn.</p>
+                        <div class="vs-field vs-field--full">
+                            <p class="vs-form__micro"><?php vinasite_the_icon('shield'); ?>Thông tin của bạn được bảo mật và chỉ dùng để liên hệ tư vấn.</p>
                         </div>
                     </div>
                 </form>

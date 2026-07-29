@@ -9,17 +9,17 @@ if (!defined('ABSPATH')) {
 }
 get_header();
 ?>
-<section class="dragon-section vs-list">
-    <div class="dragon-container">
-        <header class="dragon-section-head dragon-section-head--left">
-            <span class="dragon-eyebrow">Tìm kiếm</span>
+<section class="vs-section vs-list">
+    <div class="vs-container">
+        <header class="vs-section-head vs-section-head--left">
+            <span class="vs-eyebrow">Tìm kiếm</span>
             <h1>Kết quả cho: “<?php echo esc_html(get_search_query()); ?>”</h1>
             <?php global $wp_query; ?>
             <p><?php echo (int) $wp_query->found_posts; ?> kết quả</p>
         </header>
 
         <?php if (have_posts()) : ?>
-            <div class="dragon-postgrid vs-postgrid">
+            <div class="vs-postgrid vs-postgrid">
                 <?php while (have_posts()) : the_post(); get_template_part('template-parts/content', 'card'); endwhile; ?>
             </div>
             <div class="vs-pagination">

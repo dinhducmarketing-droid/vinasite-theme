@@ -13,10 +13,10 @@ $phone = vinasite_info('phone');
 ?>
 <section class="vs-hero" aria-labelledby="vs-hero-title">
     <div class="vs-hero__deco" aria-hidden="true"></div>
-    <div class="dragon-container vs-hero__inner">
+    <div class="vs-container vs-hero__inner">
 
         <div class="vs-hero__content">
-            <span class="dragon-eyebrow"><?php echo esc_html(vinasite_info('company_name')); ?></span>
+            <span class="vs-eyebrow"><?php echo esc_html(vinasite_info('company_name')); ?></span>
             <h1 class="vs-hero__title" id="vs-hero-title">
                 Giao diện <strong>VinaSite</strong> — nền tảng website cho doanh nghiệp Việt
             </h1>
@@ -25,10 +25,10 @@ $phone = vinasite_info('phone');
                 tự cập nhật và dùng chung được cho nhiều website — do VinaSite thiết kế và phát triển.
             </p>
             <div class="vs-hero__cta">
-                <a class="dragon-btn dragon-btn--primary" href="#dragon-consultation">
+                <a class="vs-btn vs-btn--primary" href="#vs-consultation">
                     <?php vinasite_the_icon('mail'); ?>Nhận tư vấn miễn phí
                 </a>
-                <a class="dragon-btn dragon-btn--ghost" href="tel:<?php echo esc_attr(vinasite_info_tel()); ?>">
+                <a class="vs-btn vs-btn--ghost" href="tel:<?php echo esc_attr(vinasite_info_tel()); ?>">
                     <?php vinasite_the_icon('phone'); ?>Gọi <?php echo esc_html($phone); ?>
                 </a>
             </div>

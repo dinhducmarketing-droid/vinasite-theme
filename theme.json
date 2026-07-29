@@ -4,15 +4,15 @@
   "settings": {
     "color": {
       "palette": [
-        { "slug": "vs-primary", "name": "Màu chính (thương hiệu)", "color": "var(--dragon-primary, #1e5aa8)" },
-        { "slug": "vs-primary-dark", "name": "Màu chính đậm", "color": "var(--dragon-primary-dark, #174683)" },
-        { "slug": "vs-secondary", "name": "Màu phụ", "color": "var(--dragon-secondary, #4790cd)" },
-        { "slug": "vs-accent", "name": "Màu nhấn", "color": "var(--dragon-accent, #e51e22)" },
-        { "slug": "vs-accent-text", "name": "Chữ nhấn trên nền sáng", "color": "var(--dragon-gold-text, #c4171b)" },
-        { "slug": "vs-bg-light", "name": "Nền sáng", "color": "var(--dragon-bg-light, #f5f9fd)" },
-        { "slug": "vs-bg-soft", "name": "Nền phụ", "color": "var(--dragon-bg-soft, #eaf2fa)" },
-        { "slug": "vs-text", "name": "Chữ chính", "color": "var(--dragon-text, #201d1a)" },
-        { "slug": "vs-muted", "name": "Chữ phụ", "color": "var(--dragon-muted, #6b645c)" },
+        { "slug": "vs-primary", "name": "Màu chính (thương hiệu)", "color": "var(--vs-primary, #1e5aa8)" },
+        { "slug": "vs-primary-dark", "name": "Màu chính đậm", "color": "var(--vs-primary-dark, #174683)" },
+        { "slug": "vs-secondary", "name": "Màu phụ", "color": "var(--vs-secondary, #4790cd)" },
+        { "slug": "vs-accent", "name": "Màu nhấn", "color": "var(--vs-accent, #e51e22)" },
+        { "slug": "vs-accent-text", "name": "Chữ nhấn trên nền sáng", "color": "var(--vs-gold-text, #c4171b)" },
+        { "slug": "vs-bg-light", "name": "Nền sáng", "color": "var(--vs-bg-light, #f5f9fd)" },
+        { "slug": "vs-bg-soft", "name": "Nền phụ", "color": "var(--vs-bg-soft, #eaf2fa)" },
+        { "slug": "vs-text", "name": "Chữ chính", "color": "var(--vs-text, #201d1a)" },
+        { "slug": "vs-muted", "name": "Chữ phụ", "color": "var(--vs-muted, #6b645c)" },
         { "slug": "vs-white", "name": "Trắng", "color": "#ffffff" }
       ],
       "defaultPalette": false,
@@ -25,7 +25,7 @@
         {
           "slug": "vs-font",
           "name": "Font của site (theo Customizer)",
-          "fontFamily": "var(--dragon-font, \"Be Vietnam Pro\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif)"
+          "fontFamily": "var(--vs-font, \"Be Vietnam Pro\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif)"
         }
       ],
       "fontSizes": [
@@ -48,7 +48,7 @@
     "elements": {
       "button": {
         "color": {
-          "background": "var(--dragon-primary, #1e5aa8)",
+          "background": "var(--vs-primary, #1e5aa8)",
           "text": "#ffffff"
         },
         "border": {

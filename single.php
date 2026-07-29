@@ -13,10 +13,10 @@ get_header();
 while (have_posts()) : the_post();
     $cats = get_the_category();
     ?>
-    <article <?php post_class('dragon-scope vs-single'); ?>>
+    <article <?php post_class('vs-scope vs-single'); ?>>
 
         <header class="vs-single__hero">
-            <div class="dragon-container">
+            <div class="vs-container">
                 <nav class="vs-blog-crumb" aria-label="Breadcrumb">
                     <a href="<?php echo esc_url(home_url('/')); ?>">Trang chủ</a>
                     <span aria-hidden="true">/</span>
@@ -41,7 +41,7 @@ while (have_posts()) : the_post();
             </div>
         </header>
 
-        <div class="dragon-container vs-single__wrap">
+        <div class="vs-container vs-single__wrap">
             <div class="vs-single__content">
                 <?php if (has_post_thumbnail()) : ?>
                     <figure class="vs-single__thumb"><?php the_post_thumbnail('large', array('alt' => esc_attr(get_the_title()))); ?></figure>
@@ -56,7 +56,7 @@ while (have_posts()) : the_post();
                     <div class="vs-tags"><?php the_tags('', '', ''); ?></div>
                 <?php endif; ?>
 
-                <div class="vs-single__cta dragon-card">
+                <div class="vs-single__cta vs-card">
                     <div>
                         <?php // Tiêu đề + tên đơn vị lấy từ option (site/child tự đặt), có mặc định trung tính. ?>
                         <strong><?php echo esc_html(vinasite_opt('single_cta_heading') !== '' ? vinasite_opt('single_cta_heading') : 'Cần tư vấn thêm về nội dung này?'); ?></strong>
@@ -64,8 +64,8 @@ while (have_posts()) : the_post();
                         <p><?php echo esc_html($vs_ten); ?> tiếp nhận và tư vấn nhanh chóng, bảo mật.</p>
                     </div>
                     <div class="vs-single__cta-actions">
-                        <a class="dragon-btn dragon-btn--primary" href="tel:<?php echo esc_attr(vinasite_tel('phone')); ?>"><?php vinasite_the_icon('phone'); ?>Gọi <?php echo esc_html(vinasite_opt('phone')); ?></a>
-                        <a class="dragon-btn dragon-btn--outline" href="<?php echo esc_url(home_url('/#dragon-consultation')); ?>">Đặt lịch tư vấn</a>
+                        <a class="vs-btn vs-btn--primary" href="tel:<?php echo esc_attr(vinasite_tel('phone')); ?>"><?php vinasite_the_icon('phone'); ?>Gọi <?php echo esc_html(vinasite_opt('phone')); ?></a>
+                        <a class="vs-btn vs-btn--outline" href="<?php echo esc_url(home_url('/#vs-consultation')); ?>">Đặt lịch tư vấn</a>
                     </div>
                 </div>
 
@@ -156,7 +156,7 @@ while (have_posts()) : the_post();
                     ?>
                     <h3 class="vs-widget__title"><?php echo esc_html($vs_cta_title); ?></h3>
                     <p><?php echo esc_html($vs_cta_text); ?></p>
-                    <a class="dragon-btn dragon-btn--primary dragon-btn--block" href="tel:<?php echo esc_attr(vinasite_tel('phone')); ?>"><?php vinasite_the_icon('phone'); ?><?php echo esc_html(vinasite_opt('phone')); ?></a>
+                    <a class="vs-btn vs-btn--primary vs-btn--block" href="tel:<?php echo esc_attr(vinasite_tel('phone')); ?>"><?php vinasite_the_icon('phone'); ?><?php echo esc_html(vinasite_opt('phone')); ?></a>
                 </div>
             </aside>
         </div>

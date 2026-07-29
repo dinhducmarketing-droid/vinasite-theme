@@ -9,15 +9,15 @@ if (!defined('ABSPATH')) {
 }
 get_header();
 ?>
-<section class="dragon-section vs-list">
-    <div class="dragon-container">
-        <header class="dragon-section-head">
-            <span class="dragon-eyebrow">Bài viết</span>
+<section class="vs-section vs-list">
+    <div class="vs-container">
+        <header class="vs-section-head">
+            <span class="vs-eyebrow">Bài viết</span>
             <h1><?php echo esc_html(is_home() && get_option('page_for_posts') ? get_the_title(get_option('page_for_posts')) : 'Tin tức & kiến thức'); ?></h1>
         </header>
 
         <?php if (have_posts()) : ?>
-            <div class="dragon-postgrid vs-postgrid">
+            <div class="vs-postgrid vs-postgrid">
                 <?php while (have_posts()) : the_post(); get_template_part('template-parts/content', 'card'); endwhile; ?>
             </div>
             <div class="vs-pagination">

@@ -3,6 +3,11 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.8.0] — 2026-07 (đổi tên dragon → vinasite HOÀN TẤT)
+- Đổi **toàn bộ** định danh `dragon` → `vinasite`/`vs` trong theme cha: 113 class CSS `.dragon-*`→`.vs-*`, biến `--dragon-*`→`--vs-*`, thư mục `inc/dragon/`→`inc/core/` và `assets/dragon/`→`assets/vinasite/`, file `dragon-*.css`→`vs-*.css` + `dragon.js`→`vinasite.js`, handle enqueue, `DragonAjax`→`VinasiteAjax`, `DRAGON_ASSET_VER`→`VINASITE_ASSET_VER`.
+- Khóa theme_mod `dragon_*`→`vinasite_*`, field form + AJAX action `dragon_consultation`→`vinasite_consultation`, DOM id `#dragon-consultation`→`#vs-consultation`, filter `vinasite_la_dragon`→`vinasite_topbar_compact`. Xoá `inc/compat-legacy.php`. GIỮ `dragon_sheet_push` (hàm mu-plugin ngoài).
+- **Đã đổi đồng bộ + migrate DB thật cho cả 4 site đang chạy** (thêm khóa `vinasite_` cạnh `dragon_` — không xóa, để rollback): vietnhatsknn, giathaistone, noithathaven, vanphongluatsu — tất cả 0 lỗi, nội dung + màu thương hiệu giữ nguyên, brand khách "Dragon" ở child vanphong không bị đụng.
+
 ## [1.7.0] — 2026-07 (đổi tên dragon → vinasite — Pha 1: hàm)
 - Đổi 28 hàm `dragon_*()` → `vinasite_*()` trong theme cha (vd `dragon_opt`→`vinasite_opt`, `dragon_the_icon`→`vinasite_the_icon`). Thêm `inc/compat-legacy.php`: hàm cũ `dragon_*()` thành vỏ bọc chuyển tiếp sang hàm mới, nên 3 child theme khách (vanphong-dragon, giathai-child, vinasite-child) chạy NGUYÊN không cần sửa.
 - Filter `dragon_practice_areas`/`hero_slides`/`faq_items` đổi sang tên `vinasite_*` nhưng VẪN apply cả tên cũ → child hook `dragon_` vẫn bơm dữ liệu được.

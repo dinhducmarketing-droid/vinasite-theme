@@ -10,10 +10,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-add_action('wp_ajax_dragon_consultation', 'vinasite_handle_consultation');
-add_action('wp_ajax_nopriv_dragon_consultation', 'vinasite_handle_consultation');
-add_action('admin_post_dragon_consultation', 'vinasite_handle_consultation');
-add_action('admin_post_nopriv_dragon_consultation', 'vinasite_handle_consultation');
+add_action('wp_ajax_vinasite_consultation', 'vinasite_handle_consultation');
+add_action('wp_ajax_nopriv_vinasite_consultation', 'vinasite_handle_consultation');
+add_action('admin_post_vinasite_consultation', 'vinasite_handle_consultation');
+add_action('admin_post_nopriv_vinasite_consultation', 'vinasite_handle_consultation');
 
 function vinasite_consultation_respond($ok, $message, $is_ajax)
 {
@@ -21,7 +21,7 @@ function vinasite_consultation_respond($ok, $message, $is_ajax)
         wp_send_json(array('success' => $ok, 'message' => $message), $ok ? 200 : 400);
     }
     $target = wp_get_referer() ? wp_get_referer() : home_url('/');
-    $target = add_query_arg('dragon_sent', $ok ? '1' : '0', $target) . '#dragon-consultation';
+    $target = add_query_arg('vinasite_sent', $ok ? '1' : '0', $target) . '#vs-consultation';
     wp_safe_redirect($target);
     exit;
 }
@@ -31,31 +31,31 @@ function vinasite_handle_consultation()
     $is_ajax = wp_doing_ajax();
 
     // 1) Nonce.
-    if (!isset($_POST['dragon_nonce']) || !wp_verify_nonce($_POST['dragon_nonce'], 'dragon_consultation')) {
+    if (!isset($_POST['vinasite_nonce']) || !wp_verify_nonce($_POST['vinasite_nonce'], 'vinasite_consultation')) {
         vinasite_consultation_respond(false, 'Phiên làm việc đã hết hạn. Vui lòng tải lại trang và thử lại.', $is_ajax);
     }
 
     // 2) Honeypot – silently accept to not tip off bots, but drop.
-    if (!empty($_POST['dragon_website'])) {
+    if (!empty($_POST['vinasite_website'])) {
         vinasite_consultation_respond(true, 'Cảm ơn bạn, yêu cầu đã được ghi nhận.', $is_ajax);
     }
 
     // 3) Rate limit by IP (max 5 / 10 min).
     $ip  = isset($_SERVER['REMOTE_ADDR']) ? preg_replace('/[^0-9a-f:.]/i', '', $_SERVER['REMOTE_ADDR']) : 'unknown';
-    $key = 'dragon_rl_' . md5($ip);
+    $key = 'vinasite_rl_' . md5($ip);
     $hits = (int) get_transient($key);
     if ($hits >= 5) {
         vinasite_consultation_respond(false, 'Bạn đã gửi quá nhiều yêu cầu. Vui lòng thử lại sau ít phút hoặc gọi ' . esc_html(vinasite_opt('phone')) . '.', $is_ajax);
     }
 
     // 4) Sanitize.
-    $name    = isset($_POST['dragon_name']) ? sanitize_text_field(wp_unslash($_POST['dragon_name'])) : '';
-    $phone   = isset($_POST['dragon_phone']) ? sanitize_text_field(wp_unslash($_POST['dragon_phone'])) : '';
-    $email   = isset($_POST['dragon_email']) ? sanitize_email(wp_unslash($_POST['dragon_email'])) : '';
-    $area    = isset($_POST['dragon_area']) ? sanitize_text_field(wp_unslash($_POST['dragon_area'])) : '';
-    $city    = isset($_POST['dragon_city']) ? sanitize_text_field(wp_unslash($_POST['dragon_city'])) : '';
-    $message = isset($_POST['dragon_message']) ? sanitize_textarea_field(wp_unslash($_POST['dragon_message'])) : '';
-    $consent = !empty($_POST['dragon_consent']);
+    $name    = isset($_POST['vinasite_name']) ? sanitize_text_field(wp_unslash($_POST['vinasite_name'])) : '';
+    $phone   = isset($_POST['vinasite_phone']) ? sanitize_text_field(wp_unslash($_POST['vinasite_phone'])) : '';
+    $email   = isset($_POST['vinasite_email']) ? sanitize_email(wp_unslash($_POST['vinasite_email'])) : '';
+    $area    = isset($_POST['vinasite_area']) ? sanitize_text_field(wp_unslash($_POST['vinasite_area'])) : '';
+    $city    = isset($_POST['vinasite_city']) ? sanitize_text_field(wp_unslash($_POST['vinasite_city'])) : '';
+    $message = isset($_POST['vinasite_message']) ? sanitize_textarea_field(wp_unslash($_POST['vinasite_message'])) : '';
+    $consent = !empty($_POST['vinasite_consent']);
 
     // 5) Validate.
     if ($name === '' || $phone === '' || !$consent) {
@@ -67,11 +67,11 @@ function vinasite_handle_consultation()
 
     // 6) Optional file upload – validate strictly, store privately.
     $attachments = array();
-    if (!empty($_FILES['dragon_file']['name']) && empty($_FILES['dragon_file']['error'])) {
+    if (!empty($_FILES['vinasite_file']['name']) && empty($_FILES['vinasite_file']['error'])) {
         $allowed = array('pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png');
-        $size    = (int) $_FILES['dragon_file']['size'];
-        $check   = wp_check_filetype_and_ext($_FILES['dragon_file']['tmp_name'], $_FILES['dragon_file']['name']);
-        $ext     = strtolower(pathinfo($_FILES['dragon_file']['name'], PATHINFO_EXTENSION));
+        $size    = (int) $_FILES['vinasite_file']['size'];
+        $check   = wp_check_filetype_and_ext($_FILES['vinasite_file']['tmp_name'], $_FILES['vinasite_file']['name']);
+        $ext     = strtolower(pathinfo($_FILES['vinasite_file']['name'], PATHINFO_EXTENSION));
         if ($size > 8 * 1024 * 1024) {
             vinasite_consultation_respond(false, 'Tệp vượt quá 8MB. Vui lòng gửi tệp nhỏ hơn.', $is_ajax);
         }
@@ -80,11 +80,11 @@ function vinasite_handle_consultation()
         }
         require_once ABSPATH . 'wp-admin/includes/file.php';
         // Route the upload into a PRIVATE folder (not the public Media library):
-        // uploads/dragon-consult/ guarded by .htaccess Deny + Options -Indexes so
+        // uploads/vs-consult/ guarded by .htaccess Deny + Options -Indexes so
         // client case documents are never publicly downloadable. The file is only
         // delivered as an email attachment to the firm.
         add_filter('upload_dir', 'vinasite_private_upload_dir');
-        $moved = wp_handle_upload($_FILES['dragon_file'], array(
+        $moved = wp_handle_upload($_FILES['vinasite_file'], array(
             'test_form'                => false,
             'unique_filename_callback' => 'vinasite_obfuscate_filename',
             'mimes'     => array(
@@ -167,7 +167,7 @@ function vinasite_handle_consultation()
  */
 function vinasite_private_upload_dir($dirs)
 {
-    $sub          = '/dragon-consult';
+    $sub          = '/vs-consult';
     $dirs['path']   = $dirs['basedir'] . $sub;
     $dirs['url']    = $dirs['baseurl'] . $sub; // not used publicly; file is emailed
     $dirs['subdir'] = $sub;

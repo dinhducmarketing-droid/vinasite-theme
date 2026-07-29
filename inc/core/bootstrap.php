@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$vinasite_dir = get_template_directory() . '/inc/dragon/';
+$vinasite_dir = get_template_directory() . '/inc/core/';
 require_once $vinasite_dir . 'config.php';
 require_once $vinasite_dir . 'data.php';
 require_once $vinasite_dir . 'icons.php';
@@ -28,44 +28,44 @@ require_once get_template_directory() . '/inc/vinasite-license.php';
 require_once get_template_directory() . '/inc/vinasite-bundled-plugin.php';
 require_once get_template_directory() . '/inc/vinasite-theme-updater.php';
 
-define('DRAGON_ASSET_VER', '1.6.8');
+define('VINASITE_ASSET_VER', '1.6.8');
 
 add_action('wp_enqueue_scripts', 'vinasite_enqueue_assets', 20);
 function vinasite_enqueue_assets()
 {
-    $base = get_template_directory_uri() . '/assets/dragon/';
-    $ver  = DRAGON_ASSET_VER;
+    $base = get_template_directory_uri() . '/assets/vinasite/';
+    $ver  = VINASITE_ASSET_VER;
 
     // Site-wide (header + footer overrides are global).
-    wp_enqueue_style('dragon-base', $base . 'css/dragon-base.css', array(), $ver);
-    wp_enqueue_style('dragon-header', $base . 'css/dragon-header.css', array('dragon-base'), $ver);
-    wp_enqueue_style('dragon-footer', $base . 'css/dragon-footer.css', array('dragon-base'), $ver);
+    wp_enqueue_style('vs-base', $base . 'css/vs-base.css', array(), $ver);
+    wp_enqueue_style('vs-header', $base . 'css/vs-header.css', array('vs-base'), $ver);
+    wp_enqueue_style('vs-footer', $base . 'css/vs-footer.css', array('vs-base'), $ver);
 
     // Home section styles — also used by the landing pages (Về chúng tôi, Đội ngũ
-    // nhân sự, Hồ sơ năng lực), which reuse .dragon-about__*, .dragon-ach__*,
-    // .dragon-lawyer*, .dragon-ctastrip.
-    // dragon-home.css: luôn nạp ở trang chủ; ngoài ra child theme (theo ngành)
+    // nhân sự, Hồ sơ năng lực), which reuse .vs-about__*, .vs-ach__*,
+    // .vs-lawyer*, .vs-ctastrip.
+    // vs-home.css: luôn nạp ở trang chủ; ngoài ra child theme (theo ngành)
     // khai báo thêm các trang cần qua filter 'vinasite_home_css_pages' (mảng slug).
     $vinasite_home_css_pages = apply_filters('vinasite_home_css_pages', array());
     if (is_front_page() || (!empty($vinasite_home_css_pages) && is_page($vinasite_home_css_pages))) {
-        wp_enqueue_style('dragon-home', $base . 'css/dragon-home.css', array('dragon-base'), $ver);
-        wp_enqueue_style('dragon-responsive', $base . 'css/dragon-responsive.css', array('dragon-home'), $ver);
+        wp_enqueue_style('vs-home', $base . 'css/vs-home.css', array('vs-base'), $ver);
+        wp_enqueue_style('vs-responsive', $base . 'css/vs-responsive.css', array('vs-home'), $ver);
     }
 
     // Trang chủ mặc định VinaSite — nạp thêm style riêng cho các khối giới thiệu.
     if (is_front_page() && vinasite_home_preset() === 'vinasite') {
-        wp_enqueue_style('vinasite-home', $base . 'css/vinasite-home.css', array('dragon-home'), $ver);
+        wp_enqueue_style('vinasite-home', $base . 'css/vinasite-home.css', array('vs-home'), $ver);
     }
 
     // Behaviour (nav/offcanvas needed site-wide; slider/form guard on presence).
-    wp_enqueue_script('dragon-js', $base . 'js/dragon.js', array(), $ver, true);
-    wp_localize_script('dragon-js', 'DragonAjax', array(
+    wp_enqueue_script('vs-js', $base . 'js/vinasite.js', array(), $ver, true);
+    wp_localize_script('vs-js', 'VinasiteAjax', array(
         'url' => admin_url('admin-ajax.php'),
     ));
 
     // Preconnect Google Fonts + load font đã chọn trong Customizer (mặc định Be Vietnam Pro).
     $vinasite_font = function_exists('vinasite_font_current') ? vinasite_font_current() : array('query' => 'Be+Vietnam+Pro:wght@400;600;700');
-    wp_enqueue_style('dragon-font', 'https://fonts.googleapis.com/css2?family=' . $vinasite_font['query'] . '&display=swap', array(), null);
+    wp_enqueue_style('vs-font', 'https://fonts.googleapis.com/css2?family=' . $vinasite_font['query'] . '&display=swap', array(), null);
 }
 
 /** Preconnect hints for the webfont (faster LCP). */
@@ -80,7 +80,7 @@ function vinasite_resource_hints()
 add_filter('script_loader_tag', 'vinasite_defer_scripts', 10, 3);
 function vinasite_defer_scripts($tag, $handle, $src)
 {
-    $defer = array('dragon-js');
+    $defer = array('vs-js');
     if (in_array($handle, $defer, true) && strpos($tag, 'defer') === false) {
         $tag = str_replace(' src', ' defer src', $tag);
     }
