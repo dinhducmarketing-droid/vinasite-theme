@@ -3,6 +3,10 @@
 Theme WordPress độc lập của Vinasite Việt Nam, dùng chung cho nhiều website khách.
 Quy ước phiên bản: sửa lỗi → tăng số cuối (1.0.1 → 1.0.2); thêm tính năng → 1.0 → 1.1; thay đổi lớn → 1.x → 2.0.
 
+## [1.8.1] — 2026-09
+- Thêm **Classic Editor** vào nhóm plugin tự cài khi kích hoạt theme (nguồn WordPress.org). Cài xong theme ép ngay `classic-editor-replace = block` và `classic-editor-allow-users = allow` → **trang/bài mới vẫn mở bằng Gutenberg** (giữ nguyên `theme.json` + 10 block pattern), mỗi bài chỉ có thêm liên kết "Sửa bằng trình soạn thảo cũ" cho khách quen giao diện cũ. Nếu để mặc định của plugin (`replace = classic`) thì block editor bị tắt hẳn, mất luôn bộ pattern.
+- Danh sách plugin khuyến nghị nhận thêm khóa tùy chọn `after_install` (hàm chạy ngay sau khi cài, TRƯỚC khi kích hoạt). Chỉ chạy đúng lần theme thực sự cài plugin đó — site admin đã tự cài sẵn và chọn cấu hình khác thì không bị ghi đè.
+
 ## [1.8.0] — 2026-07 (đổi tên dragon → vinasite HOÀN TẤT)
 - Đổi **toàn bộ** định danh `dragon` → `vinasite`/`vs` trong theme cha: 113 class CSS `.dragon-*`→`.vs-*`, biến `--dragon-*`→`--vs-*`, thư mục `inc/dragon/`→`inc/core/` và `assets/dragon/`→`assets/vinasite/`, file `dragon-*.css`→`vs-*.css` + `dragon.js`→`vinasite.js`, handle enqueue, `DragonAjax`→`VinasiteAjax`, `DRAGON_ASSET_VER`→`VINASITE_ASSET_VER`.
 - Khóa theme_mod `dragon_*`→`vinasite_*`, field form + AJAX action `dragon_consultation`→`vinasite_consultation`, DOM id `#dragon-consultation`→`#vs-consultation`, filter `vinasite_la_dragon`→`vinasite_topbar_compact`. Xoá `inc/compat-legacy.php`. GIỮ `dragon_sheet_push` (hàm mu-plugin ngoài).

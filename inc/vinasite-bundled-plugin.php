@@ -56,6 +56,17 @@ function vinasite_recommended_plugins()
             'label'  => 'Advanced Editor Tools',
             'auto'   => true,
         ),
+        // Classic Editor: cài sẵn NHƯNG không để nó chiếm chỗ Gutenberg —
+        // after_install ép về "mặc định block editor + cho phép người dùng
+        // chuyển". Nếu để mặc định của plugin (replace = classic) thì 10 block
+        // pattern của theme không dùng được nữa.
+        'classic-editor' => array(
+            'source'        => 'wporg',
+            'file'          => 'classic-editor/classic-editor.php',
+            'label'         => 'Classic Editor',
+            'auto'          => true,
+            'after_install' => 'vinasite_classic_editor_defaults',
+        ),
         'vinasite-call-button' => array(
             'source' => 'bundled',
             'file'   => 'vinasite-call-button/vinasite-call-button.php',
@@ -122,6 +133,23 @@ function vinasite_install_plugin($slug, $cfg)
     return is_dir(WP_PLUGIN_DIR . '/' . $slug);
 }
 
+/**
+ * Cấu hình mặc định cho Classic Editor do THEME cài:
+ *  - replace = 'block'  : trang/bài mới vẫn mở bằng Gutenberg (giữ nguyên
+ *                         theme.json + block pattern của theme).
+ *  - allow-users = 'allow' : mỗi bài có thêm liên kết "Sửa bằng trình soạn
+ *                         thảo cũ" cho khách quen giao diện cũ.
+ * Chỉ chạy ĐÚNG lần theme tự cài plugin, nên site đã cài sẵn Classic Editor và
+ * tự chọn cấu hình khác sẽ không bị ghi đè. Đặt trước activate_plugin() vì
+ * Classic Editor dùng add_option() lúc kích hoạt — add_option không đè giá trị
+ * đã có.
+ */
+function vinasite_classic_editor_defaults()
+{
+    update_option('classic-editor-replace', 'block');
+    update_option('classic-editor-allow-users', 'allow');
+}
+
 /** Kích hoạt plugin nếu đã cài & chưa active. */
 function vinasite_activate_plugin_file($file)
 {
@@ -147,7 +175,13 @@ function vinasite_install_recommended($only_auto = true, $slugs = null)
         if ($only_auto && empty($cfg['auto'])) {
             continue;
         }
+        // Chưa có thư mục = lần chạy này mới thực sự cài → chỉ khi đó mới áp
+        // cấu hình mặc định, tránh đụng vào plugin admin đã tự cài trước đó.
+        $moi_cai = !is_dir(WP_PLUGIN_DIR . '/' . $slug);
         if (vinasite_install_plugin($slug, $cfg)) {
+            if ($moi_cai && !empty($cfg['after_install']) && is_callable($cfg['after_install'])) {
+                call_user_func($cfg['after_install']);
+            }
             vinasite_activate_plugin_file($cfg['file']);
         }
     }
